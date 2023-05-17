@@ -13,7 +13,18 @@ export default {
     'content/**/*.md'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        accent: {
+          100: '#9ffca5',
+          200: '#8DF894',
+          300: '#65fc6f'
+        },
+        primary: {
+          900: '#0e0e0e',
+        },
+      },
+    },
   },
   plugins: [],
 }

@@ -3,15 +3,17 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --port=4000",
+    "dev": "nuxt dev --port=7000",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxt/image-edge": "^1.0.0-28059208.2abef1b",
     "@nuxtjs/tailwindcss": "^6.6.8",
     "@types/node": "^18",
-    "nuxt": "^3.4.3"
+    "nuxt": "^3.4.3",
+    "nuxt-icon": "^0.4.0"
   },
   "dependencies": {
     "mongoose": "^7.1.1"
