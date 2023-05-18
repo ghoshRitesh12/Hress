@@ -1,6 +1,6 @@
 <template>
 
-  <div data-privacy
+  <div data-cookie-policy
     class="
     max-w-full w-full mt-2 mx-auto
     md:max-w-[70%] xl:max-w-[50%]
@@ -13,9 +13,11 @@
       "
     >
       <nuxt-img 
-        src="/terms_conditions.jpg" 
-        alt="terms and conditions illustration image"
+        src="/cookies.webp" 
+        alt="cookie policy illustration image"
         format="webp"
+        width="1000"
+        height="700"
         class="
         rounded-2xl w-full sm:h-[22rem]
         object-center mx-auto

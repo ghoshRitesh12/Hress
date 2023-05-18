@@ -12,14 +12,16 @@
       rounded-2xl w-full
       "
     >
-      <nuxt-img 
-        src="/terms_conditions.jpg" 
-        alt="terms and conditions illustration image"
-        format="webp"
-        class="
-        rounded-2xl w-full sm:h-[22rem]
-        object-center mx-auto
-        "
+    <nuxt-img 
+      src="/terms_conditions.jpg" 
+      alt="terms and conditions illustration image"
+      width="1000"
+      height="700"
+      format="webp"
+      class="
+      rounded-2xl w-full sm:h-[22rem]
+      object-center mx-auto
+      "
       />
     </div>
 
