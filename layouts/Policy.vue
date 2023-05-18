@@ -6,6 +6,7 @@
       class="
       flex items-center px-4 2xl:px-8
       relative max-w-full w-full py-3
+      md:justify-between
       "
     >
       <HressLogo/>
@@ -67,6 +68,10 @@
         ></div>
 
       </nav> 
+
+      <button class=" hidden ml-8 px-4 py-2 bg-accent-200 text-black font-semibold rounded-2xl text-[.9rem]">
+        login
+      </button>
       
     </header>
 
@@ -82,7 +87,7 @@
       >
 
         <NuxtLink
-          v-for="tabLink in tabLinks"
+          v-for="tabLink, index in tabLinks"
           :key="tabLink.href"
           :to="tabLink.href"
           class="
@@ -95,6 +100,7 @@
           after:bg-green-400 text-accent-100
           after:rounded-tl-3xl after:rounded-tr-3xl
           "
+          @click="tabScroll(index)"
           style="transition: .2s ease"
         >
           {{ tabLink.name }}
@@ -102,7 +108,7 @@
 
       </div>
 
-      <div class="px-6 pt-8 pb-16">
+      <div class="px-6 pt-10 pb-16">
         <slot/>
       </div>
 
@@ -119,14 +125,28 @@
 
 const policyTabsWrap = ref(null);
 
+const tabScroll = (item) => {
+  if(item === 0) {
+    policyTabsWrap.value.scrollLeft = 0
+    return
+  } 
+  policyTabsWrap.value.scrollLeft = policyTabsWrap.value.scrollWidth
+}
+
+onMounted(() => {
+  const route = useRoute();
+  if(route.path.includes('cookie-policy')) {
+    policyTabsWrap.value.scrollLeft = policyTabsWrap.value.scrollWidth
+  }
+})
+
+
 
 const tabLinks = ref([
   { name: 'Terms & Conditions', href: '/terms' },
   { name: 'Privacy Policy', href: '/privacy' },
   { name: 'Cookie Policy', href: '/cookie-policy' },
 ]);
-
-
 
 const headerLinks = ref([
   { name: 'Plan', href: '/plan' },
