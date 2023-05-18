@@ -78,6 +78,7 @@
         border-b-[1px] border-zinc-700 pb-[.05rem] text-[.95rem]
         "
         id="policy-tabs"
+        ref="policyTabsWrap"
       >
 
         <NuxtLink
@@ -116,6 +117,7 @@
 
 <script setup>
 
+const policyTabsWrap = ref(null);
 
 
 const tabLinks = ref([
@@ -123,7 +125,6 @@ const tabLinks = ref([
   { name: 'Privacy Policy', href: '/privacy' },
   { name: 'Cookie Policy', href: '/cookie-policy' },
 ]);
-
 
 
 

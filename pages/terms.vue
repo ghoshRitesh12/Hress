@@ -89,15 +89,15 @@ const tableOfContents = ref([
     @apply mb-4 text-[.95rem] text-zinc-300;
   }
   .terms-wrap :deep(p a) {
-    @apply underline underline-offset-4 text-green-300;
+    @apply underline underline-offset-4 text-green-400;
   }
 
-  .terms-wrap :deep(h3) {
-    @apply mt-10 mb-4 text-xl font-semibold;
+  .terms-wrap :deep(h2) {
+    @apply mt-10 pb-4 text-xl font-semibold;
     word-spacing: .2rem
   }
-  .terms-wrap :deep(h4) {
-    @apply mt-7 mb-2 text-lg font-semibold;
+  .terms-wrap :deep(h3) {
+    @apply mt-7 mb-2 text-[1.1rem] font-semibold;
     word-spacing: .2rem
   }
 
