@@ -1,6 +1,6 @@
 <template>
 
-  <div class="flex flex-col min-h-[100vh]">
+  <div data-policy>
 
     <header 
       class="
@@ -8,7 +8,6 @@
       relative max-w-full w-full py-3
       "
     >
-
       <HressLogo/>
 
       <nav id="head-nav" class="ml-auto">
@@ -67,52 +66,66 @@
           `"
         ></div>
 
-      </nav>     
-
+      </nav> 
+      
     </header>
 
-    <slot />
+    <div class="mt-8">
 
-    <footer 
-      class="
-      flex items-center flex-wrap-reverse w-full mt-auto
-      gap-1 pt-6 pb-4 px-4 2xl:px-8 text-[.8rem] 
-      justify-center md:justify-between
-      "
-    >
-
-      <div class="text-zinc-400">
-        &copy; 2023 Hress Limited.
-      </div>
-
-      <div data-footer-links 
-        class="sm:ml-auto"
+      <div 
+        class="
+        flex items-center overflow-x-auto overflow-y-hidden
+        border-b-[1px] border-zinc-700 pb-[.05rem] text-[.95rem]
+        "
+        id="policy-tabs"
       >
 
         <NuxtLink
-          v-for="footerLink in footerLinks"
-          :to="footerLink.href"
-          :key="footerLink.href"
+          v-for="tabLink in tabLinks"
+          :key="tabLink.href"
+          :to="tabLink.href"
           class="
-          text-zinc-400 hover:text-green-200
-          transition ease-in duration-100
-          py-1 px-2 ml-0 md:ml-1 
+          relative py-2 px-2 ml-3 md:ml-6 
+          flex-shrink-0 last:mr-3 md:last:mr-6
           "
+          active-class="
+          after:content-[' '] after:absolute after:left-0 
+          after:bottom-[-.1rem] after:w-full after:h-[.28rem] 
+          after:bg-green-400 text-accent-100
+          after:rounded-tl-3xl after:rounded-tr-3xl
+          "
+          style="transition: .2s ease"
         >
-          {{ footerLink.name }}
+          {{ tabLink.name }}
         </NuxtLink>
 
       </div>
 
-    </footer>
+      <div class="px-6 pt-8 pb-16">
+        <slot/>
+      </div>
+
+
+    </div>
+
 
   </div>
-
 
 </template>
 
 
 <script setup>
+
+
+
+const tabLinks = ref([
+  { name: 'Terms & Conditions', href: '/terms' },
+  { name: 'Privacy Policy', href: '/privacy' },
+  { name: 'Cookie Policy', href: '/cookie-policy' },
+]);
+
+
+
 
 const headerLinks = ref([
   { name: 'Plan', href: '/plan' },
@@ -120,14 +133,6 @@ const headerLinks = ref([
   { name: 'Activities', href: '/activities' },
   { name: 'Achievers', href: '/achievers' },
 ]);
-
-const footerLinks = ref([
-  { name: 'Terms', href: '/terms' },
-  { name: 'Privacy', href: '/privacy' },
-  { name: 'Cookie Policy', href: '/cookie-policy' },
-  { name: 'Get in touch', href: '/contact' },
-]);
-
 
 const headNavOpen = ref(false);
 const burgerIcon = ref('charm:menu-hamburger');
@@ -145,10 +150,17 @@ const toggleHeaderNav = () => {
 }
 
 
-
 </script>
 
 
-<style>
+<style scoped>
+
+  #policy-tabs {
+    scrollbar-width: none;
+  }
+  #policy-tabs::-webkit-scrollbar {
+    display: none;
+  }
 
 </style>
+

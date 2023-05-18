@@ -17,6 +17,7 @@
     "nuxt-icon": "^0.4.0"
   },
   "dependencies": {
+    "@nuxt/content": "^2.6.0",
     "mongoose": "^7.1.1"
   }
 }

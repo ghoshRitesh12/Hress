@@ -4,8 +4,9 @@
     
     <nuxt-img 
       src="/hress_logo.svg" 
+      alt="hress logo"
       decoding="async"
-      class="max-w-[4rem]"
+      class="max-w-[3.25rem] md:max-w-[3.8rem]"
     />
 
   </NuxtLink>
