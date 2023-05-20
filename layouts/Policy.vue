@@ -91,7 +91,7 @@
           :key="tabLink.href"
           :to="tabLink.href"
           class="
-          relative py-2 px-2 ml-3 md:ml-6 
+          relative py-3 px-2 ml-3 md:ml-6 
           flex-shrink-0 last:mr-3 md:last:mr-6
           "
           active-class="
@@ -115,6 +115,7 @@
 
     </div>
 
+    <ToTop/>
 
   </div>
 

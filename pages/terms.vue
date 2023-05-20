@@ -91,7 +91,7 @@ const tableOfContents = ref([
     @apply mb-4 text-[.95rem] text-zinc-300;
   }
   .terms-wrap :deep(p a) {
-    @apply underline underline-offset-4 text-green-400;
+    @apply underline underline-offset-4 text-accent-100;
   }
 
   .terms-wrap :deep(h2) {
