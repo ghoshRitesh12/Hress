@@ -5,32 +5,36 @@
     <header 
       class="
       flex items-center px-4 2xl:px-8
-      relative max-w-full w-full py-3
-      md:justify-between
+      relative max-w-full w-full py-4
+      md:justify-between border-[0px]
       "
     >
       <HressLogo/>
 
-      <nav id="head-nav" class="ml-auto">
+      <nav id="head-nav" class="ml-auto md:mr-10">
 
         <button
           @click="toggleHeaderNav"
           role="button"
           type="button"
           aria-label="nav toggler"
-          class="block md:hidden"
+          class="block md:hidden scale-[1]"
+          style="transition: .2s ease scale"
         >
           <Icon
             :name="burgerIcon"
-            class="text-2xl pointer-events-none"
+            class="
+            text-[1.7rem] rounded-md
+            pointer-events-none
+            "
           />
         </button>
 
         <div data-head-nav
           class="
-          flex items-center flex-col gap-2
-          absolute top-[3.9rem] left-0 z-30
-          border-zinc-800 h-0
+          flex items-center justify-center gap-x-5
+          absolute top-[3.9rem] left-0 z-30 flex-wrap
+          border-zinc-800 h-0 px-6 md:flex-nowrap
           w-full bg-primary-900 overflow-hidden
           md:block md:relative md:inset-auto md:w-fit
           md:bg-transparent md:p-0 md:border-0
@@ -43,9 +47,11 @@
             :to="headerLink.href"
             :key="headerLink.href"
             class="
-            text-zinc-100 hover:text-accent-100 py-2 px-4
-            w-full text-center md:text-left md:w-fit
-            transition ease-in duration-100
+            text-zinc-100 hover:text-accent-100 md:py-2 px-4
+            text-center md:text-left md:w-fit border-none
+            transition ease-in duration-100 flex-grow
+            w-full max-w-[45%] py-6 rounded-2xl bg-zinc-800
+            md:bg-transparent md:flex-grow-0 md:max-w-fit
             "
             style="transition: .2s ease"
           >
@@ -69,9 +75,7 @@
 
       </nav> 
 
-      <button class=" hidden ml-8 px-4 py-2 bg-accent-200 text-black font-semibold rounded-2xl text-[.9rem]">
-        login
-      </button>
+      <Profile class="ml-5"/>
       
     </header>
 
@@ -97,7 +101,7 @@
           active-class="
           after:content-[' '] after:absolute after:left-0 
           after:bottom-[-.1rem] after:w-full after:h-[.28rem] 
-          after:bg-green-400 text-accent-100
+          after:bg-accent-200 text-accent-100
           after:rounded-tl-3xl after:rounded-tr-3xl
           "
           @click="tabScroll(index)"
@@ -115,7 +119,7 @@
 
     </div>
 
-    <ToTop/>
+    <ScrollToTop/>
 
   </div>
 
@@ -156,18 +160,18 @@ const headerLinks = ref([
   { name: 'Achievers', href: '/achievers' },
 ]);
 
-const headNavOpen = ref(false);
-const burgerIcon = ref('charm:menu-hamburger');
 
-const toggleHeaderNav = () => {
+const headNavOpen = ref(false);
+const burgerIcon = ref('fluent:grid-dots-24-regular');
+
+const toggleHeaderNav = (e) => {
+  console.log(e);
   headNavOpen.value = !headNavOpen.value;
 
   if(headNavOpen.value) {
-    burgerIcon.value = 'radix-icons:cross-2';
     document.body.style.overflowY = 'hidden';
     return;
   }
-  burgerIcon.value = 'charm:menu-hamburger';
   document.body.removeAttribute('style');
 }
 

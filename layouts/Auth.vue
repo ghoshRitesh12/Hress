@@ -76,7 +76,7 @@
     <footer 
       class="
       flex items-center flex-wrap-reverse w-full mt-auto
-      gap-1 pt-6 pb-4 px-4 2xl:px-8 text-[.8rem] 
+      gap-2 py-6 px-4 2xl:px-8 text-[.8rem] 
       justify-center md:justify-between
       "
     >

@@ -1,12 +1,12 @@
 <template>
 
-  <NuxtLink to="/">
+  <NuxtLink to="/" class="md:px-2">
     
     <nuxt-img 
       src="/hress_logo.svg" 
       alt="hress logo"
       decoding="async"
-      class="max-w-[3.25rem] md:max-w-[3.8rem]"
+      class="max-w-[3.25rem] md:max-w-[3.6rem]"
     />
 
   </NuxtLink>
