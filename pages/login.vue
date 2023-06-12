@@ -37,7 +37,7 @@
             class="
             px-4 py-3 rounded-xl bg-zinc-800 
             focus:outline-none focus:outline-green-300
-            focus:outline-1 w-full mt-3
+            focus:outline-1 focus:outline-offset-0 w-full mt-3
             "
             autocapitalize="false" autocomplete="false"
           />
@@ -58,9 +58,9 @@
               v-model.lazy.trim="formData.password"
               required autocorrect="false"
               class="
-              px-4 py-3 rounded-xl bg-zinc-800 
+              pl-4 pr-14 py-3 rounded-xl bg-zinc-800 mt-3
               focus:outline-none focus:outline-green-300
-              focus:outline-1 w-full mt-3 pr-14
+              focus:outline-1 focus:outline-offset-0 w-full
               "
               autocapitalize="false" autocomplete="false"
             />

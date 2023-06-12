@@ -60,7 +60,7 @@ definePageMeta({
     @apply mb-4 text-[.95rem] text-zinc-300;
   }
   .cookie-policy-wrap :deep(p a) {
-    @apply underline underline-offset-4 text-accent-100;
+    @apply text-accent-100;
   }
 
   .cookie-policy-wrap :deep(h2) {

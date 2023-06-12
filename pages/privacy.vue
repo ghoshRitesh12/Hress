@@ -55,7 +55,7 @@ definePageMeta({
     @apply mb-4 text-[.95rem] text-zinc-300;
   }
   .privacy-wrap :deep(p a) {
-    @apply underline underline-offset-4 text-accent-100;
+    @apply text-accent-100;
   }
 
   .privacy-wrap :deep(h2) {

@@ -71,7 +71,7 @@
               class="
               px-4 py-3 rounded-xl bg-zinc-800 
               focus:outline-none focus:outline-green-300
-              focus:outline-1 w-full mt-3
+              focus:outline-1 focus:outline-offset-0 w-full mt-3
               "
               autocapitalize="false" autocomplete="false"
             />
@@ -90,7 +90,7 @@
               class="
               px-4 py-3 rounded-xl bg-zinc-800 
               focus:outline-none focus:outline-green-300
-              focus:outline-1 w-full mt-3
+              focus:outline-1 focus:outline-offset-0 w-full mt-3
               "
               autocapitalize="false" autocomplete="false"
             />
@@ -127,7 +127,7 @@
               class="
               px-4 py-3 rounded-xl bg-zinc-800 
               focus:outline-none focus:outline-green-300
-              focus:outline-1 w-full mt-3
+              focus:outline-1 focus:outline-offset-0 w-full mt-3
               "
               autocapitalize="false" autocomplete="false"
             />
@@ -144,7 +144,7 @@
               class="
               px-4 py-3 rounded-xl bg-zinc-800 
               focus:outline-none focus:outline-green-300
-              focus:outline-1 w-full mt-3
+              focus:outline-1 focus:outline-offset-0 w-full mt-3
               "
               autocapitalize="false" autocomplete="false"
             />
@@ -219,7 +219,7 @@
                 class="
                 px-4 py-3 rounded-xl bg-zinc-800 
                 focus:outline-none focus:outline-green-300
-                focus:outline-1 w-full mt-3
+                focus:outline-1 focus:outline-offset-0 w-full mt-3
                 "
                 autocapitalize="false" autocomplete="false"
               />
@@ -236,7 +236,7 @@
                 class="
                 px-4 py-3 rounded-xl bg-zinc-800 
                 focus:outline-none focus:outline-green-300
-                focus:outline-1 w-full mt-3
+                focus:outline-1 focus:outline-offset-0 w-full mt-3
                 "
                 autocapitalize="false" autocomplete="false"
               />
