@@ -44,6 +44,7 @@
         w-full max-w-[45%] py-6 rounded-2xl bg-zinc-800
         md:bg-transparent md:flex-grow-0 md:max-w-fit
         "
+        @click="toggleHeaderNav"
         style="transition: .2s ease"
       >
         {{ headerLink.name }}
