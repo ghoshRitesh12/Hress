@@ -21,34 +21,16 @@
     <div class="mt-6">
       Currently available pages:
 
-      <div class="my-2 text-green-300">
-        <NuxtLink to="/terms">
-          Terms & Conditions
-        </NuxtLink>
-      </div>
+      <div 
+        class="my-2 text-green-300"
+        v-for="link in tempLinks"
+        :key="link.href"
+      >
 
-      <div class="my-2 text-green-300">
-        <NuxtLink to="/privacy">
-          Privacy Policy
+        <NuxtLink :to="link.href">
+          {{ link.name }}
         </NuxtLink>
-      </div>
 
-      <div class="my-2 text-green-300">
-        <NuxtLink to="/cookie-policy">
-          Cookie Policy
-        </NuxtLink>
-      </div>
-
-      <div class="my-2 text-green-300">
-        <NuxtLink to="/login">
-          Login (not functional)
-        </NuxtLink>
-      </div>
-
-      <div class="my-2 text-green-300">
-        <NuxtLink to="/signup">
-          Signup (not functional)
-        </NuxtLink>
       </div>
 
     </div>
@@ -59,6 +41,33 @@
 
 
 <script setup>
+
+const tempLinks = ref([
+  {
+    href: '/plan',
+    name: 'Educational Plan'
+  },
+  {
+    href: '/terms',
+    name: 'Terms & Conditions'
+  },
+  {
+    href: '/privacy',
+    name: 'Privacy Policy'
+  },
+  {
+    href: '/cookie-policy',
+    name: 'Cookie Policy'
+  },
+  {
+    href: '/login',
+    name: 'Login (not functional)'
+  },
+  {
+    href: '/signup',
+    name: 'Signup (not functional)'
+  },
+])
 
 </script>
 
