@@ -42,24 +42,12 @@ useHead({
   title: 'Hress Cookie Policy',
   meta: [
     {
-      name: 'robots',
-      content: 'index,follow'
-    },
-    {
-      name: 'og:title',
-      content: 'Hress Cookie Policy'
-    },
-    {
-      name: 'og:description',
-      content: `Hress's Cookie Policy explains how Hress uses cookies and similar technologies to recognize you when you visit our website at hress.in. It explains what these technologies are and why we use them, as well as your rights to control our use of them`
-    },
-    {
       name: 'title',
       content: 'Hress Cookie Policy'
     },
     {
-      name: 'description',
-      content: `Hress's Cookie Policy explains how Hress uses cookies and similar technologies to recognize you when you visit our website at hress.in. It explains what these technologies are and why we use them, as well as your rights to control our use of them`
+      name: 'robots',
+      content: 'index,follow'
     },
     {
       name: 'og:url',

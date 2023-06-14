@@ -42,6 +42,10 @@ useHead({
   title: 'Hress Terms & Conditions',
   meta: [
     {
+      name: 'title',
+      content: 'Hress Terms & Conditions'
+    },
+    {
       name: 'robots',
       content: 'index,follow'
     },
@@ -52,6 +56,18 @@ useHead({
     {
       name: 'og:type',
       content: 'website'
+    },
+    {
+      name: 'og:image',
+      content: 'https://hress.in/terms_conditions.jpg'
+    },
+    {
+      name: 'og:image:width',
+      content: '650'
+    },
+    {
+      name: 'og:image:height',
+      content: '350'
     },
     {
       name: 'keywords',

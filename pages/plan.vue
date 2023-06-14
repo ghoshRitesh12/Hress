@@ -44,12 +44,28 @@ useHead({
   title: 'Hress Educational Plan',
   meta: [
     {
+      name: 'title',
+      content: 'Hress Educational Plan'
+    },
+    {
       name: 'robots',
       content: 'index,follow'
     },
     {
       name: 'og:url',
       content: 'https://hress.in/plan'
+    },
+    {
+      name: 'og:image',
+      content: 'https://hress.in/plan.jpg'
+    },
+    {
+      name: 'og:image:width',
+      content: '650'
+    },
+    {
+      name: 'og:image:height',
+      content: '350'
     },
     {
       name: 'og:type',

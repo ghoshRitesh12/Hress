@@ -39,6 +39,10 @@ useHead({
   title: 'Hress Privacy Policy',
   meta: [
     {
+      name: 'title',
+      content: 'Hress Privacy Policy'
+    },
+    {
       name: 'robots',
       content: 'index,follow'
     },
@@ -49,6 +53,18 @@ useHead({
     {
       name: 'og:type',
       content: 'website'
+    },
+    {
+      name: 'og:image',
+      content: 'https://hress.in/privacy_policy.jpg'
+    },
+    {
+      name: 'og:image:width',
+      content: '650'
+    },
+    {
+      name: 'og:image:height',
+      content: '350'
     },
     {
       name: 'keywords',

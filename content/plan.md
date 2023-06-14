@@ -1,4 +1,5 @@
 ---
+layout: base
 title: Hress Educational Plan
 description: Hress's educational plan on crypto training and trading, which states how to learn and earn crypto with us
 ---

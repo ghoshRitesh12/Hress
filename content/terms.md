@@ -1,6 +1,7 @@
 ---
+layout: policy
 title: Hress Terms & Conditions
-description: Hress's Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and Chargaeri Eco, Socio & Human Resource Development Society, concerning your access to and use of the Services
+description: Hress's Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity "you", and Chargaeri Eco, Socio & Human Resource Development Society, concerning your access to and use of the Services
 ---
 
 Last updated May 17, 2023
