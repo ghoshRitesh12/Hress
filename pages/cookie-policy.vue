@@ -28,7 +28,7 @@
     <div 
       class="cookie-policy-wrap mt-6"
     >
-      <ContentDoc />
+      <ContentDoc :excerpt="false" />
     </div>
 
   </div>
@@ -46,12 +46,40 @@ useHead({
       content: 'index,follow'
     },
     {
+      name: 'og:title',
+      content: 'Hress Cookie Policy'
+    },
+    {
+      name: 'og:description',
+      content: `Hress's Cookie Policy explains how Hress uses cookies and similar technologies to recognize you when you visit our website at hress.in. It explains what these technologies are and why we use them, as well as your rights to control our use of them`
+    },
+    {
+      name: 'title',
+      content: 'Hress Cookie Policy'
+    },
+    {
+      name: 'description',
+      content: `Hress's Cookie Policy explains how Hress uses cookies and similar technologies to recognize you when you visit our website at hress.in. It explains what these technologies are and why we use them, as well as your rights to control our use of them`
+    },
+    {
       name: 'og:url',
       content: 'https://hress.in/cookie-policy'
     },
     {
       name: 'og:type',
       content: 'website'
+    },
+    {
+      name: 'og:image',
+      content: 'https://hress.in/cookies.webp'
+    },
+    {
+      name: 'og:image:width',
+      content: '650'
+    },
+    {
+      name: 'og:image:height',
+      content: '350'
     },
     {
       name: 'keywords',
