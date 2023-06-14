@@ -36,7 +36,25 @@
 <script setup>
 
 useHead({
-  title: 'Hress Privacy Policy'
+  title: 'Hress Privacy Policy',
+  meta: [
+    {
+      name: 'robots',
+      content: 'index,follow'
+    },
+    {
+      name: 'og:url',
+      content: 'https://hress.in/privacy'
+    },
+    {
+      name: 'og:type',
+      content: 'website'
+    },
+    {
+      name: 'keywords',
+      content: 'Hress, Hress Privacy Policy, Privacy, Policy, Legal privacy policy'
+    }
+  ]
 })
 
 definePageMeta({

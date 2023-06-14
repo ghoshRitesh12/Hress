@@ -1,6 +1,6 @@
 ---
 title: Hress Educational Plan
-description: This is Hress's educational plan on crypto training and trading, which states how to learn and earn crypto with us.
+description: Hress's educational plan on crypto training and trading, which states how to learn and earn crypto with us
 ---
 
 ## Table of Contents

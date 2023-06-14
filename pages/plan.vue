@@ -39,8 +39,27 @@
 
 <script setup>
 
+
 useHead({
-  title: 'Hress Educational Plan'
+  title: 'Hress Educational Plan',
+  meta: [
+    {
+      name: 'robots',
+      content: 'index,follow'
+    },
+    {
+      name: 'og:url',
+      content: 'https://hress.in/plan'
+    },
+    {
+      name: 'og:type',
+      content: 'website'
+    },
+    {
+      name: 'keywords',
+      content: 'Hress, Hress Educational Plan, Educational Plan, Plan, Education'
+    }
+  ]
 })
 
 definePageMeta({

@@ -19,7 +19,13 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
         dir: 'ltr',
-      }
+      },
+      meta: [
+        {
+          name: 'content-language',
+          content: 'en'
+        }
+      ]
     },
   }
 })

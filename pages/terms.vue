@@ -39,7 +39,25 @@
 <script setup>
 
 useHead({
-  title: 'Hress Terms & Conditions'
+  title: 'Hress Terms & Conditions',
+  meta: [
+    {
+      name: 'robots',
+      content: 'index,follow'
+    },
+    {
+      name: 'og:url',
+      content: 'https://hress.in/terms'
+    },
+    {
+      name: 'og:type',
+      content: 'website'
+    },
+    {
+      name: 'keywords',
+      content: 'Hress, Hress Terms and Conditions, Terms, Conditions, Legal terms'
+    }
+  ]
 })
 
 definePageMeta({

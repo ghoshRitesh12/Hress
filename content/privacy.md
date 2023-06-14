@@ -1,6 +1,6 @@
 ---
 title: Hress Privacy Policy
-description: This privacy notice for Hress ("Company," "we," "us," or "our"), describes how and why we might collect, store, use, and/or share ("process") your information when you use our services ("Services"). Questions or concerns? Reading this privacy notice will help you understand your privacy rights and choices. If you do not agree with our policies and practices, please do not use our Services.
+description: Hress's privacy notice describes how and why we might collect, store, use, and/or share ("process") your information when you use our services ("Services"). Questions or concerns? Reading this privacy notice will help you understand your privacy rights and choices
 ---
 
 

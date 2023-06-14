@@ -39,7 +39,25 @@
 <script setup>
 
 useHead({
-  title: 'Hress Cookie Policy'
+  title: 'Hress Cookie Policy',
+  meta: [
+    {
+      name: 'robots',
+      content: 'index,follow'
+    },
+    {
+      name: 'og:url',
+      content: 'https://hress.in/cookie-policy'
+    },
+    {
+      name: 'og:type',
+      content: 'website'
+    },
+    {
+      name: 'keywords',
+      content: 'Hress, Hress Cookie Policy, Cookie, Cookies, Legal cookie policy'
+    }
+  ]
 })
 
 definePageMeta({
