@@ -6,8 +6,9 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     DATABASE_URI: process.env.DATABASE_CONNECTION_URI,
+    REFERRAL_ID_BYTES: process.env.REFERRAL_ID_BYTES,
     public: {
-
+      
     }
   },
   nitro: {
@@ -27,5 +28,7 @@ export default defineNuxtConfig({
         }
       ]
     },
-  }
+  },
+  // ssr: false,
+
 })
