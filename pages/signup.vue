@@ -386,10 +386,23 @@ const formData = ref({
 })  
 
 
-const submitSignupForm = () => {
-  if(formData.value.spillOver && formData.value.refererId === '') return;
+const submitSignupForm = async () => {
+  try {
+    if(formData.value.spillOver && formData.value.refererId === '') return;
+    console.log(formData.value);
 
-  console.log(formData.value);
+    await useFetch('/api/signup', {
+      method: 'POST',
+      body: JSON.stringify(formData.value)
+    })
+    
+    
+  } catch (err) {
+    console.log(err);
+    // createError({
+    //   message: err.message 
+    // })
+  }
 }
 
 
