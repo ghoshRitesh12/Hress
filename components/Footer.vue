@@ -3,8 +3,8 @@
   <footer
     class="
     flex items-center flex-wrap-reverse w-full mt-auto
-    gap-2 py-6 px-4 2xl:px-8 text-[.8rem] 
-    justify-center md:justify-between
+    gap-2 py-6 px-4 2xl:px-8 text-[.85rem] 
+    justify-center md:justify-between bg-zinc-900
     "
   >
 
@@ -37,6 +37,8 @@
 
 
 <script setup>
+
+
 
 const footerLinks = ref([
   { name: 'Terms', href: '/terms' },

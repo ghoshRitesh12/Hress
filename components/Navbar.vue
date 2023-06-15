@@ -44,7 +44,7 @@
         w-full max-w-[45%] py-6 rounded-2xl bg-zinc-800
         md:bg-transparent md:flex-grow-0 md:max-w-fit
         "
-        @click="toggleHeaderNav"
+        @click="closeHeaderNav"
         style="transition: .2s ease"
       >
         {{ headerLink.name }}
@@ -91,10 +91,11 @@ const headerLinks = ref([
   { name: 'Achievers', href: '/achievers' },
 ]);
 
+
 const headNavOpen = ref(false);
 const burgerIcon = ref(props.openIcon);
 
-const toggleHeaderNav = (e) => {
+const toggleHeaderNav = () => {
   headNavOpen.value = !headNavOpen.value;
 
   if(headNavOpen.value) {
@@ -103,6 +104,13 @@ const toggleHeaderNav = (e) => {
     document.body.style.overflowY = 'hidden';
     return;
   }
+  if(props.closeIcon) burgerIcon.value = props.openIcon
+  document.body.removeAttribute('style');
+}
+
+
+const closeHeaderNav = () => {
+  headNavOpen.value = false;
   if(props.closeIcon) burgerIcon.value = props.openIcon
   document.body.removeAttribute('style');
 }

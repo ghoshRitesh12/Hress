@@ -11,6 +11,10 @@
       <slot/>
     </div>
 
+    <Footer/>
+
+    <ScrollToTop/>
+
   </div>
 
 </template>
