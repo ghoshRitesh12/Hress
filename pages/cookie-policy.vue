@@ -28,7 +28,7 @@
     <div 
       class="cookie-policy-wrap mt-6"
     >
-      <ContentDoc :excerpt="false" />
+      <ContentDoc />
     </div>
 
   </div>
@@ -39,41 +39,35 @@
 <script setup>
 
 useHead({
-  title: 'Hress Cookie Policy',
   meta: [
     {
       name: 'title',
       content: 'Hress Cookie Policy'
-    },
-    {
-      name: 'robots',
-      content: 'index,follow'
-    },
-    {
-      name: 'og:url',
-      content: 'https://hress.in/cookie-policy'
-    },
-    {
-      name: 'og:type',
-      content: 'website'
-    },
-    {
-      name: 'og:image',
-      content: 'https://hress.in/cookies.webp'
-    },
-    {
-      name: 'og:image:width',
-      content: '650'
-    },
-    {
-      name: 'og:image:height',
-      content: '350'
-    },
-    {
-      name: 'keywords',
-      content: 'Hress, Hress Cookie Policy, Cookie, Cookies, Legal cookie policy'
     }
-  ]
+  ],
+  link: [{
+    rel: 'canonical',
+    href: 'https://hress.in/cookie-policy'
+  }]
+})
+
+useServerSeoMeta({
+  title: 'Hress Cookie Policy',
+  robots: {
+    index: true, follow: true,
+  },
+  ogImage: 'https://hress.in/cookies.webp',
+  ogUrl: 'https://hress.in/cookie-policy',
+  ogImageWidth: '650',
+  ogImageHeight: '350',
+  ogSiteName: 'Hress',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterSite: '@hress',
+  twitterTitle: 'Hress Cookie Policy',
+  twitterDescription: `Hress uses cookies and similar technologies to recognize you when you visit our website at hress.in. This policy explains why we use them, as well as your rights to control our use of them`,
+  twitterImageSrc: 'https://hress.in/cookies.webp',
+  keywords: 'Hress, Hress Cookie Policy, Cookie, Cookies, cookie policy'
 })
 
 definePageMeta({

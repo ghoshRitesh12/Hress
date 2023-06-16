@@ -39,42 +39,37 @@
 <script setup>
 
 useHead({
-  title: 'Hress Terms & Conditions',
   meta: [
     {
       name: 'title',
       content: 'Hress Terms & Conditions'
-    },
-    {
-      name: 'robots',
-      content: 'index,follow'
-    },
-    {
-      name: 'og:url',
-      content: 'https://hress.in/terms'
-    },
-    {
-      name: 'og:type',
-      content: 'website'
-    },
-    {
-      name: 'og:image',
-      content: 'https://hress.in/terms_conditions.jpg'
-    },
-    {
-      name: 'og:image:width',
-      content: '650'
-    },
-    {
-      name: 'og:image:height',
-      content: '350'
-    },
-    {
-      name: 'keywords',
-      content: 'Hress, Hress Terms and Conditions, Terms, Conditions, Legal terms'
     }
-  ]
+  ],
+  link: [{
+    rel: 'canonical',
+    href: 'https://hress.in/terms'
+  }]
 })
+
+useSeoMeta({
+  title: 'Hress Terms & Conditions',
+  robots: {
+    index: true, follow: true,
+  },
+  ogImage: 'https://hress.in/terms_conditions.jpg',
+  ogUrl: 'https://hress.in/terms',
+  ogImageWidth: '650',
+  ogImageHeight: '350',
+  ogSiteName: 'Hress',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterSite: '@hress',
+  twitterTitle: 'Hress Terms & Conditions',
+  twitterDescription: `Hress's Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity "you", and Chargaeri Eco, Socio & Human Resource Development Society, concerning your access to and use of the Services`,
+  twitterImageSrc: 'https://hress.in/terms_conditions.jpg',
+  keywords: 'Hress, Hress Terms and Conditions, Terms, Conditions, Legal terms'
+})
+
 
 definePageMeta({
   layout: 'policy'

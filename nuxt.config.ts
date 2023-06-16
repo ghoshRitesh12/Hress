@@ -29,6 +29,12 @@ export default defineNuxtConfig({
       ]
     },
   },
+  routeRules: {
+    "/plan": { static: true },
+    "/terms": { static: true },
+    "/privacy": { static: true },
+    "/cookie-policy": { static: true },
+  }
   // ssr: false,
 
 })

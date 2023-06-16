@@ -1,7 +1,7 @@
 ---
 layout: policy
 title: Hress Cookie Policy
-description: Hress's Cookie Policy explains how Hress uses cookies and similar technologies to recognize you when you visit our website at hress.in. It explains what these technologies are and why we use them, as well as your rights to control our use of them
+description: Hress uses cookies and similar technologies to recognize you when you visit our website at hress.in. This policy explains why we use them, as well as your rights to control our use of them
 ---
 
 Last updated May 17, 2023

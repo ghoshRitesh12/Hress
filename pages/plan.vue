@@ -39,44 +39,39 @@
 
 <script setup>
 
-
 useHead({
-  title: 'Hress Educational Plan',
   meta: [
     {
       name: 'title',
       content: 'Hress Educational Plan'
-    },
-    {
-      name: 'robots',
-      content: 'index,follow'
-    },
-    {
-      name: 'og:url',
-      content: 'https://hress.in/plan'
-    },
-    {
-      name: 'og:image',
-      content: 'https://hress.in/plan.jpg'
-    },
-    {
-      name: 'og:image:width',
-      content: '650'
-    },
-    {
-      name: 'og:image:height',
-      content: '350'
-    },
-    {
-      name: 'og:type',
-      content: 'website'
-    },
-    {
-      name: 'keywords',
-      content: 'Hress, Hress Educational Plan, Educational Plan, Plan, Education'
     }
-  ]
+  ],
+  link: [{
+    rel: 'canonical',
+    href: 'https://hress.in/plan'
+  }]
 })
+
+useSeoMeta({
+  title: 'Hress Educational Plan',
+  robots: {
+    index: true, follow: true,
+  },
+  ogImage: 'https://hress.in/plan.jpg',
+  ogUrl: 'https://hress.in/plan',
+  ogImageWidth: '650',
+  ogImageHeight: '350',
+  ogSiteName: 'Hress',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterSite: '@hress',
+  twitterTitle: 'Hress Educational Plan',
+  twitterDescription: `Hress's educational plan on crypto training and trading, which states how to learn and earn crypto with us`,
+  twitterImageSrc: 'https://hress.in/plan.jpg',
+  keywords: 'Hress, Hress Educational Plan, Educational Plan, Plan, Education'
+})
+
+
 
 definePageMeta({
   layout: 'base'
