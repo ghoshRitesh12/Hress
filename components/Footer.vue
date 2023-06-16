@@ -3,8 +3,9 @@
   <footer
     class="
     flex items-center flex-wrap-reverse w-full mt-auto
-    gap-2 pt-4 pb-3 px-2 2xl:px-8 text-[.82rem] 
-    justify-center md:justify-between bg-zinc-900
+    gap-2 pt-4 pb-3 sm:pb-4 sm:pt-5 px-2 sm:px-6 2xl:px-8 
+    text-[.82rem] justify-center sm:justify-between 
+    bg-zinc-900
     "
   >
 

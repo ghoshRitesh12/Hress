@@ -32,13 +32,15 @@ description: Hress's educational plan on crypto training and trading, which stat
     max-width: 100%; width: 100%
     "
     decoding="async"
+    width="1200"
+    height="780"
   />
 
   <div
     style="
     position: absolute; bottom: 0;
     font-size: 1.3rem line-height: 1;
-    padding: .8rem 1rem; color: white; width: 100%;
+    padding: 1.5rem 1rem 1rem; color: white; width: 100%;
     border-radius: 0 0 1.25rem 1.25rem;
     background: linear-gradient(to bottom, transparent 1%, black 100%);
   ">
@@ -117,17 +119,19 @@ Development Incentives are always **monthly**.
     max-width: 100%; width: 100%
     "
     decoding="async"
+    width="1200"
+    height="780"
   />
 
   <div
     style="
     position: absolute; bottom: 0;
     font-size: 1.4rem line-height: 1;
-    padding: .8rem 1rem; color: white; width: 100%;
+    padding: 1.5rem 1rem .8rem; color: white; width: 100%;
     border-radius: 0 0 1.25rem 1.25rem;
     background: linear-gradient(to bottom, transparent 1%, black 100%);
   ">
-    Trainer Incentives => <strong>2% (C.T.O)</strong>
+    Trainer Incentives are <strong>2% (C.T.O)</strong>
   </div>
 
 </div>

@@ -143,7 +143,7 @@ definePageMeta({
   }
   .plan-wrap :deep(table tr th) {
     border: 2px solid #fff;
-    @apply px-4 py-2 bg-accent-200 text-primary-900;
+    @apply px-4 py-2 bg-green-400 text-primary-900;
   }
   .plan-wrap :deep(table td) {
     border: 1px solid #ddd;
