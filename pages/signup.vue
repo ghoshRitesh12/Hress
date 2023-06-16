@@ -351,13 +351,45 @@
 
 <script setup>
 
+useHead({
+  meta: [
+    {
+      name: 'title',
+      content: 'Hress - Signup'
+    }
+  ],
+  link: [{
+    rel: 'canonical',
+    href: 'https://hress.in/signup'
+  }]
+})
+
+useSeoMeta({
+  title: 'Hress - Signup',
+  robots: {
+    index: true, follow: true,
+  },
+  description: `Create account at Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
+  ogTitle: 'Hress - Signup',
+  ogDescription: `Create account at Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
+  ogImage: 'https://hress.in/hress.png',
+  ogUrl: 'https://hress.in/signup',
+  ogImageWidth: '192',
+  ogImageHeight: '192',
+  ogSiteName: 'Hress',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterSite: '@hress',
+  twitterTitle: 'Hress - Signup',
+  twitterDescription: `Create account at Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
+  twitterImageSrc: 'https://hress.in/hress.png',
+  keywords: 'Hress, Hress Signup, Credentials, Create account, new account, account'
+})
+
 definePageMeta({
   layout: 'auth'
 })
 
-useHead({
-  title: 'Sign up | Hress'
-})
   
 
 const agreeTerms = ref(false)

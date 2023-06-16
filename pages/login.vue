@@ -128,12 +128,45 @@
 
 <script setup>
 
+useHead({
+  meta: [
+    {
+      name: 'title',
+      content: 'Hress - Login'
+    }
+  ],
+  link: [{
+    rel: 'canonical',
+    href: 'https://hress.in/login'
+  }]
+})
+
+useSeoMeta({
+  title: 'Hress - Login',
+  robots: {
+    index: true, follow: true,
+  },
+  description: `Log in to Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
+  ogTitle: 'Hress - Login',
+  ogDescription: `Log in to Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
+  ogImage: 'https://hress.in/hress.png',
+  ogUrl: 'https://hress.in/login',
+  ogImageWidth: '192',
+  ogImageHeight: '192',
+  ogSiteName: 'Hress',
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterSite: '@hress',
+  twitterTitle: 'Hress - Login',
+  twitterDescription: `Log in to Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
+  twitterImageSrc: 'https://hress.in/hress.png',
+  keywords: 'Hress, Hress Login, Credentials, Access account, account'
+})
+
 definePageMeta({
   layout: 'auth'
 })
-useHead({
-  title: 'Login | Hress'
-})
+
 
 
 const pwdVisible = ref(false);
