@@ -1,3 +1,4 @@
+import { randomBytes } from 'crypto';
 import mongoose from "mongoose";
 
 const collectionName = 'Users';
@@ -10,23 +11,43 @@ const userSchema = new mongoose.Schema({
     },
     email: {
       type: String,
-      required: true,
-      trim: true,
-      unique: true
+      default: null,
+      // required: true,
+      // trim: true,
+      // unique: true
+    },
+    referralId: {
+      type: String,
+      default: () =>  randomBytes(
+        parseInt(useRuntimeConfig().REFERRAL_ID_BYTES)
+      ).toString('hex')
     },
     rank: {
       type: Number,
-      default: () => 0,
+      default: () => 1,
     },
-    sponsoredBy: {
-      type: mongoose.Schema.Types.ObjectId,
+    panCardNo: {
+      type: String,
       default: null
     },
-    referredBy: {
+    ancestors: [{
       type: mongoose.Schema.Types.ObjectId,
-      default: null
-    },
-    referrals: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Referrals' }]
+      ref: 'Users'
+    }],
+    levels: [{
+      levelNo: {
+        type: Number,
+        default: 0
+      },
+      commission: {
+        type: Number,
+        default: 0
+      },
+      referrals: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Users'
+      }]
+    }]
 
   },
   {
