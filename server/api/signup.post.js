@@ -1,75 +1,100 @@
+import mongoose from "mongoose";
 import User from "../models/User.model.js";
-import { getIncentive } from "../helpers/utils.js";
+import { getIncentive, isRankValid } from "../helpers/utils.js";
 
 
 
 export default eventHandler(async (event) => {
+  const session = await mongoose.startSession();
+  session.startTransaction()
+  
   try {
     const body = await readBody(event);
     console.log(body);
     // verify body schema
     // use passport
 
-    const foundUser = await User.findOne({ email: body.email });
+
+    const foundUser = await User.findOne({ email: body.email }).session(session);
     if(foundUser) return createError({
       statusCode: 409, 
       message: 'User already exists',
       stack: null
     })
 
-    
-    const sponsorer = await User.findOne({ referralId: body.sponsorerId });
+ 
+    const sponsorer = await User.findOne({ referralId: body.sponsorerId }).session(session);
     if(!sponsorer) {
       return createError({
         statusCode: 404,
         message: 'Sponsorer not found'
-      }) 
+      })
     }
 
-    const newUser = await User.create({
+    const newUserInfo = {
       name: body.name,
       email: body.email,
-      ancestor: (sponsorer.ancestors.length <= 15) ? [...sponsorer.ancestors, `${sponsorer._id}`].sort() : [],
-    });
+      ancestors: (sponsorer.ancestors.length <= 15) ? [...sponsorer.ancestors, `${sponsorer._id}`].sort() : []
+    }
+    const newUser = await User.create(newUserInfo);
 
 
     // for each ancestor
-    newUser.ancestors.map(async (ancestor, index) => {
-      try {
-        const indexedLevel = newUser.ancestors.length - index;
+    const ancestors = await User.find({ _id: { $in: newUser.ancestors } });
+    console.log(ancestors);
 
-        const qAncestor = await User.findById(`${ancestor}`);
-        if(!qAncestor) return;
-        
-        const foundIndex = qAncestor.levels.findIndex(level => level.levelNo === indexedLevel);
-        if(foundIndex !== -1) {
-          qAncestor.levels[foundIndex].referrals.push(newUser._id);
-
-        } else {
-          qAncestor.levels.push({
-            levelNo: indexedLevel,
-            commission: getIncentive(indexedLevel),
-            referrals: [newUser._id]
-          })
-
-          qAncestor.levels.sort((a, b) => a.levelNo - b.levelNo);
-        }
-
-        await qAncestor.save();
-        
-      } catch (err) {
-        console.log(err) 
+    const updateOperations = ancestors.map((ancestor, index) => {
+      const indexedLevel = ancestors.length - index;
+      
+      // inserting new member
+      const foundLevelIndex = ancestor.levels.findIndex(level => level.levelNo === indexedLevel);
+      if(foundLevelIndex !== -1) {
+        ancestor.levels[foundLevelIndex].referrals.push(newUser._id);
+      } else {
+        ancestor.levels.push({
+          levelNo: indexedLevel,
+          commission: getIncentive(indexedLevel),
+          referrals: [newUser._id]
+        })
       }
+
+      // setting rank
+      let tempRank = 1;
+      for(const level of ancestor.levels) {
+        if(isRankValid(level.levelNo, level.referrals.length)) {
+          tempRank = level.levelNo === 0 ? 1 : level.levelNo
+        }
+      }
+      ancestor.rank = tempRank;
+
+
+      return {
+        updateOne: {
+          filter: { _id: ancestor._id },
+          update: {
+            $set: { 
+              levels: ancestor.levels,
+              rank: ancestor.rank
+            }
+          }
+        }
+      };
     })
 
-    event.node.res.statusCode = 201;
+    await User.bulkWrite(updateOperations)
+
+    event.node.res.statusCode = 201
     return '';
     
   } catch (err) {
+    session.abortTransaction();
+
     console.log(err);
     createError({
       statusCode: 500,
       message: err.message
     })
+  } finally {
+    session.endSession();
   }
 })
