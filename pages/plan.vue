@@ -83,7 +83,7 @@ definePageMeta({
 <style scoped>
 
   .plan-wrap {
-    scroll-padding-top: 6rem;
+    scroll-padding-top: 10rem;
   }
   .plan-wrap :deep(p) {
     @apply mb-4 text-[.95rem] text-zinc-300;
@@ -124,29 +124,30 @@ definePageMeta({
 
 
   .plan-wrap :deep(table) {
-    /* border: 1px solid white; */
     border-collapse: collapse;
-    @apply px-2 max-w-full w-full;
+    @apply px-2 max-w-full w-full
+    border-2 border-[#777];
 
   }
   .plan-wrap :deep(table td) {
-    @apply px-6 text-[.92rem] py-2
-    rounded-xl overflow-hidden
+    @apply px-6 text-[.92rem] 
+    py-2 overflow-hidden
     ;
   }
   .plan-wrap :deep(table thead) {
-    @apply py-1;
+    @apply py-1 rounded-xl;
   }
   .plan-wrap :deep(table tr) {
-    border: 2px solid #ddd;
-    @apply even:bg-zinc-800 leading-[1.2];
+    @apply even:bg-zinc-800/70;
   }
   .plan-wrap :deep(table tr th) {
-    border: 2px solid #fff;
-    @apply px-4 py-2 bg-green-400 text-primary-900;
+    @apply px-4 py-2 bg-accent-100 
+    text-primary-900 border-y-2 
+    border-x-[1px] border-[#777];
   }
   .plan-wrap :deep(table td) {
-    border: 1px solid #ddd;
+    @apply leading-[1.4] border-[1px]
+    border-[#777];
   }
 
 </style>
