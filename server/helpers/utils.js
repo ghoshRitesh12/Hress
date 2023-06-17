@@ -1,7 +1,7 @@
 /**
  * 
- * @param {number} level 
- * @returns number
+ * @param {number} level - level number
+ * @returns number - incentive/commission %
  */
 export const getIncentive = (level) => {
   level = parseInt(level);
@@ -46,13 +46,13 @@ export const getIncentive = (level) => {
 
 /**
  * 
- * @param {number} level 
- * @param {number} members
- * @returns number
+ * @param {number} level - level number
+ * @param {number} members - members of that level
+ * @returns boolean - level wise rank is valid or not
  */
-export const getRank = (level, members) => {
-  level = parseInt(level) || 1;
-  let requiredMembers, rankNo = 1;
+export const isRankValid = (level, members) => {
+  level = parseInt(level) || 0;
+  let requiredMembers, rankValid = false;
 
   if(level < 11) 
     requiredMembers = 2 ** level;
@@ -61,10 +61,9 @@ export const getRank = (level, members) => {
   else 
     requiredMembers = (Math.floor(2 ** level / 1000) * 1000) - 2000;
 
-  rankNo = ((level - 1) === 0) ? 1 : level - 1; // if valid
-  if(members >= requiredMembers)
-    rankNo = level ;
+  if(members >= requiredMembers )
+    rankValid = true;
 
-  return rankNo;
+  return rankValid;
 }
 
