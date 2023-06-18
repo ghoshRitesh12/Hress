@@ -5,42 +5,42 @@ import { getIncentive, isRankValid } from "../helpers/utils.js";
 
 
 export default eventHandler(async (event) => {
-  const session = await mongoose.startSession();
-  session.startTransaction()
+  const signupSession = await mongoose.startSession();
+  signupSession.startTransaction()
   
   try {
     const body = await readBody(event);
     console.log(body);
     // verify body schema
     // use passport
-
-
-    const foundUser = await User.findOne({ email: body.email }).session(session);
-    if(foundUser) return createError({
-      statusCode: 409, 
-      message: 'User already exists',
-      stack: null
-    })
-
  
-    const sponsorer = await User.findOne({ referralId: body.sponsorerId }).session(session);
+    const foundUser = await User.findOne({ email: body.email }).session(signupSession);
+    if(foundUser) {
+      throw createError({
+        statusCode: 409, 
+        message: 'User already exists',
+        stack: null
+      })
+    }
+
+    const sponsorer = await User.findOne({ referralId: body.sponsorerId }).session(signupSession);
     if(!sponsorer) {
-      return createError({
+      throw createError({
         statusCode: 404,
         message: 'Sponsorer not found'
       })
     }
-
-    const newUserInfo = {
+    
+    
+    const newUserInfo = [{
       name: body.name,
       email: body.email,
       ancestors: (sponsorer.ancestors.length <= 15) ? [...sponsorer.ancestors, `${sponsorer._id}`].sort() : []
-    }
-    const newUser = await User.create(newUserInfo);
-
+    }]
+    const newUser = (await User.create(newUserInfo, { session: signupSession }))[0];
 
     // for each ancestor
-    const ancestors = await User.find({ _id: { $in: newUser.ancestors } });
+    const ancestors = await User.find({ _id: { $in: newUser.ancestors } }).session(signupSession);
     console.log(ancestors);
 
     const updateOperations = ancestors.map((ancestor, index) => {
@@ -81,20 +81,25 @@ export default eventHandler(async (event) => {
       };
     })
 
-    await User.bulkWrite(updateOperations)
+    await User.bulkWrite(updateOperations, { session: signupSession })
 
-    event.node.res.statusCode = 201
-    return '';
+    await signupSession.commitTransaction();
+
+    event.node.res.statusCode = 201;
+    return {
+      message: 'Account created successfully'
+    };
     
   } catch (err) {
-    session.abortTransaction();
-
+    await signupSession.abortTransaction();
     console.log(err);
-    createError({
-      statusCode: 500,
-      message: err.message
-    })
+
+    event.node.res.statusCode = 500;
+    return { 
+      errorMessage: 'Account creation unsuccessful, try again' 
+    };
+
   } finally {
-    session.endSession();
+    await signupSession.endSession();
   }
 })
