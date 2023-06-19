@@ -2,21 +2,20 @@
 export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss", "@nuxt/image-edge", 
-    "nuxt-icon", "@nuxt/content", "nuxt-simple-sitemap"
+    "nuxt-icon", "@nuxt/content", "nuxt-simple-sitemap",
+    "nuxt-simple-robots"
   ],
   runtimeConfig: {
     DATABASE_URI: process.env.DATABASE_CONNECTION_URI,
     REFERRAL_ID_BYTES: process.env.REFERRAL_ID_BYTES,
+    indexable: true,
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
-      siteName: "Hress",
-      language: "en"
+      siteUrl: process.env.HRESS_BASE_URL,
     }
   },
   nitro: {
     plugins: ["./db/index.js"]
   },
-  extends: ["nuxt-seo-kit"],
   app: {
     head: {
       title: 'Hress',
@@ -43,6 +42,8 @@ export default defineNuxtConfig({
     "/privacy": { static: true },
     "/cookie-policy": { static: true },
   },
-  // ssr: false,
-
+  robots: {
+    // sitemap: "/sitemap.xml",
+    disallow: ['/api'],
+  }
 })
