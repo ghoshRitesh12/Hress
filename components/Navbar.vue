@@ -38,11 +38,12 @@
         :to="headerLink.href"
         :key="headerLink.href"
         class="
-        text-zinc-100 hover:text-accent-100 md:py-2 px-4
+        md:py-2 px-4 hover:text-accent-100
         text-center md:text-left md:w-fit border-none
         transition ease-in duration-100 flex-grow
         w-full max-w-[45%] py-6 rounded-2xl bg-zinc-800
         md:bg-transparent md:flex-grow-0 md:max-w-fit
+        text-zinc-200 md:text-neutral-300
         "
         @click="closeHeaderNav"
         style="transition: .2s ease"

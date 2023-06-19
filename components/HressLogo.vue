@@ -3,7 +3,7 @@
   <NuxtLink to="/" class="md:px-2">
     
     <nuxt-img 
-      src="/hress_logo.svg" 
+      src="/images/hress_logo.svg" 
       alt="hress logo"
       decoding="async"
       height="35"

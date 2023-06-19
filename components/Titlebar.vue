@@ -4,7 +4,7 @@
     class="
     flex items-center px-4 2xl:px-8
     relative max-w-full w-full py-4
-    md:justify-between border-[0px]
+    md:justify-between
     "
   >
     <HressLogo/>
@@ -16,7 +16,7 @@
 
     <Profile 
       v-if="props.setProfile"
-      class="ml-5 md:ml-16"
+      class="ml-5 md:ml-auto"
     />
     
   </header>
