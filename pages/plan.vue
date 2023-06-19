@@ -53,10 +53,12 @@ useHead({
   }]
 })
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Hress Educational Plan',
   robots: {
     index: true, follow: true,
+    maxImagePreview: 'large',
+    maxSnippet: -1, maxVideoPreview: -1
   },
   ogImage: 'https://hress.in/images/plan.jpg',
   ogUrl: 'https://hress.in/plan',

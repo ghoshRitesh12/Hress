@@ -48,10 +48,12 @@ useHead({
   }]
 })
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Hress Privacy Policy',
   robots: {
     index: true, follow: true,
+    maxImagePreview: 'large',
+    maxSnippet: -1, maxVideoPreview: -1
   },
   ogImage: 'https://hress.in/images/privacy_policy.jpg',
   ogUrl: 'https://hress.in/privacy',

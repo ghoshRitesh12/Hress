@@ -55,6 +55,8 @@ useServerSeoMeta({
   title: 'Hress Cookie Policy',
   robots: {
     index: true, follow: true,
+    maxImagePreview: 'large',
+    maxSnippet: -1, maxVideoPreview: -1
   },
   ogImage: 'https://hress.in/images/cookies.webp',
   ogUrl: 'https://hress.in/cookie-policy',

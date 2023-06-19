@@ -51,10 +51,12 @@ useHead({
   }]
 })
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Hress Terms & Conditions',
   robots: {
     index: true, follow: true,
+    maxImagePreview: 'large',
+    maxSnippet: -1, maxVideoPreview: -1
   },
   ogImage: 'https://hress.in/images/terms_conditions.jpg',
   ogUrl: 'https://hress.in/terms',

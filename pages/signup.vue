@@ -364,10 +364,12 @@ useHead({
   }]
 })
 
-useSeoMeta({
+useServerSeoMeta({
   title: 'Hress - Signup',
   robots: {
     index: true, follow: true,
+    maxImagePreview: 'large',
+    maxSnippet: -1, maxVideoPreview: -1
   },
   description: `Create account at Hress to learn about blockchain and cryptocurrency, while also earning with us`,
   ogTitle: 'Hress - Signup',
