@@ -4,7 +4,9 @@
     class="
     max-w-full w-full mt-2 mx-auto
     md:max-w-[80%] xl:max-w-[60%]
-    ">
+    "
+  >
+    <SeoKit/>
 
     <div class="text-3xl font-semibold mr-auto mb-10">
       Hress educational plan on crypto training and trading
