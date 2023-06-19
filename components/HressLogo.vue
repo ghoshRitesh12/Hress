@@ -1,6 +1,10 @@
 <template>
 
-  <NuxtLink to="/" class="md:px-2">
+  <NuxtLink 
+    to="/" 
+    class="md:px-2"
+    title="Hress Home"
+  >
     
     <nuxt-img 
       src="/images/hress_logo.svg" 
