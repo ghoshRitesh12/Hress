@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     REFERRAL_ID_BYTES: process.env.REFERRAL_ID_BYTES,
     indexable: true,
     public: {
-      siteUrl: process.env.HRESS_BASE_URL,
+      siteUrl: 'https://hress.in',
     }
   },
   nitro: {
@@ -45,5 +45,6 @@ export default defineNuxtConfig({
   robots: {
     // sitemap: "/sitemap.xml",
     disallow: ['/api'],
-  }
+  },
+
 })
