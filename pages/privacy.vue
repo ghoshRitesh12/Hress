@@ -12,7 +12,7 @@
       "
     >
       <nuxt-img 
-        src="/privacy_policy.jpg" 
+        src="/images/privacy_policy.jpg" 
         alt="privacy policy illustration image" 
         format="jpg" 
         width="1000" 
@@ -53,7 +53,7 @@ useSeoMeta({
   robots: {
     index: true, follow: true,
   },
-  ogImage: 'https://hress.in/privacy_policy.jpg',
+  ogImage: 'https://hress.in/images/privacy_policy.jpg',
   ogUrl: 'https://hress.in/privacy',
   ogImageWidth: '650',
   ogImageHeight: '350',
@@ -63,7 +63,7 @@ useSeoMeta({
   twitterSite: '@hress',
   twitterTitle: 'Hress Privacy Policy',
   twitterDescription: `Hress's privacy notice describes how and why we might collect, store, use, and/or share "process" your information when you use our services`,
-  twitterImageSrc: 'https://hress.in/privacy_policy.jpg',
+  twitterImageSrc: 'https://hress.in/images/privacy_policy.jpg',
   keywords: 'Hress, Hress Privacy Policy, Privacy, Policy, privacy policy'
 })
 

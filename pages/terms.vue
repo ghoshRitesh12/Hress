@@ -13,7 +13,7 @@
       "
     >
     <nuxt-img 
-      src="/terms_conditions.jpg" 
+      src="/images/terms_conditions.jpg" 
       alt="terms and conditions illustration image"
       width="1000"
       height="700"
@@ -56,7 +56,7 @@ useSeoMeta({
   robots: {
     index: true, follow: true,
   },
-  ogImage: 'https://hress.in/terms_conditions.jpg',
+  ogImage: 'https://hress.in/images/terms_conditions.jpg',
   ogUrl: 'https://hress.in/terms',
   ogImageWidth: '650',
   ogImageHeight: '350',
@@ -66,7 +66,7 @@ useSeoMeta({
   twitterSite: '@hress',
   twitterTitle: 'Hress Terms & Conditions',
   twitterDescription: `Hress's Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity "you", and Chargaeri Eco, Socio & Human Resource Development Society, concerning your access to and use of the Services`,
-  twitterImageSrc: 'https://hress.in/terms_conditions.jpg',
+  twitterImageSrc: 'https://hress.in/images/terms_conditions.jpg',
   keywords: 'Hress, Hress Terms and Conditions, Terms, Conditions, Legal terms'
 })
 

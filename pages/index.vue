@@ -1,8 +1,18 @@
 <template>
 
-  <div class="px-6 pt-10 pb-16">
+  <div 
+    class="
+    flex flex-col
+    "
+  >
 
-    <HressLogo/>
+    <nuxt-img
+      src="/images/planting_tree"
+      format="jpg"
+      alt="planting a tree"
+      decoding="async"
+      
+    />
 
     <div class="mt-8 text-2xl font-semibold">
       NOTE:
@@ -68,6 +78,12 @@ const tempLinks = ref([
     name: 'Signup (not functional)'
   },
 ])
+
+
+definePageMeta({
+  layout: 'info'
+})
+
 
 </script>
 

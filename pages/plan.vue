@@ -6,8 +6,8 @@
     md:max-w-[80%] xl:max-w-[60%]
     ">
 
-    <div class="text-3xl font-semibold mb-8">
-      Our educational plan on crypto training and trading
+    <div class="text-3xl font-semibold mr-auto mb-10">
+      Hress educational plan on crypto training and trading
     </div>
 
     <div 
@@ -16,7 +16,7 @@
       "
     >
       <nuxt-img 
-        src="/plan.jpg" 
+        src="/images/plan.jpg" 
         alt="privacy policy illustration image" 
         format="jpg" 
         width="1200" 
@@ -57,7 +57,7 @@ useSeoMeta({
   robots: {
     index: true, follow: true,
   },
-  ogImage: 'https://hress.in/plan.jpg',
+  ogImage: 'https://hress.in/images/plan.jpg',
   ogUrl: 'https://hress.in/plan',
   ogImageWidth: '650',
   ogImageHeight: '350',
@@ -67,14 +67,14 @@ useSeoMeta({
   twitterSite: '@hress',
   twitterTitle: 'Hress Educational Plan',
   twitterDescription: `Hress's educational plan on crypto training and trading, which states how to learn and earn crypto with us`,
-  twitterImageSrc: 'https://hress.in/plan.jpg',
+  twitterImageSrc: 'https://hress.in/images/plan.jpg',
   keywords: 'Hress, Hress Educational Plan, Educational Plan, Plan, Education'
 })
 
 
 
 definePageMeta({
-  layout: 'base'
+  layout: 'info'
 })
 
 </script>
@@ -142,8 +142,8 @@ definePageMeta({
   }
   .plan-wrap :deep(table tr th) {
     @apply px-4 py-2 bg-accent-100 
-    text-primary-900 border-y-2 
-    border-x-[1px] border-[#777];
+    border-y-2 border-x-[1px] border-[#777]
+    leading-[1.2] text-primary-900;
   }
   .plan-wrap :deep(table td) {
     @apply leading-[1.4] border-[1px]

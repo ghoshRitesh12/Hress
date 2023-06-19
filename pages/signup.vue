@@ -372,7 +372,7 @@ useSeoMeta({
   description: `Create account at Hress to learn about blockchain and cryptocurrency, while also earning with us`,
   ogTitle: 'Hress - Signup',
   ogDescription: `Create account at Hress to learn about blockchain and cryptocurrency, while also earning with us`,
-  ogImage: 'https://hress.in/hress.png',
+  ogImage: 'https://hress.in/images/hress.png',
   ogUrl: 'https://hress.in/signup',
   ogImageWidth: '192',
   ogImageHeight: '192',
@@ -382,7 +382,7 @@ useSeoMeta({
   twitterSite: '@hress',
   twitterTitle: 'Hress - Signup',
   twitterDescription: `Create account at Hress to learn about blockchain and cryptocurrency, while also earning with us`,
-  twitterImageSrc: 'https://hress.in/hress.png',
+  twitterImageSrc: 'https://hress.in/images/hress.png',
   keywords: 'Hress, Hress Signup, Credentials, Create account, new account, account'
 })
 

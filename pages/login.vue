@@ -149,7 +149,7 @@ useSeoMeta({
   description: `Log in to Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
   ogTitle: 'Hress - Login',
   ogDescription: `Log in to Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
-  ogImage: 'https://hress.in/hress.png',
+  ogImage: 'https://hress.in/images/hress.png',
   ogUrl: 'https://hress.in/login',
   ogImageWidth: '192',
   ogImageHeight: '192',
@@ -159,7 +159,7 @@ useSeoMeta({
   twitterSite: '@hress',
   twitterTitle: 'Hress - Login',
   twitterDescription: `Log in to Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
-  twitterImageSrc: 'https://hress.in/hress.png',
+  twitterImageSrc: 'https://hress.in/images/hress.png',
   keywords: 'Hress, Hress Login, Credentials, Access account, account'
 })
 

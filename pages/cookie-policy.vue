@@ -13,7 +13,7 @@
       "
     >
       <nuxt-img 
-        src="/cookies.webp" 
+        src="/images/cookies.webp" 
         alt="cookie policy illustration image"
         format="webp"
         width="1000"
@@ -56,7 +56,7 @@ useServerSeoMeta({
   robots: {
     index: true, follow: true,
   },
-  ogImage: 'https://hress.in/cookies.webp',
+  ogImage: 'https://hress.in/images/cookies.webp',
   ogUrl: 'https://hress.in/cookie-policy',
   ogImageWidth: '650',
   ogImageHeight: '350',
@@ -66,7 +66,7 @@ useServerSeoMeta({
   twitterSite: '@hress',
   twitterTitle: 'Hress Cookie Policy',
   twitterDescription: `Hress uses cookies and similar technologies to recognize you when you visit our website at hress.in. This policy explains why we use them, as well as your rights to control our use of them`,
-  twitterImageSrc: 'https://hress.in/cookies.webp',
+  twitterImageSrc: 'https://hress.in/images/cookies.webp',
   keywords: 'Hress, Hress Cookie Policy, Cookie, Cookies, cookie policy'
 })
 
