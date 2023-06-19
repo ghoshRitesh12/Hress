@@ -8,9 +8,8 @@ export default defineNuxtConfig({
     DATABASE_URI: process.env.DATABASE_CONNECTION_URI,
     REFERRAL_ID_BYTES: process.env.REFERRAL_ID_BYTES,
     public: {
-      siteUrl: process.env.APP_BASE_URL,
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
       siteName: "Hress",
-      siteDescription: "bruh thisis good",
       language: "en"
     }
   },
