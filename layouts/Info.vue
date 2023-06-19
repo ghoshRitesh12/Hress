@@ -7,7 +7,7 @@
       nav-open-icon="fluent:grid-dots-24-regular"
     />
 
-    <div class="px-6 pt-10 pb-16">
+    <div class="px-6 pt-6 sm:pt-8 pb-16">
       <slot/>
     </div>
 

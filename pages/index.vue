@@ -2,36 +2,65 @@
 
   <div 
     class="
-    flex flex-col
-    max-w-[80%] w-full mx-auto
+    flex flex-col w-full mx-auto
+    md:max-w-[98%] xl:max-w-[80%] 
     "
   >
 
     <div
       class="
-      flex justify-between items-center gap-8
-      mb-10 hero
+      flex justify-between items-center gap-y-10
+      flex-col md:flex-row mb-10 hero
       "
     >
 
       <div 
         class="
-        text-2xl max-w-[45ch] leading-8
+        md:max-w-[30ch] lg:max-w-[40ch] 
+        xl:max-w-[50ch] 2xl:max-w-[68ch]
         "
-        style="font-size: clamp(1.1rem, 4vmin, 1.5rem);"
       >
-        At Hress, we are passionate about making a positive impact on society 
-        and the environment through our NGO's social and environmental activities. 
-        We strongly believe in the power of collaboration and community building 
-        to drive meaningful change. With a focus on Sundarban tourism development, 
-        we aim to create a sustainable ecosystem that benefits the local economy 
-        and social fabric
+
+        <div 
+          class="leading-[1.4] font-semibold hero-heading"
+          style="font-size: clamp(1.35rem, var(--f-vmin, 3.5vmin), 3rem);"
+        >
+          Driving change through blockchain and
+          community for a sustainable future
+        </div>
+
+        <div
+          class="mt-5 sm:mt-6 text-[.95rem] sm:text-base"
+        >
+          At Hress, we aim to make a positive impact on society 
+          and the environment through social and environmental activities
+          by creating a sustainable ecosystem that benefits the local economy 
+          and social fabric.
+        </div>
+
+        <NuxtLink 
+          to="/contact"
+          class="
+          block mt-6 sm:mt-8 bg-accent-200 text-primary-900
+          px-6 py-[.6rem] w-fit rounded-xl font-semibold
+          hover:scale-95 select-none
+          transition ease-in duration-100
+          "
+          aria-label="contact us"
+        >
+          Contact Us
+        </NuxtLink>
+        
       </div>
 
-      <div class="max-w-[35rem] overflow-hidden rounded-3xl">
+      <div class="
+        overflow-hidden 
+        md:ml-8 xl:ml-16 w-full
+        "
+      >
         <nuxt-img
-          src="/images/planting_tree.jpg"
-          format="jpg"
+          src="/images/planting_tree.png"
+          format="png"
           alt="planting a tree"
           decoding="async"
           width="1200"
@@ -42,36 +71,42 @@
     </div>
 
 
-    <div class="mt-8 text-2xl font-semibold">
-      NOTE:
-    </div>
 
-    <div class="mt-4">
-      The home page & many other pages are still under development.
-      No approx time limit is provided as of now.
-      <p class="text-lg mt-2">
-        <strong>
-          Please have patience for Hress's production build, coming soon.
-        </strong> 
-      </p>
-    </div>
 
-    <div class="mt-6">
-      Currently available pages:
-
-      <div 
-        class="my-2 text-green-300"
-        v-for="link in tempLinks"
-        :key="link.href"
-      >
-
-        <NuxtLink :to="link.href">
-          {{ link.name }}
-        </NuxtLink>
-
+    <section class="hidden">
+      <div class="mt-8 text-2xl font-semibold">
+        NOTE:
       </div>
+  
+      <div class="mt-4">
+        The home page & many other pages are still under development.
+        No approx time limit is provided as of now.
+        <p class="text-lg mt-2">
+          <strong>
+            Please have patience for Hress's production build, coming soon.
+          </strong> 
+        </p>
+      </div>
+  
+      <div class="mt-6">
+        Currently available pages:
+  
+        <div 
+          class="my-2 text-green-300"
+          v-for="link in tempLinks"
+          :key="link.href"
+        >
+  
+          <NuxtLink :to="link.href">
+            {{ link.name }}
+          </NuxtLink>
+  
+        </div>
+  
+      </div>
+    </section>
 
-    </div>
+
     
   </div>
 
@@ -156,6 +191,16 @@ definePageMeta({
 </script>
 
 
-<style>
+<style scoped>
+
+  .hero-heading {
+    --f-vmin: 3.5vmin
+  }
+
+  @media (min-width: 1024px) {
+    .hero-heading {
+      --f-vmin: 4vmin
+    }
+  }
 
 </style>
