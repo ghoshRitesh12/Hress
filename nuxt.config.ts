@@ -43,7 +43,6 @@ export default defineNuxtConfig({
     "/cookie-policy": { static: true },
   },
   robots: {
-    // sitemap: "/sitemap.xml",
     disallow: ['/api'],
   },
 
