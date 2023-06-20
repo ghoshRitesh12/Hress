@@ -1,42 +1,30 @@
-# Nuxt 3 Minimal Starter
+<p align="center">
+  <img 
+    src="./public/images/hress.png" 
+    alt="hress logo"
+    width="150"
+  />
+</p>
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+<h1 align="center">Hress</h1>
 
-## Setup
 
-Make sure to install the dependencies:
+## About us
 
-```bash
-# yarn
-yarn install
+At [Hress](https://hress.in), we are passionate about making a positive impact on society and the environment through our NGO's social and environmental activities. We strongly believe in the power of collaboration and community building to drive meaningful change. With a focus on Sundarban tourism development, we aim to create a sustainable ecosystem that benefits the local economy and social fabric.
 
-# npm
-npm install
 
-# pnpm
-pnpm install
-```
 
-## Development Server
+## What makes us different?
 
-Start the development server on `http://localhost:3000`
+What sets us apart is our innovative approach, as we leverage the potential of blockchain technology to revolutionize the way social and environmental initiatives are conducted. By implementing blockchain, we ensure transparency, accountability, and secure transactions in all our activities.
 
-```bash
-npm run dev
-```
 
-## Production
 
-Build the application for production:
+## What we do?
 
-```bash
-npm run build
-```
+Our community forms the core of our organization. We bring together individuals and organizations who share our vision, creating a strong community base centered around the principles of social responsibility and environmental stewardship. Together, we strive to build a better future where tourism development in Sundarban goes hand in hand with economic growth and social well-being.
 
-Locally preview production build:
+Join us on this exciting journey as we make a lasting difference in the world, one step at a time. Together, we can create a sustainable and inclusive future for generations to come.
 
-```bash
-npm run preview
-```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
