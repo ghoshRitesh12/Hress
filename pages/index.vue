@@ -4,19 +4,20 @@
     class="
     flex flex-col w-full mx-auto
     md:max-w-[98%] xl:max-w-[80%] 
+    relative
     "
   >
 
     <div
       class="
       flex justify-between items-center gap-y-10
-      flex-col md:flex-row mb-10 hero
+      flex-col md:flex-row mb-[7rem] hero
       "
     >
 
       <div 
         class="
-        md:max-w-[30ch] lg:max-w-[40ch] 
+        md:max-w-[32ch] lg:max-w-[40ch] 
         xl:max-w-[50ch] 2xl:max-w-[68ch]
         "
       >
@@ -62,15 +63,65 @@
           src="/images/planting_tree.png"
           format="png"
           alt="planting a tree"
+          width="1200"
+          height="780"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
+
+    </div>
+
+    <div
+      class="
+      flex justify-between items-start gap-y-10 isolate
+      flex-col md:flex-row mb-10 mission relative
+      after:content-[' '] after:bg-green-500/30 after:absolute
+      after:h-full after:w-full after:top-[50%]
+      after:translate-y-[-50%] after:blur-[20rem]
+      after:isolate after:z-[-1] hidden
+      "
+    >
+
+      <div class="
+        md:mr-8 xl:mr-16 max-w-[35rem] w-full
+        overflow-hidden rounded-3xl 
+        "
+      >
+        <nuxt-img
+          src="/images/mission.jpg"
+          format="jpg"
+          alt="mission"
           decoding="async"
           width="1200"
           height="780"
         />
       </div>
 
+      <div 
+        class="2xl:max-w-[85ch]"
+      >
+
+        <div 
+          class="leading-[1.4] font-semibold hero-heading"
+          style="font-size: clamp(1.35rem, var(--f-vmin, 3.5vmin), 3rem);"
+        >
+          Our mission
+        </div>
+
+        <div
+          class="mt-5 sm:mt-6 text-base sm:text-[1.25rem] leading-9"
+        >
+          To leverage blockchain technology and foster a strong community base to drive 
+          positive social and environmental change through NGO activities. We are committed
+          to promoting sustainable development, empowering local communities, and ensuring
+          the preservation and development of Sundarban tourism while prioritizing economic 
+          and social well-being.
+        </div>
+        
+      </div>
+
     </div>
-
-
 
 
     <section class="hidden">
