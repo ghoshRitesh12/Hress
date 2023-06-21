@@ -141,7 +141,7 @@ useHead({
   }]
 })
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Hress - Login',
   robots: {
     index: true, follow: true,

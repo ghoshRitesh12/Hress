@@ -364,7 +364,7 @@ useHead({
   }]
 })
 
-useServerSeoMeta({
+useSeoMeta({
   title: 'Hress - Signup',
   robots: {
     index: true, follow: true,
