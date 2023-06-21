@@ -22,6 +22,8 @@
         format="jpg" 
         width="1200" 
         height="700"
+        decoding="async"
+        fetchpriority="high"
         class="
         rounded-2xl w-full sm:h-[25rem]
         object-center mx-auto

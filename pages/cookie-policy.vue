@@ -18,6 +18,8 @@
         format="webp"
         width="1000"
         height="700"
+        decoding="async"
+        fetchpriority="high"
         class="
         rounded-2xl w-full sm:h-[22rem]
         object-center mx-auto
