@@ -18,17 +18,36 @@ const userSchema = new mongoose.Schema({
     },
     referralId: {
       type: String,
-      default: () =>  randomBytes(
+      default: () => randomBytes(
         parseInt(useRuntimeConfig().REFERRAL_ID_BYTES)
-      ).toString('hex')
+      ).toString('hex'),
+      unique: true
     },
-    rank: {
-      type: Number,
-      default: () => 1,
+    active: {
+      type: Boolean,
+      default: false,
+    },
+    verified: {
+      type: Boolean,
+      default: false,
     },
     panCardNo: {
       type: String,
       default: null
+    },
+    bankInfo: {
+      accountNo: {
+        type: Number,
+        default: null
+      },
+      ifsc: {
+        type: String,
+        default: null
+      }
+    },
+    rank: {
+      type: Number,
+      default: 1,
     },
     ancestors: [{
       type: mongoose.Schema.Types.ObjectId,
@@ -39,13 +58,15 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0
       },
-      commission: {
-        type: Number,
-        default: 0
-      },
       referrals: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users'
+        commission: {
+          type: Number,
+          default: 0,
+        },
+        userRef: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Users'
+        },
       }]
     }]
 
