@@ -14,6 +14,7 @@ export default eventHandler(async (event) => {
     // verify body schema
     // use passport
  
+    // return '';
     const foundUser = await User.findOne({ email: body.email }).session(signupSession);
     if(foundUser) {
       throw createError({
@@ -30,31 +31,51 @@ export default eventHandler(async (event) => {
         message: 'Sponsorer not found'
       })
     }
+    const spillOverIncentive = 20;
     
     
     const newUserInfo = [{
       name: body.name,
       email: body.email,
-      ancestors: (sponsorer.ancestors.length <= 15) ? [...sponsorer.ancestors, `${sponsorer._id}`].sort() : []
+      ancestors: [...sponsorer.ancestors, `${sponsorer._id}`].sort()
     }]
     const newUser = (await User.create(newUserInfo, { session: signupSession }))[0];
 
     // for each ancestor
     const ancestors = await User.find({ _id: { $in: newUser.ancestors } }).session(signupSession);
-    console.log(ancestors);
+    const sponsorAncestorReferralIds = ancestors.slice(0, -1).map(a => a.referralId);
+    console.log(sponsorAncestorReferralIds);
 
     const updateOperations = ancestors.map((ancestor, index) => {
       const indexedLevel = ancestors.length - index;
+     
+      let incentive = (ancestors.length <= 15) ? getIncentive(indexedLevel) : 0
+
+      if(`${ancestor._id}` === `${newUser.ancestors.at(-1)}` && sponsorAncestorReferralIds.includes(body.refererId)) {
+        incentive = -1;
+      }
+
+      if(ancestor.referralId === body.refererId && body.refererId !== sponsorer.referralId) {
+        incentive = spillOverIncentive + getIncentive(indexedLevel)
+      }
+
+      incentive = (ancestors.length <= 15) ? incentive : 0
+
       
       // inserting new member
       const foundLevelIndex = ancestor.levels.findIndex(level => level.levelNo === indexedLevel);
       if(foundLevelIndex !== -1) {
-        ancestor.levels[foundLevelIndex].referrals.push(newUser._id);
+        ancestor.levels[foundLevelIndex].referrals.push({
+          commission: incentive,
+          userRef: newUser._id
+        })
       } else {
         ancestor.levels.push({
           levelNo: indexedLevel,
-          commission: getIncentive(indexedLevel),
-          referrals: [newUser._id]
+          referrals: {
+            commission: incentive,
+            userRef: newUser._id
+          }
         })
       }
 
@@ -83,7 +104,7 @@ export default eventHandler(async (event) => {
 
     await User.bulkWrite(updateOperations, { session: signupSession })
 
-    await signupSession.commitTransaction();
+    await signupSession.commitTransaction()
 
     event.node.res.statusCode = 201;
     return {
