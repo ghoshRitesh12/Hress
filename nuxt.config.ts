@@ -3,18 +3,28 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss", "@nuxt/image-edge", 
     "nuxt-icon", "@nuxt/content", "nuxt-simple-sitemap",
-    "nuxt-simple-robots"
+    "nuxt-simple-robots", "@vee-validate/nuxt"
   ],
   runtimeConfig: {
     DATABASE_URI: process.env.DATABASE_CONNECTION_URI,
+    STATE_SECRET: process.env.STATE_SECRET,
     REFERRAL_ID_BYTES: process.env.REFERRAL_ID_BYTES,
     indexable: true,
     public: {
       siteUrl: 'https://hress.in',
+      STATE_SECRET: process.env.STATE_SECRET,
     }
   },
   nitro: {
     plugins: ["./db/index.js"]
+  },
+  veeValidate: {
+    autoImports: true,
+    componentNames: {
+      Form: 'VForm',
+      Field: 'VField',
+      ErrorMessage: 'VErrorMessage'
+    }
   },
   app: {
     head: {
@@ -41,6 +51,7 @@ export default defineNuxtConfig({
     "/terms": { static: true },
     "/privacy": { static: true },
     "/cookie-policy": { static: true },
+    "/profile/**": { ssr: false }
   },
   robots: {
     disallow: ['/api'],

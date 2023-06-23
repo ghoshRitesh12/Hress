@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxt/image-edge": "^1.0.0-28059208.2abef1b",
+    "@nuxt/image-edge": "^1.0.0-rc.1-28124054.2f62c05",
     "@nuxtjs/tailwindcss": "^6.6.8",
     "@types/node": "^18",
     "nuxt": "^3.4.3",
@@ -20,6 +20,9 @@
   },
   "dependencies": {
     "@nuxt/content": "^2.6.0",
-    "mongoose": "^7.1.1"
+    "@vee-validate/nuxt": "^4.9.6",
+    "@vee-validate/yup": "^4.9.6",
+    "mongoose": "^7.1.1",
+    "yup": "^1.2.0"
   }
 }
