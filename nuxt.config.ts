@@ -51,7 +51,7 @@ export default defineNuxtConfig({
     "/terms": { static: true },
     "/privacy": { static: true },
     "/cookie-policy": { static: true },
-    "/profile/**": { ssr: false }
+    "/account/**": { ssr: false }
   },
   robots: {
     disallow: ['/api'],
