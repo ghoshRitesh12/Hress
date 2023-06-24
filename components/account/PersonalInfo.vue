@@ -2,33 +2,13 @@
 
   <div :data-personal-info="kebabContext">
 
-    <template v-if="props.editable">
-      <label 
-        :for="kebabContext"
-        class="block text-sm text-zinc-400"
-      >
-        {{ props.context }}
-      </label>
-  
-      <input
-        :type="props.contextType"
-        :id="kebabContext"
-        :value="props.contextValue"
-        spellcheck="false" autocomplete="false"
-        autocorrect="false" autocapitalize="false"
-        class="mt-1"
-      />
-    </template>
+    <div class="text-sm text-zinc-400">
+      {{ props.context }}
+    </div>
 
-    <template v-else>
-      <div class="text-sm text-zinc-400">
-        {{ props.context }}
-      </div>
-
-      <div class="mt-1">
-        {{ props.contextValue }}
-      </div>
-    </template>
+    <div class="mt-1">
+      {{ props.contextValue }}
+    </div>
 
   </div>
 
@@ -46,14 +26,6 @@ const props = defineProps({
     type: String,
     required: true
   },
-  contextType: {
-    type: String,
-    default: 'text'
-  },
-  editable: {
-    type: Boolean,
-    default: false
-  }
 })
 
 
