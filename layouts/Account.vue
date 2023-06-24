@@ -9,8 +9,8 @@
 
     <div
       class="
-      pt-4 sm:pt-8 pb-8 max-w-[95%] 
-      xl:max-w-[80%] 2xl:max-w-[65%] w-full mx-auto
+      pt-4 sm:pt-8 pb-8 max-w-[92%] md:max-w-[95%] 
+      xl:max-w-[85%] 2xl:max-w-[70%] w-full mx-auto
       "
     >
 
@@ -27,7 +27,7 @@
       <div 
         class="
         flex lg:gap-10 flex-col md:flex-row
-        gap-y-8
+        gap-y-8 justify-center mx-auto
         "
       >
   
