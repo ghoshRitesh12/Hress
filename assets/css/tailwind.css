@@ -20,6 +20,11 @@
     url('../../assets/fonts/poppins-v20-latin-600.woff') format('woff');
 }
 
+::selection {
+  color: white;
+  background-color: #0085a7;
+}
+
 html {
   overscroll-behavior: auto;
   scroll-behavior: smooth;
