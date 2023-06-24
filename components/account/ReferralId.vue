@@ -2,8 +2,8 @@
 
   <div 
     class="
-    flex flex-grow flex-[50%] items-center
-    py-[.55rem] pl-4 pr-3 sm:pl-6 sm:pr-4 rounded-2xl 
+    flex items-center py-[.55rem] pl-4 
+    pr-3 sm:pl-6 sm:pr-4 rounded-2xl 
     bg-zinc-800/60 w-full
     "
   >

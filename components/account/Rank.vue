@@ -2,7 +2,7 @@
 
   <div 
     class="
-    flex flex-grow flex-[50%] items-center
+    flex items-center
     py-5 px-4 sm:px-6 rounded-2xl w-full
     bg-zinc-800/60 md:whitespace-nowrap
     "
