@@ -16,23 +16,41 @@
         :pfp="'https://api.dicebear.com/6.x/bottts/png?seed=1687525904415&eyes=shade01&mouth=smile01&texture=circuits&face=round02&sides=square'"
       />
 
-      <div data-rank-and-referralId
+      <div
         class="
         flex flex-col gap-6 text-[1.05rem]
-        lg:pr-6 w-full items-center
+        w-full items-center
         "
       >
-  
-        <AccountReferralId
-          :referral-id="'7cf2063d38'"
+
+        <AccountCourse
+          course-type="basic"
         />
-  
-        <AccountRank :rank="6"/>
+
+        <AccountVerifiedTab
+          class="w-full"
+        />
+        <AccountActiveTab
+          class="w-full"
+          :is-active="false"
+        />
   
       </div>
       
     </div>
 
+    <div data-profile-status
+      class="
+      flex gap-x-10 gap-y-4 flex-wrap 
+      lg:flex-nowrap my-8
+      "
+    >
+      <AccountRank :rank="14"/>
+
+      <AccountReferralId
+        :referral-id="'7cf2063d38'"
+      />
+    </div>
     
     <AccountPersonalInfoSection
       :info="personalInfo"
