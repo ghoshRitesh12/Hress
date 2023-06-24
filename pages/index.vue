@@ -17,7 +17,7 @@
 
       <div 
         class="
-        md:max-w-[32ch] lg:max-w-[40ch] 
+        md:max-w-[35ch] lg:max-w-[40ch] 
         xl:max-w-[50ch] 2xl:max-w-[68ch]
         "
       >
@@ -43,8 +43,8 @@
           to="/contact"
           class="
           block mt-6 sm:mt-8 bg-accent-200 text-primary-900
-          px-6 py-[.6rem] w-fit rounded-xl font-semibold
-          hover:scale-95 select-none
+          px-5 md:px-6 py-2 md:py-[.6rem] w-fit rounded-xl 
+          hover:scale-95 select-none font-semibold
           transition ease-in duration-100
           "
           aria-label="contact us"
@@ -123,42 +123,8 @@
 
     </div>
 
-
-    <section class="hidden">
-      <div class="mt-8 text-2xl font-semibold">
-        NOTE:
-      </div>
-  
-      <div class="mt-4">
-        The home page & many other pages are still under development.
-        No approx time limit is provided as of now.
-        <p class="text-lg mt-2">
-          <strong>
-            Please have patience for Hress's production build, coming soon.
-          </strong> 
-        </p>
-      </div>
-  
-      <div class="mt-6">
-        Currently available pages:
-  
-        <div 
-          class="my-2 text-green-300"
-          v-for="link in tempLinks"
-          :key="link.href"
-        >
-  
-          <NuxtLink :to="link.href">
-            {{ link.name }}
-          </NuxtLink>
-  
-        </div>
-  
-      </div>
-    </section>
-
-
     
+
   </div>
 
 </template>
@@ -203,35 +169,6 @@ useServerSeoMeta({
   twitterImageSrc: 'https://hress.in/images/hress.png',
   keywords: 'Hress, NGO, environment, social, community, sustainable development, blockchain, change'
 })
-
-
-
-const tempLinks = ref([
-  {
-    href: '/plan',
-    name: 'Educational Plan'
-  },
-  {
-    href: '/terms',
-    name: 'Terms & Conditions'
-  },
-  {
-    href: '/privacy',
-    name: 'Privacy Policy'
-  },
-  {
-    href: '/cookie-policy',
-    name: 'Cookie Policy'
-  },
-  {
-    href: '/login',
-    name: 'Login (not functional)'
-  },
-  {
-    href: '/signup',
-    name: 'Signup (not functional)'
-  },
-])
 
 
 definePageMeta({
