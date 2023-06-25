@@ -28,7 +28,11 @@
       <div class="ml-auto pointer-events-none">
         <Icon
           class="text-2xl"
-          name="material-symbols:expand-more-rounded"
+          :name="`${
+            props.levelOpen ? 
+            'material-symbols:expand-less-rounded' :
+            'material-symbols:expand-more-rounded'
+          }`"
         />
       </div>
 
