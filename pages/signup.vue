@@ -23,17 +23,17 @@
       >
         <div 
           class="min-h-[.25rem] flex-grow"
-          :class="`${formStep >= 1 ? 'bg-accent-200': ''}`"
+          :class="`${formStep >= 0 ? 'bg-accent-200': ''}`"
           style="transition: .1s ease-in"
         ></div>
         <div 
           class="min-h-[.25rem] flex-grow"
-          :class="`${formStep >= 2 && formStep <= 3 ? 'bg-accent-200': ''}`"
+          :class="`${formStep >= 1 && formStep <= 2 ? 'bg-accent-200': ''}`"
           style="transition: .1s ease-in"
         ></div>
         <div 
           class="min-h-[.25rem] flex-grow"
-          :class="`${formStep >= 3 ? 'bg-accent-200': ''}`"
+          :class="`${formStep >= 2 ? 'bg-accent-200': ''}`"
           style="transition: .1s ease-in"
         ></div>
       </div>
@@ -43,19 +43,21 @@
           Create an account
         </div>
 
-        <p class="max-w-[35ch] leading-[1.4]">
+        <p 
+          class="max-w-[35ch] leading-[1.4]"
+          style="text-decoration: none;"  
+        >
           Register to create your first account and get started.
         </p>
       </div>
 
       <VForm
-        @submit.prevent="submitSignupForm"
-        :validation-schema="signupSchema"
-        :initial-values="formData"
-        v-slot="{ validateField }"
+        @submit="nextSignup"
+        keep-values
+        :validation-schema="currentSchema"
       >
 
-        <div data-signup-step-1 v-if="formStep === 1">
+        <div data-signup-step-1 v-if="formStep === 0">
 
           <div>
             <label class="block">Full name</label>
@@ -63,7 +65,6 @@
             <VField
               type="text"
               placeholder="John Doe"
-              v-model.lazy.trim="formData.name"
               required autocorrect="false"
               class="
               px-4 py-3 rounded-xl bg-zinc-800 
@@ -75,7 +76,6 @@
             />
 
             <VErrorMessage 
-               
               name="fullname" 
               class="errMsg" 
             />
@@ -91,7 +91,6 @@
             <VField 
               type="email"
               placeholder="name@email.com"
-              v-model.lazy.trim="formData.email"
               autocorrect="false"
               class="
               px-4 py-3 rounded-xl bg-zinc-800 
@@ -102,37 +101,64 @@
               autocapitalize="false" autocomplete="false"
             />
 
-            <VErrorMessage 
-               
+            <VErrorMessage
               name="email" 
               class="errMsg" 
             />
 
           </div>
 
+          <div class="mt-4">
 
-          <div class="mt-10">
-            <button
-              type="button"
-              @click="changeFormStep(
-                '+', 
-                ['fullname', 'email'], 
-                validateField
-              )"
-              class="
-              w-full bg-accent-200 hover:bg-green-400
-              px-4 py-3 rounded-2xl text-primary-900
-              font-semibold transition ease-in duration-100
-              disabled:bg-accent-200/60
-              "
-            >
-              Continue
-            </button>
+            <div class="mb-2">
+              Type of course:
+            </div>
+
+            <div class="flex flex-col pl-4 justify-between">
+
+              <div class="flex items-center">
+                <VField 
+                  name="course" 
+                  type="radio" 
+                  value="basic"
+                  class="
+                  block accent-accent-200 
+                  h-[.9rem] w-[.9rem] mr-3
+                  "
+                  id="basic-course"
+                />
+                <label for="basic-course" class="block w-full">
+                  Basic course
+                </label>
+              </div>
+  
+              <div class="flex items-center">
+                <VField 
+                  name="course" 
+                  type="radio" 
+                  value="advance"
+                  class="
+                  block accent-accent-200 
+                  h-[.9rem] w-[.9rem] mr-3
+                  "
+                  id="advance-course"
+                />
+                <label for="advance-course" class="block w-full">
+                  Advance course
+                </label>
+              </div>
+
+            </div>
+
+            <VErrorMessage
+              name="course" class="errMsg" 
+            />
+
           </div>
 
         </div>
 
-        <div data-signup-step-2 v-else-if="formStep === 2">
+        <div data-signup-step-2 v-else-if="formStep === 1">
         
           <div>
             <label class="block">
@@ -145,8 +171,6 @@
             <VField
               type="text" minlength="10"
               placeholder="referer's id"
-              v-model.lazy.trim="formData.refererId"
-              :required="formData.spillOver"
               autocorrect="false" maxlength="10"
               class="
               px-4 py-3 rounded-xl bg-zinc-800 
@@ -170,7 +194,6 @@
             <VField
               type="text"
               placeholder="sponsorer's id"
-              v-model.lazy.trim="formData.sponsorerId"
               required autocorrect="false" maxlength="10"
               class="
               px-4 py-3 rounded-xl bg-zinc-800 
@@ -188,39 +211,6 @@
             />
 
           </div>
-
-          <div class="flex items-center gap-4 mt-10">
-            <button
-              type="button"
-              @click="changeFormStep('-')"
-              class="
-              bg-zinc-600 hover:bg-zinc-700 px-3 pl-[1.1rem]
-              py-3 rounded-2xl text-white flex-shrink-0
-              font-semibold transition ease-in duration-100
-              "
-            >
-              <Icon 
-                name="material-symbols:arrow-back-ios-rounded"
-                class="text-xl"
-              />
-            </button>
-
-            <button
-              type="button"
-              @click="changeFormStep(
-                '+',
-                ['refererId', 'sponsorerId'],
-                validateField
-              )"
-              class="
-              w-full bg-accent-200 hover:bg-green-400
-              px-4 py-3 rounded-2xl text-primary-900
-              font-semibold transition ease-in duration-100
-              "
-            >
-              Continue
-            </button>
-          </div>
         
         </div>
 
@@ -234,7 +224,6 @@
               <VField
                 :type="`${pwdVisible ? 'text' : 'password'}`"
                 placeholder="secret password"
-                v-model.lazy.trim="formData.password"
                 required autocorrect="false"
                 class="
                 px-4 py-3 rounded-xl bg-zinc-800 
@@ -246,7 +235,6 @@
               />
 
               <VErrorMessage 
-                 
                 name="password" 
                 class="errMsg"
               />
@@ -256,10 +244,9 @@
             <div class="mt-4">
               <label class="block">Confirm password</label>
   
-              <input 
+              <VField
                 :type="`${pwdVisible ? 'text' : 'password'}`"
                 placeholder="confirm secret"
-                v-model.lazy.trim="formData.confirmPassword"
                 required autocorrect="false"
                 class="
                 px-4 py-3 rounded-xl bg-zinc-800 
@@ -270,8 +257,7 @@
                 autocapitalize="false" autocomplete="false"
               />
 
-              <VErrorMessage 
-                 
+              <VErrorMessage
                 name="confirmPassword" 
                 class="errMsg" 
               />
@@ -327,36 +313,37 @@
 
           </label>
 
-          <div class="flex items-center gap-4 mt-8">
-            <button
-              type="button"
-              @click="changeFormStep('-')"
-              class="
-              bg-zinc-600 hover:bg-zinc-700 px-3 pl-[1.1rem]
-              py-3 rounded-2xl text-white flex-shrink-0
-              font-semibold transition ease-in duration-100
-              "
-            >
-              <Icon 
-                name="material-symbols:arrow-back-ios-rounded"
-                class="text-xl"
-              />
-            </button>
+        </div>
 
-            <button
-              type="submit"
-              class="
-              w-full bg-accent-200 hover:bg-green-400
-              px-4 py-3 rounded-2xl text-primary-900
-              disabled:bg-accent-200/60
-              font-semibold transition ease-in duration-100
-              "
-              :disabled="!agreeTerms"
-            >
-              Sign up
-            </button>
-          </div>
+        <div class="flex items-center gap-4 mt-10">
+          <button
+            v-if="formStep > 0"
+            type="button"
+            @click="prevStep"
+            class="
+            bg-zinc-600 hover:bg-zinc-700 px-3 pl-[1.1rem]
+            py-3 rounded-2xl text-white flex-shrink-0
+            font-semibold transition ease-in duration-100
+            "
+          >
+            <Icon
+              name="material-symbols:arrow-back-ios-rounded"
+              class="text-xl"
+            />
+          </button>
 
+          <button
+            type="submit"
+            class="
+            w-full bg-accent-200 hover:bg-green-400
+            px-4 py-3 rounded-2xl text-primary-900
+            disabled:bg-accent-200/60
+            font-semibold transition ease-in duration-100
+            "
+            :disabled="formStep > 1 && !agreeTerms"
+          >
+            {{ formStep < 2 ? 'Continue' : 'Sign up'}}
+          </button>
         </div>
         
       </VForm>
@@ -378,7 +365,7 @@
 
 
 <script setup>
-import { signupSchema } from '../composables/useSignupSchema.js';
+import { signupSchema } from '../utils/signupSchema.js';
 
 
 useHead({
@@ -422,59 +409,43 @@ definePageMeta({
   layout: 'auth'
 })
 
-  
+
 
 const agreeTerms = ref(false)
-
 const pwdVisible = ref(false);
 
-const formStep = ref(1);
-const changeFormStep = async (step, fields, validate) => {
-  if(step === "-") {
-    formStep.value--;
-    return;
-  }
+const formStep = ref(0);
 
-  fields.map(async field => (await validate(field)).valid)
-    .at(-1).then((proceed) => {
-      if(proceed) formStep.value++
-    })
+const currentSchema = computed(() => {
+  return signupSchema[formStep.value];
+});
+
+const prevStep = () => {
+  if(formStep.value > 0) {
+    formStep.value--;
+  }
 }
 
+const nextSignup = async (values) => {
+  if(formStep.value < 2) return formStep.value++
 
-
-
-
-
-const formData = ref({
-  name: '',
-  email: '',
-  refererId: '',
-  sponsorerId: '',
-  password: '',
-  confirmPassword: '',
-})  
-
-const submitSignupForm = async () => {
   try {
+    console.log(values);
+    return;
+
     if(!agreeTerms.value) return;
     console.log(formData.value);
 
-    return;
-
     await useFetch('/api/signup', {
       method: 'POST',
-      body: JSON.stringify(formData.value)
+      body: JSON.stringify(values)
     })
-    
     
   } catch (err) {
     console.log(err);
-    // createError({
-    //   message: err.message 
-    // })
   }
 }
+
 
 </script>
 
@@ -482,7 +453,7 @@ const submitSignupForm = async () => {
 
   .errMsg{
     @apply block text-red-300 text-[.8rem] 
-    mt-1 max-w-[95%] w-full mx-auto 
+    mt-1 max-w-[40ch] w-full mx-auto 
     text-center leading-[1.2];
   }
 
