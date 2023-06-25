@@ -14,13 +14,17 @@
           Welcome back
         </div>
 
-        <p class="max-w-[40ch] leading-[1.4]">
+        <p 
+          class="max-w-[40ch] leading-[1.4]" 
+          style="text-decoration: none;"
+        >
           Enter your credentials to access your account.
         </p>
       </div>
 
-      <form 
-        @submit.prevent="submitLoginForm"
+      <VForm
+        @submit="submitLoginForm"
+        :validation-schema="loginSchema"
         class="" 
       >
         <div class="relative">
@@ -29,10 +33,10 @@
             Email address
           </label>
 
-          <input 
+          <VField
             type="email"
             placeholder="name@email.com"
-            v-model.lazy.trim="formData.email"
+            name="email"
             required autocorrect="false"
             class="
             px-4 py-3 rounded-xl bg-zinc-800 
@@ -40,6 +44,11 @@
             focus:outline-1 focus:outline-offset-0 w-full mt-3
             "
             autocapitalize="false" autocomplete="false"
+          />
+
+          <VErrorMessage 
+            name="email"
+            class="errMsg"
           />
 
         </div>
@@ -52,10 +61,10 @@
           </label>
 
           <div class="relative w-full">
-            <input 
+            <VField
               :type="`${pwdVisible ? 'text': 'password'}`"
               placeholder="secret password"
-              v-model.lazy.trim="formData.password"
+              name="password"
               required autocorrect="false"
               class="
               pl-4 pr-14 py-3 rounded-xl bg-zinc-800 mt-3
@@ -78,6 +87,10 @@
             </button>
           </div>
 
+          <VErrorMessage 
+            name="password"
+            class="errMsg"
+          />
 
           <div class="ml-auto w-fit">
             <button 
@@ -108,7 +121,7 @@
           </button>
 
         </div>
-      </form>
+      </VForm>
 
       <div class="mt-6 text-center">
         Don't have an account yet? 
@@ -127,6 +140,8 @@
 
 
 <script setup>
+import { loginSchema } from '~/utils/loginSchema';
+
 
 useHead({
   meta: [
@@ -171,6 +186,8 @@ definePageMeta({
 
 
 
+
+
 const pwdVisible = ref(false);
 const pwdIcon = ref('mdi:eye-off-outline');
 
@@ -186,11 +203,14 @@ const togglePwdField = () => {
 }
 
 
-const formData = ref({
-  email: '',
-  password: ''
-})
-const submitLoginForm = async () => {
+
+
+const submitLoginForm = async (values) => {
+  
+
+  console.log(values);
+  return;
+
   try {
     if(!formData.value.email || !formData.value.password) return;
     console.log(formData.value);
@@ -210,6 +230,12 @@ const submitLoginForm = async () => {
 </script>
 
 
-<style>
+<style scoped>
+
+  .errMsg{
+    @apply block text-red-300 text-[.8rem] 
+    mt-1 max-w-[95%] w-full mx-auto 
+    text-center leading-[1.2];
+  }
 
 </style>
