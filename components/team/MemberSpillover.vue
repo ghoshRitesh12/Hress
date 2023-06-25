@@ -2,7 +2,7 @@
 
   <div data-member-spillover
     class="
-    text-[.75rem]
+    text-[.65rem] md:text-[.75rem]
     "
   >
 
