@@ -16,8 +16,8 @@
 
       <h1 
         class="
-        text-2xl sm:text-3xl 
-        font-semibold mb-12
+        text-2xl sm:text-3xl font-semibold 
+        mb-8 md:mb-12
         "
       >
         Account Settings
@@ -49,10 +49,11 @@
             transition ease-in duration-100
             "
             :active-class="`
-            before:content-[' '] before:absolute before:left-0
-            before:top-[50%] before:translate-y-[-50%]
-            before:h-[65%] before:w-[.25rem] before:bg-accent-200
-            bg-zinc-800/80 before:rounded-3xl
+            before:content-[' '] before:absolute 
+            before:bottom-[-.4rem] before:h-[.2rem] before:w-[80%]
+            md:before:left-0 md:before:top-[50%] md:before:translate-y-[-50%]
+            md:before:h-[65%] md:before:w-[.25rem] 
+            before:bg-accent-200 bg-zinc-800 before:rounded-3xl
             `"
             :to="accountNav.href"
           >
