@@ -28,7 +28,7 @@
       to="/login"
       class="
       px-4 py-[.55rem] text-black text-[.9rem] 
-      rounded-xl bg-accent-200
+      rounded-xl bg-accent-200 select-none
       "
     >
       Login

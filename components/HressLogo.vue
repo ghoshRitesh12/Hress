@@ -2,7 +2,7 @@
 
   <NuxtLink 
     to="/" 
-    class="md:px-2"
+    class="md:px-2 select-none"
     title="Hress Home"
   >
     
