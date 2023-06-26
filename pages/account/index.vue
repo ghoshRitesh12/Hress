@@ -56,6 +56,26 @@
       :info="personalInfo"
     />
 
+    <button
+      type="button"
+      class="
+      flex items-center gap-2
+      bg-red-400 text-primary-900 mt-8 ml-auto
+      py-[.65rem] px-6 rounded-2xl hover:bg-red-500
+      transition ease-in duration-100 w-fit
+      "
+    >
+
+      <Icon
+        class="text-lg"
+        name="tabler:logout"
+      />
+
+      <div>
+        Logout
+      </div>
+    </button>
+
   </div>
 
 </template>
