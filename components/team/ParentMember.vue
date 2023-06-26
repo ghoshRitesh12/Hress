@@ -2,9 +2,9 @@
 
   <div 
     class="
-    flex items-center
-    bg-zinc-800/70 py-[.6rem] px-4 md:px-6
-    rounded-2xl text-[1.05rem] w-fit
+    flex items-center md:px-6
+    bg-zinc-800/70 py-[.6rem] px-5
+    rounded-2xl md:text-[1.05rem] w-fit
     "
   >
 
@@ -14,7 +14,7 @@
 
     <div 
       class="
-      flex items-center gap-4 ml-4
+      flex items-center gap-4 ml-3
       "
     >
       <div
