@@ -33,6 +33,7 @@ export default defineNuxtConfig({
   auth: {
     isEnabled: true,
     defaultProvider: 'credentials',
+    origin: process.env.HRESS_BASE_URL
   },
   app: {
     head: {
