@@ -55,11 +55,11 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    "/": { prerender: true },
-    "/plan": { prerender: true },
-    "/terms": { prerender: true },
-    "/privacy": { prerender: true },
-    "/cookie-policy": { prerender: true },
+    "/": { static: true },
+    "/plan": { static: true },
+    "/terms": { static: true },
+    "/privacy": { static: true },
+    "/cookie-policy": { static: true },
     "/account/**": { ssr: false }
   },
   robots: {
