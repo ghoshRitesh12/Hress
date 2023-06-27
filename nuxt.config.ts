@@ -33,7 +33,8 @@ export default defineNuxtConfig({
   auth: {
     isEnabled: true,
     defaultProvider: 'credentials',
-    origin: 'https://hress.in'
+    enableGlobalAppMiddleware: false,
+    origin: 'https://hress.in',
   },
   app: {
     head: {
