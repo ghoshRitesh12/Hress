@@ -3,12 +3,16 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss", "@nuxt/image-edge", 
     "nuxt-icon", "@nuxt/content", "nuxt-simple-sitemap",
-    "nuxt-simple-robots", "@vee-validate/nuxt"
+    "nuxt-simple-robots", "@vee-validate/nuxt",
+    "@sidebase/nuxt-auth",
   ],
   runtimeConfig: {
     DATABASE_URI: process.env.DATABASE_CONNECTION_URI,
     STATE_SECRET: process.env.STATE_SECRET,
     REFERRAL_ID_BYTES: process.env.REFERRAL_ID_BYTES,
+    SENDER_EMAIL_ID: process.env.SENDER_EMAIL_ID,
+    SENDER_EMAIL_PWD: process.env.SENDER_EMAIL_PWD,
+    authSecret: process.env.NEXTAUTH_SECRET,
     indexable: true,
     public: {
       siteUrl: 'https://hress.in',
@@ -25,6 +29,10 @@ export default defineNuxtConfig({
       Field: 'VField',
       ErrorMessage: 'VErrorMessage'
     }
+  },
+  auth: {
+    isEnabled: true,
+    defaultProvider: 'credentials',
   },
   app: {
     head: {
@@ -47,14 +55,15 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    "/plan": { static: true },
-    "/terms": { static: true },
-    "/privacy": { static: true },
-    "/cookie-policy": { static: true },
+    "/": { prerender: true },
+    "/plan": { prerender: true },
+    "/terms": { prerender: true },
+    "/privacy": { prerender: true },
+    "/cookie-policy": { prerender: true },
     "/account/**": { ssr: false }
   },
   robots: {
-    disallow: ['/api'],
+    disallow: ['/api', '/account'],
   },
 
 })
