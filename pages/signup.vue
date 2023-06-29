@@ -327,6 +327,7 @@
               hover:bg-zinc-900 transition ease-in duration-100
               "
               @click="sendOtp(email, fullname)"
+              ref="sendOtpBtn"
             >
               Send OTP
             </button>
@@ -459,9 +460,10 @@ definePageMeta({
 
 
 
-const agreeTerms = ref(false)
-const pwdVisible = ref(false);
+const agreeTerms = useState('agreeTerms', () => false)
+const pwdVisible = useState('pwdVisible', () => false);
 
+const sendOtpBtn = useState('sendOtpBtn', () => null);
 const formStep = useState('formStep', () => 0);
 
 const currentSchema = computed(() => {
@@ -478,8 +480,6 @@ const nextSignup = async (values) => {
   if(formStep.value < 3) return formStep.value++
 
   try {
-    console.log(values);
-
     if(!agreeTerms.value) return;
 
     const { data, error } = await useFetch('/api/auth/signup', {
@@ -490,6 +490,7 @@ const nextSignup = async (values) => {
     if(data?.value) {
       useRouter().push('/login');
       setPopupMessage(data?.value?.message);
+      formStep.value = 0;
     } else {
       setPopupMessage(error?.value?.statusMessage);
     }
@@ -505,6 +506,7 @@ const nextSignup = async (values) => {
 const sendOtp = async (email, fullname) => {
   try {
     if(!email) return;
+    sendOtpBtn.value.innerText = '...Sending OTP';
 
     const { data, error } = await useFetch('/api/auth/sendotp', {
       method: 'POST',
@@ -514,6 +516,7 @@ const sendOtp = async (email, fullname) => {
       }
     });
 
+    sendOtpBtn.value.innerText = 'Send OTP';
     if(data?.value) {
       setPopupMessage(data?.value?.message);
     } else {
