@@ -13,7 +13,8 @@ export default defineNuxtConfig({
     REFERRAL_ID_BYTES: process.env.REFERRAL_ID_BYTES,
     SENDER_EMAIL_ID: process.env.SENDER_EMAIL_ID,
     SENDER_EMAIL_PWD: process.env.SENDER_EMAIL_PWD,
-    authSecret: process.env.NEXTAUTH_SECRET,
+    AUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    PWD_SALT: process.env.PWD_SALT,
     indexable: true,
     public: {
       siteUrl: process.env.HRESS_BASE_URL,
