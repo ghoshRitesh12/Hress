@@ -10,7 +10,7 @@
     bg-white rounded-2xl overflow-hidden text-[.9rem]
     shadow-lg shadow-black/40 px-4 py-3 sm:px-6
     "
-    style="transition: .2s ease all"
+    style="transition: .2s ease all" 
   >
 
     <div 
