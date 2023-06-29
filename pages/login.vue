@@ -182,11 +182,11 @@ useSeoMeta({
 
 definePageMeta({
   layout: 'auth',
-  middleware: 'auth',
-  auth: {
-    unauthenticatedOnly: true,
-    navigateAuthenticatedTo: '/account',
-  },
+  // middleware: 'auth',
+  // auth: {
+  //   unauthenticatedOnly: true,
+  //   navigateAuthenticatedTo: '/account',
+  // },
 })
 
 
