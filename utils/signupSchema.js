@@ -9,6 +9,7 @@ export const signupSchema = [
     }, 
     [['refererId', 'refererId']]
   )),
+
   toTypedSchema(object().shape({
       refererId: string().trim().when('refererId', (val, schema) => {
         if(val[0]?.trim()?.length > 0) {
@@ -21,12 +22,19 @@ export const signupSchema = [
     }, 
     [['refererId', 'refererId']]
   )),
+
   toTypedSchema(object().shape({
       password: string().trim().required('Password required').matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*()])(?=.{8,16}$)/,
         'Use 8 to 16 characters with a mix of letters(lower & upper case), numbers & symbols among !@#$%^&*()'
       ),
       confirmPassword: string().trim().required('Re enter password').oneOf([yupRef('password')], 'Passwords must match')
+    }, 
+    [['refererId', 'refererId']]
+  )),
+
+  toTypedSchema(object().shape({
+      otp: string().required('OTP is required').length(6)
     }, 
     [['refererId', 'refererId']]
   )),
