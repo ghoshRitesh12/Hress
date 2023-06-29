@@ -9,7 +9,7 @@ const otpSchema = new Schema({
       required: true,
     },
     otp: {
-      type: String,
+      type: Number,
       default: () => randomInt(100000, 999999)
     },
     validMins: {
@@ -19,7 +19,7 @@ const otpSchema = new Schema({
     createdAt: {
       type: Date,
       default: Date.now,
-      expires: '30s'
+      expires: '5m'
     }
   },
   { collection: collectionName }
