@@ -34,7 +34,7 @@
         <aside
           class="
           flex-[15%]
-          flex md:flex-col gap-4 md:px-4 py-2 
+          flex md:flex-col sm:gap-4 md:px-4 py-2 
           border-[0px] md:flex-[20%] md:mr-8
           "
         >
@@ -114,16 +114,20 @@ const accountNavs = ref([
     icon: 'material-symbols:person-outline-rounded' 
   },
   { 
-    name: 'Security', href: '/account/security',
-    icon: 'solar:shield-warning-linear'
+    name: 'My Team', href: '/account/team',
+    icon: 'fluent:people-team-16-regular'
   },
   { 
     name: 'Income', href: '/account/income',
     icon: 'material-symbols:attach-money-rounded'
   },
   { 
-    name: 'My Team', href: '/account/team',
-    icon: 'fluent:people-team-16-regular'
+    name: 'Rewards', href: '/account/rewards',
+    icon: 'ph:trophy'
+  },
+  { 
+    name: 'Security', href: '/account/security',
+    icon: 'solar:shield-warning-linear'
   },
 ])
 
