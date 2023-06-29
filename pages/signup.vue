@@ -28,12 +28,17 @@
         ></div>
         <div 
           class="min-h-[.25rem] flex-grow"
-          :class="`${formStep >= 1 && formStep <= 2 ? 'bg-accent-200': ''}`"
+          :class="`${formStep >= 1 && formStep <= 3 ? 'bg-accent-200': ''}`"
           style="transition: .1s ease-in"
         ></div>
         <div 
           class="min-h-[.25rem] flex-grow"
-          :class="`${formStep >= 2 ? 'bg-accent-200': ''}`"
+          :class="`${formStep >= 2 && formStep <= 3 ? 'bg-accent-200': ''}`"
+          style="transition: .1s ease-in"
+        ></div>
+        <div 
+          class="min-h-[.25rem] flex-grow"
+          :class="`${formStep >= 3 ? 'bg-accent-200': ''}`"
           style="transition: .1s ease-in"
         ></div>
       </div>
@@ -52,12 +57,12 @@
       </div>
 
       <VForm
-        @submit="nextSignup"
-        keep-values
+        @submit="nextSignup" keep-values
         :validation-schema="currentSchema"
+        v-slot="{ values: { email, fullname } }"
       >
 
-        <div data-signup-step-1 v-if="formStep === 0">
+        <div data-signup-step-0 v-if="formStep === 0">
 
           <div>
             <label class="block">Full name</label>
@@ -158,7 +163,7 @@
 
         </div>
 
-        <div data-signup-step-2 v-else-if="formStep === 1">
+        <div data-signup-step-1 v-else-if="formStep === 1">
         
           <div>
             <label class="block">
@@ -214,7 +219,7 @@
         
         </div>
 
-        <div data-signup-step-3 v-else>
+        <div data-signup-step-2 v-else-if="formStep === 2">
 
           <div class="mt-4">
 
@@ -285,7 +290,49 @@
 
           </div>
 
-          <label class="flex items-center gap-3 mt-2">
+        </div>
+
+        <div data-signup-step-3 v-else>
+
+          <div class="mt-4">
+
+            <label class="block">OTP</label>
+
+            <VField
+              type="text"
+              placeholder="otp in your email"
+              required autocorrect="false"
+              class="
+              px-4 py-3 rounded-xl bg-zinc-800 
+              focus:outline-none focus:outline-green-300
+              focus:outline-1 focus:outline-offset-0 w-full mt-3
+              "
+              name="otp" spellcheck="false" maxlength="6"
+              autocapitalize="false" autocomplete="false"
+            />
+
+            <VErrorMessage 
+              name="otp" 
+              class="errMsg"
+            />
+
+          </div>
+          
+          <div class="mt-4 w-fit ml-auto">
+            <button 
+              type="button"
+              class="
+              px-4 py-2 bg-zinc-800 rounded-2xl
+              text-[.9rem] border-[1px] border-accent-100
+              hover:bg-zinc-900 transition ease-in duration-100
+              "
+              @click="sendOtp(email, fullname)"
+            >
+              Send OTP
+            </button>
+          </div>
+
+          <label class="flex items-center gap-3 mt-4">
             <input 
               type="checkbox" 
               class="
@@ -340,9 +387,9 @@
             disabled:bg-accent-200/60
             font-semibold transition ease-in duration-100
             "
-            :disabled="formStep > 1 && !agreeTerms"
+            :disabled="formStep > 2 && !agreeTerms"
           >
-            {{ formStep < 2 ? 'Continue' : 'Sign up'}}
+            {{ formStep < 3 ? 'Continue' : 'Sign up'}}
           </button>
         </div>
         
@@ -366,6 +413,7 @@
 
 <script setup>
 import { signupSchema } from '../utils/signupSchema.js';
+import { setPopupMessage } from "../store/popup";
 
 
 useHead({
@@ -427,22 +475,46 @@ const prevStep = () => {
 }
 
 const nextSignup = async (values) => {
-  if(formStep.value < 2) return formStep.value++
+  if(formStep.value < 3) return formStep.value++
 
   try {
     console.log(values);
-    return;
+    // return;
 
     if(!agreeTerms.value) return;
-    console.log(formData.value);
 
-    await useFetch('/api/signup', {
+    await useFetch('/api/auth/signup', {
       method: 'POST',
       body: JSON.stringify(values)
     })
     
   } catch (err) {
     console.log(err);
+  }
+}
+
+
+
+const sendOtp = async (email, fullname) => {
+  try {
+    if(!email) return;
+
+    console.log(email, fullname);
+
+    const { data, error } = await useFetch('/api/auth/otp', {
+      method: 'POST',
+      body: { 
+        emailId: email, 
+        fullname
+      }
+    });
+
+    console.log(data, error.value.statusMessage);
+    setPopupMessage(error.value.statusMessage);
+
+
+  } catch (err) {
+    console.log(err);    
   }
 }
 

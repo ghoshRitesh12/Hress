@@ -10,7 +10,10 @@
   >
 
     <div class="text-zinc-400">
-      &copy; 2023 Hress Limited.
+      <span class="text-sm align-middle">
+        &copy;
+      </span> 
+      Hress
     </div>
 
     <div data-footer-links 

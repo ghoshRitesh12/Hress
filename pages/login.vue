@@ -181,16 +181,43 @@ useSeoMeta({
 })
 
 definePageMeta({
-  layout: 'auth'
+  layout: 'auth',
+  middleware: 'auth',
+  // auth: {
+  //   unauthenticatedOnly: true,
+  //   navigateAuthenticatedTo: '/account',
+  // },
 })
 
 
+const submitLoginForm = async (values) => {
+  try {
+    console.log(values);
+    // return;
+    const { status, signIn } = useAuth();
 
+    // await signIn('credentials', {
+    //   email: values.email,
+    //   password: values.password,
+    //   callbackUrl: 'http://localhost:7000/account'
+    // })
+
+    console.log(values);
+    // return;
+
+
+
+  } catch (err) {
+    console.log(err);
+    throw createError({
+      message: err.message
+    })
+  }
+}
 
 
 const pwdVisible = ref(false);
 const pwdIcon = ref('mdi:eye-off-outline');
-
 const togglePwdField = () => {
   pwdVisible.value = !pwdVisible.value;
   if(pwdVisible.value) {
@@ -204,29 +231,6 @@ const togglePwdField = () => {
 
 
 
-
-const submitLoginForm = async (values) => {
-  
-
-  console.log(values);
-  return;
-
-  try {
-    if(!formData.value.email || !formData.value.password) return;
-    console.log(formData.value);
-
-
-  } catch (err) {
-    console.log(err);
-    throw createError({
-      message: err.message
-    })
-  }
-}
-
-
-
-
 </script>
 
 
@@ -234,7 +238,7 @@ const submitLoginForm = async (values) => {
 
   .errMsg{
     @apply block text-red-300 text-[.8rem] 
-    mt-1 max-w-[95%] w-full mx-auto 
+    mt-1 max-w-[40ch] w-full mx-auto 
     text-center leading-[1.2];
   }
 

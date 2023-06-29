@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     "@sidebase/nuxt-auth",
   ],
   runtimeConfig: {
-    DATABASE_URI: process.env.DATABASE_CONNECTION_URI,
+    DATABASE_URI_DEV: process.env.DATABASE_URI_DEV,
+    DATABASE_URI_PROD: process.env.DATABASE_URI_PROD,
     STATE_SECRET: process.env.STATE_SECRET,
     REFERRAL_ID_BYTES: process.env.REFERRAL_ID_BYTES,
     SENDER_EMAIL_ID: process.env.SENDER_EMAIL_ID,
@@ -31,7 +32,6 @@ export default defineNuxtConfig({
     }
   },
   auth: {
-    origin: process.env.AUTH_ORIGIN_PROD,
     isEnabled: true,
     defaultProvider: 'credentials',
     enableGlobalAppMiddleware: false,
