@@ -32,6 +32,8 @@ export default defineNuxtConfig({
     }
   },
   auth: {
+    origin: process.env.NODE_ENV === 'development' ? 
+      process.env.AUTH_ORIGIN_DEV : process.env.AUTH_ORIGIN_PROD,
     isEnabled: true,
     defaultProvider: 'credentials',
     enableGlobalAppMiddleware: false,
