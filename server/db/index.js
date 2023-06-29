@@ -5,7 +5,10 @@ export default async (_nitroApp) => {
     const config = useRuntimeConfig();
 
     mongoose.set('strictQuery', false);
-    await mongoose.connect(config.DATABASE_URI);
+    await mongoose.connect(
+      process.env.NODE_ENV === 'development' ?
+        config.DATABASE_URI_DEV : config.DATABASE_URI_PROD
+    );
 
     console.log('💾 connected to DB');
     
