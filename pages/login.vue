@@ -24,9 +24,9 @@
 
       <VForm
         @submit="submitLoginForm"
-        :validation-schema="loginSchema"
-        class="" 
+        :validation-schema="clientLoginSchema"
       >
+
         <div class="relative">
 
           <label for="email" class="block">
@@ -52,7 +52,6 @@
           />
 
         </div>
-
 
         <div class="relative mt-4">
 
@@ -106,7 +105,6 @@
 
         </div>
 
-
         <div class="mt-10">
 
           <button
@@ -121,6 +119,7 @@
           </button>
 
         </div>
+
       </VForm>
 
       <div class="mt-6 text-center">
@@ -140,8 +139,8 @@
 
 
 <script setup>
-import { loginSchema } from '~/utils/loginSchema';
-import { setPopupMessage } from "../store/popup";
+import { clientLoginSchema } from '~/utils/loginSchema';
+import { setPopupMessage } from '~/store/popup';
 
 
 useHead({
@@ -183,11 +182,11 @@ useSeoMeta({
 
 definePageMeta({
   layout: 'auth',
-  // middleware: 'auth',
-  // auth: {
-  //   unauthenticatedOnly: true,
-  //   navigateAuthenticatedTo: '/account',
-  // },
+  middleware: 'auth',
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/account',
+  },
 })
 
 
@@ -208,21 +207,16 @@ const togglePwdField = () => {
 const submitLoginForm = async (values) => {
   try {
     console.log(values);
-    // return;
+    
     const { status, signIn } = useAuth();
 
     await signIn('credentials', {
       email: values.email,
       password: values.password,
-      callbackUrl: `${
-        process.env.NODE_ENV === 'development' ? 
-          process.env.AUTH_ORIGIN_DEV : process.env.AUTH_ORIGIN_PROD
-      }/account`
+      redirect: false
     })
 
-    console.log(values);
-    // return;
-
+    signIn()
 
 
   } catch (err) {
