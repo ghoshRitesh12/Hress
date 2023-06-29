@@ -141,6 +141,7 @@
 
 <script setup>
 import { loginSchema } from '~/utils/loginSchema';
+import { setPopupMessage } from "../store/popup";
 
 
 useHead({
@@ -182,12 +183,26 @@ useSeoMeta({
 
 definePageMeta({
   layout: 'auth',
-  middleware: 'auth',
+  // middleware: 'auth',
   // auth: {
   //   unauthenticatedOnly: true,
   //   navigateAuthenticatedTo: '/account',
   // },
 })
+
+
+const pwdVisible = useState('pwdVisible', () => false);
+const pwdIcon = useState('pwdIcon', () => 'mdi:eye-off-outline');
+
+const togglePwdField = () => {
+  pwdVisible.value = !pwdVisible.value;
+  if(pwdVisible.value) {
+    pwdIcon.value = 'mdi:eye-outline';
+    return;
+  }
+  pwdIcon.value = 'mdi:eye-off-outline';
+}
+
 
 
 const submitLoginForm = async (values) => {
@@ -196,11 +211,14 @@ const submitLoginForm = async (values) => {
     // return;
     const { status, signIn } = useAuth();
 
-    // await signIn('credentials', {
-    //   email: values.email,
-    //   password: values.password,
-    //   callbackUrl: 'http://localhost:7000/account'
-    // })
+    await signIn('credentials', {
+      email: values.email,
+      password: values.password,
+      callbackUrl: `${
+        process.env.NODE_ENV === 'development' ? 
+          process.env.AUTH_ORIGIN_DEV : process.env.AUTH_ORIGIN_PROD
+      }/account`
+    })
 
     console.log(values);
     // return;
@@ -213,20 +231,6 @@ const submitLoginForm = async (values) => {
       message: err.message
     })
   }
-}
-
-
-const pwdVisible = ref(false);
-const pwdIcon = ref('mdi:eye-off-outline');
-const togglePwdField = () => {
-  pwdVisible.value = !pwdVisible.value;
-  if(pwdVisible.value) {
-    pwdIcon.value = 'mdi:eye-outline';
-    return;
-  }
-  pwdIcon.value = 'mdi:eye-off-outline';
-  // pwdVisible.value = !pwdVisible.value;
-
 }
 
 
