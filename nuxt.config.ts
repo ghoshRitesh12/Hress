@@ -59,9 +59,9 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    "/": { static: true },
+    "/": { prerender: true },
     "/plan": { static: true },
-    "/terms": { static: true },
+    "/terms": { prerender: true },
     "/privacy": { static: true },
     "/cookie-policy": { static: true },
     "/account/**": { ssr: false }
