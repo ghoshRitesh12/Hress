@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     authSecret: process.env.NEXTAUTH_SECRET,
     indexable: true,
     public: {
-      siteUrl: 'https://hress.in',
+      siteUrl: process.env.HRESS_BASE_URL,
       STATE_SECRET: process.env.STATE_SECRET,
     }
   },
@@ -31,8 +31,10 @@ export default defineNuxtConfig({
     }
   },
   auth: {
+    origin: process.env.AUTH_ORIGIN_DEV,
     isEnabled: true,
     defaultProvider: 'credentials',
+    enableGlobalAppMiddleware: false,
   },
   app: {
     head: {
