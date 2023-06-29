@@ -12,6 +12,8 @@
 
     <Footer/>
 
+    <Popup/>
+
   </div>
 
 
