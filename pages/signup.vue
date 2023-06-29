@@ -412,7 +412,7 @@
 
 
 <script setup>
-import { signupSchema } from '../utils/signupSchema.js';
+import { clientSignupSchema } from '../utils/signupSchema.js';
 import { setPopupMessage } from "../store/popup";
 
 
@@ -462,10 +462,10 @@ definePageMeta({
 const agreeTerms = ref(false)
 const pwdVisible = ref(false);
 
-const formStep = ref(0);
+const formStep = useState('formStep', () => 0);
 
 const currentSchema = computed(() => {
-  return signupSchema[formStep.value];
+  return clientSignupSchema[formStep.value];
 });
 
 const prevStep = () => {
@@ -479,15 +479,22 @@ const nextSignup = async (values) => {
 
   try {
     console.log(values);
-    // return;
 
     if(!agreeTerms.value) return;
 
-    await useFetch('/api/auth/signup', {
-      method: 'POST',
-      body: JSON.stringify(values)
+    const { data, error } = await useFetch('/api/auth/signup', {
+      method: 'POST', 
+      body: values
     })
-    
+
+    if(data?.value) {
+      useRouter().push('/login');
+      setPopupMessage(data?.value?.message);
+    } else {
+      setPopupMessage(error?.value?.statusMessage);
+    }
+
+
   } catch (err) {
     console.log(err);
   }
@@ -499,18 +506,19 @@ const sendOtp = async (email, fullname) => {
   try {
     if(!email) return;
 
-    console.log(email, fullname);
-
-    const { data, error } = await useFetch('/api/auth/otp', {
+    const { data, error } = await useFetch('/api/auth/sendotp', {
       method: 'POST',
-      body: { 
+      body: {
         emailId: email, 
         fullname
       }
     });
 
-    console.log(data, error.value.statusMessage);
-    setPopupMessage(error.value.statusMessage);
+    if(data?.value) {
+      setPopupMessage(data?.value?.message);
+    } else {
+      setPopupMessage(error?.value?.statusMessage);
+    }
 
 
   } catch (err) {
