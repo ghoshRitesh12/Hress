@@ -44,8 +44,9 @@
         <slot/>
       </div>
 
-
     </div>
+
+    <Footer/>
 
     <ScrollToTop/>
 
