@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
+import { startSession } from "mongoose";
 import User from "../../models/User.model";
+import Otp from "../../models/Otp.model";
 import { getIncentive, isRankValid } from "../../helpers/utils.js";
 
 
-
 export default eventHandler(async (event) => {
-  const signupSession = await mongoose.startSession();
+  const signupSession = await startSession();
   signupSession.startTransaction()
   
   try {
@@ -14,7 +14,9 @@ export default eventHandler(async (event) => {
     // verify body schema
     // use passport
  
-    // return '';
+    
+
+    
     const foundUser = await User.findOne({ email: body.email }).session(signupSession);
     if(foundUser) {
       throw sendError(event, createError({
