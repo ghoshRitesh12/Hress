@@ -1,4 +1,5 @@
 import { startSession } from "mongoose";
+import { hash } from "bcrypt";
 import { serverSignupSchema } from "~/utils/signupSchema";
 import User from "../../models/User.model";
 import Otp from "../../models/Otp.model";
@@ -8,7 +9,7 @@ import { getIncentive, isRankValid } from "../../helpers/utils.js";
 export default eventHandler(async (event) => {
   const signupSession = await startSession();
   signupSession.startTransaction()
-  
+
   try {
     const body = await readBody(event);
     await serverSignupSchema.validate(body);    
@@ -34,7 +35,7 @@ export default eventHandler(async (event) => {
       return sendError(event, createError({
         statusCode: 409, 
         statusMessage: 'User already exists',
-      })) 
+      }))
     }
 
     const spillOverIncentive = 20;
@@ -45,12 +46,16 @@ export default eventHandler(async (event) => {
         statusMessage: 'Sponsorer not found'
       })
     }
+
     
     const newUserInfo = [{
       name: body.fullname,
       email: body.email,
       courseType: body.course,
       verified: true,
+      password: await hash(
+        body.password, parseInt(useRuntimeConfig().PWD_SALT)
+      ),
       ancestors: [...sponsorer.ancestors, `${sponsorer._id}`].sort()
     }]
     const newUser = (await User.create(newUserInfo, { session: signupSession }))[0];
