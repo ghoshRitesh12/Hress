@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import { randomInt } from 'crypto';
 
 const collectionName = 'Otp';
 
@@ -9,7 +10,11 @@ const otpSchema = new Schema({
     },
     otp: {
       type: String,
-      required: true,
+      default: () => randomInt(100000, 999999)
+    },
+    validMins: {
+      type: Number,
+      default: 5,
     },
     createdAt: {
       type: Date,
