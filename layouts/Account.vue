@@ -23,7 +23,6 @@
         Account Settings
       </h1>
   
-      <!-- px-6  -->
       <div 
         class="
         flex lg:gap-10 flex-col md:flex-row
@@ -45,7 +44,7 @@
             class="
             relative flex items-center py-2 md:flex-grow-0
             rounded-xl hover:bg-zinc-800/80 flex-col
-            md:flex-row md:pr-12 md:pl-4 flex-grow
+            md:flex-row md:pr-12 md:pl-6 flex-grow
             transition ease-in duration-100
             "
             :active-class="`
@@ -60,7 +59,7 @@
   
             <div 
               class="
-              flex-shrink-0 md:mr-2
+              flex-shrink-0 md:mr-[.55rem]
               pointer-events-none
               "
             >
