@@ -6,7 +6,7 @@
 
     <div
       class="
-      flex items-center py-3 px-6
+      flex items-center py-3 px-4 sm:py-6
       bg-zinc-800 border-[1px] border-zinc-700
       rounded-2xl cursor-pointer
       "
@@ -15,14 +15,29 @@
 
       <div 
         class="
-        flex items-center w-fit text-[1.08rem]
+        flex items-center w-full text-[1.08rem]
         pointer-events-none border-[0px]
         "
       >
-        Level
-        <div class="ml-3">
-          {{ props.levelNo }}
+        <div class="align-middle">
+          Level
+          <span class="ml-2">
+            {{ props.levelNo }}
+          </span>
         </div>
+
+        <div 
+          class="
+          ml-auto mr-6 sm:mr-10 
+          text-zinc-400 text-[.85rem]
+          "
+        >
+          Members:
+          <span class="ml-1">
+            {{ referrals.length }}
+          </span>
+        </div>
+
       </div>
 
       <div class="ml-auto pointer-events-none">
