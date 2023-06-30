@@ -3,7 +3,7 @@
   <div
     class="
     w-full text-center border-[1px] select-none
-    text-base md:text-lg px-6 py-3 rounded-2xl
+    text-base md:text-[1.05rem] px-6 py-3 rounded-2xl
     "
     :class="isBasicCourse ? 'border-cyan-300' : 'border-red-400'"
   >

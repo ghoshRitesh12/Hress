@@ -4,8 +4,7 @@
     class="
     flex justify-center items-center flex-col
     gap-y-4 border-[1px] border-zinc-600
-    py-6 w-full rounded-2xl
-    xl:px-[6rem]
+    py-10 w-full rounded-2xl xl:px-[6rem]
     "
   >
 

@@ -15,7 +15,7 @@
       />
     </div>
 
-    <div class="text-base md:text-lg">
+    <div class="text-base md:text-[1.05rem]">
       {{ 
         props.isActive ? 
         'Account is fully active' :

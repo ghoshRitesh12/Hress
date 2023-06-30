@@ -6,7 +6,7 @@
       {{ props.context }}
     </div>
 
-    <div class="mt-1">
+    <div class="mt-1 max-w-[40ch] w-full">
       {{ props.contextValue }}
     </div>
 

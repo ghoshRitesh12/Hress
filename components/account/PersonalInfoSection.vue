@@ -82,7 +82,8 @@ const infoMap = {
   cityState: "City, State",
   streetAddress: "Street Address",
   bankAccountNo: "Bank Account No",
-  ifsc: "IFSC"
+  ifsc: "IFSC",
+  xlmWalletAddress: 'XLM Wallet Address'
 }
 
 
