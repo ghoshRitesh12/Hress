@@ -1,6 +1,8 @@
 <template>
 
-  <div data-policy>
+  <div data-policy
+    class="flex flex-col min-h-[100vh]"
+  >
 
     <Titlebar 
       :set-profile="true"
