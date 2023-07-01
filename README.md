@@ -1,6 +1,6 @@
 <p align="center">
   <img 
-    src="https://hress.in/images/hress.png" 
+    src="https://hress.in/favicon.ico" 
     alt="hress logo"
     width="150"
   />
