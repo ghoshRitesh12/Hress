@@ -13,7 +13,7 @@ description: Hress's educational plan on crypto training and trading, which stat
 
 4. [Trainer Incentives](#_4-trainer-incentives)
 
-5. [Achievers Incentives](#_5-achievers-incentives)
+5. [Achievers Rewards](#_5-achievers-rewards)
 
 6. [Rules, Regulations & Package](#_6-rules-regulations-package)
 
@@ -139,15 +139,11 @@ Development Incentives are always **monthly**.
 All platinum traders and onwards will get **2% C.T.O** incentive for training his/her own team and their company's team
 
 
-## 5. Achievers Incentives
+## 5. Achievers Rewards
 
-<div style="
-  overflow-x: scroll;
-  margin-top: 1rem;
-  padding-bottom: .5rem;
-">
+<div style="overflow-x: scroll; margin-top: 1rem; padding-bottom: .5rem;">
 
-  | Sr.no |         Rank          |  Company Turn Over                  |
+  | Sr.no |         Rank          |  Rewards                            |
   |:-----:|       :-------:       |:--------------------:               |
   | A     | Star Trader           | Tour & Training                     |
   | B     | Silver Trader         | Android Mobile (min Rs. 15, 000)    |
