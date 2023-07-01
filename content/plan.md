@@ -150,7 +150,7 @@ All platinum traders and onwards will get **2% C.T.O** incentive for training hi
   | Sr.no |         Rank          |  Company Turn Over                  |
   |:-----:|       :-------:       |:--------------------:               |
   | A     | Star Trader           | Tour & Training                     |
-  | B     | Silver Trader         | Android Mobile (min Rs. 15, 000 )   |
+  | B     | Silver Trader         | Android Mobile (min Rs. 15, 000)    |
   | C     | Gold Trader           | Two Wheeler (D.P - Rs. 30, 000)     |
   | D     | Platinum Trader       | Four Wheeler (D.P - Rs. 1, 00, 000) |
   | E     | Ruby Trader           | National Tour                       |
