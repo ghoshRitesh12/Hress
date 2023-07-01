@@ -156,7 +156,7 @@ useServerSeoMeta({
   description: pageDecsription,
   ogTitle: 'Hress',
   ogDescription: pageDecsription,
-  ogImage: 'https://hress.in/images/hress.png',
+  ogImage: 'https://hress.in/images/hress-og-img.png',
   ogUrl: 'https://hress.in',
   ogImageWidth: '192',
   ogImageHeight: '192',
@@ -166,7 +166,7 @@ useServerSeoMeta({
   twitterSite: '@hress',
   twitterTitle: 'Hress',
   twitterDescription: pageDecsription,
-  twitterImageSrc: 'https://hress.in/images/hress.png',
+  twitterImageSrc: 'https://hress.in/images/hress-og-img.png',
   keywords: 'Hress, NGO, environment, social, community, sustainable development, blockchain, change'
 })
 
