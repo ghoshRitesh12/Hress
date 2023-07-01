@@ -1,13 +1,13 @@
 <template>
 
   <div 
-    v-if="isPopupOpen"
-    data-popup
+    v-if="popupMessage" data-popup
     class="
-    fixed isolate z-[350] bottom-[4.5rem] ml-1
-    sm:bottom-[4rem] sm:right-[2rem] w-[98%] sm:w-fit
-    flex items-center gap-1 md:gap-3 sm:mx-0
-    bg-white rounded-2xl overflow-hidden text-[.95rem]
+    fixed isolate z-[350] bottom-[4.5rem] left-[50%] 
+    sm:left-auto translate-x-[-50%] sm:translate-x-[0]
+    sm:w-fit sm:bottom-[4rem] sm:right-[3rem]
+    w-[92.5%] flex items-center gap-1 md:gap-3 sm:mx-0
+    bg-zinc-700 rounded-2xl overflow-hidden text-[.95rem]
     shadow-lg shadow-black/40 px-4 py-3 sm:px-6
     "
     style="transition: .2s ease all" 
@@ -15,7 +15,7 @@
 
     <div 
       class="
-      text-black leading-[1.4] select-none
+      text-zinc-100 leading-[1.4] select-none
       max-w-full w-full sm:max-w-[35ch] 
       "
       :style="`
@@ -33,7 +33,6 @@
       rounded-[50%] hover:bg-zinc-400/70
       "
       :style="'transition: .2s ease background'"
-      @click="closePopup"
     >
       <Icon
         name="ic:round-close"
@@ -47,16 +46,16 @@
 
 
 <script setup>
-import { closePopup, isPopupOpen, popupMessage } from "../store/popup.js";
-
+const { popupMessage } = usePopup();
 
 watch(
-  () => isPopupOpen.value,
+  () => popupMessage.value,
   () => {
-    if(isPopupOpen.value) {
-      const timeout = setTimeout(() => {
-        closePopup()
-        clearTimeout(timeout);
+    if(popupMessage.value) {
+      const t = setTimeout(() => {
+        popupMessage.value = null
+        clearTimeout(t);
+
       }, 2500)
     }
   }
