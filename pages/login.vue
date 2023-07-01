@@ -140,7 +140,6 @@
 
 <script setup>
 import { clientLoginSchema } from '~/utils/loginSchema';
-import { setPopupMessage } from '~/store/popup';
 
 
 useHead({
@@ -166,7 +165,7 @@ useSeoMeta({
   description: `Log in to Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
   ogTitle: 'Hress - Login',
   ogDescription: `Log in to Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
-  ogImage: 'https://hress.in/images/hress.png',
+  ogImage: 'https://hress.in/images/hress-og-img.png',
   ogUrl: 'https://hress.in/login',
   ogImageWidth: '192',
   ogImageHeight: '192',
@@ -176,7 +175,7 @@ useSeoMeta({
   twitterSite: '@hress',
   twitterTitle: 'Hress - Login',
   twitterDescription: `Log in to Hress to continue learning about blockchain and cryptocurrency, while also earning with us`,
-  twitterImageSrc: 'https://hress.in/images/hress.png',
+  twitterImageSrc: 'https://hress.in/images/hress-og-img.png',
   keywords: 'Hress, Hress Login, Credentials, Access account, account'
 })
 
@@ -207,17 +206,34 @@ const togglePwdField = () => {
 const submitLoginForm = async (values) => {
   try {
     console.log(values);
+    const { popupMessage } = usePopup();
     
-    const { status, signIn } = useAuth();
+    const { signIn } = useAuth();
 
-    await signIn('credentials', {
+    const { error, url } = await signIn('credentials', {
       email: values.email,
       password: values.password,
-      redirect: false
+      redirect: false,
+      callbackUrl: '/account'
     })
 
-    signIn()
+    if(url) {
+      useRouter().push('/account')
+      // popupMessage.value = 'Welcome back 🤗'
+      return;
+    }
 
+    if(error === 'CredentialsSignin') {
+      popupMessage.value = 'Invalid credentials, try again';
+      return;
+    }
+
+    if(error) {
+      popupMessage.value = 'Something went wrong, try again';
+      return;
+    }
+
+    console.log(error, url);
 
   } catch (err) {
     console.log(err);

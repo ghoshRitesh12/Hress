@@ -414,8 +414,6 @@
 
 <script setup>
 import { clientSignupSchema } from '../utils/signupSchema.js';
-import { setPopupMessage } from "../store/popup";
-
 
 useHead({
   meta: [
@@ -440,7 +438,7 @@ useSeoMeta({
   description: `Create account at Hress to learn about blockchain and cryptocurrency, while also earning with us`,
   ogTitle: 'Hress - Signup',
   ogDescription: `Create account at Hress to learn about blockchain and cryptocurrency, while also earning with us`,
-  ogImage: 'https://hress.in/images/hress.png',
+  ogImage: 'https://hress.in/images/hress-og-img.png',
   ogUrl: 'https://hress.in/signup',
   ogImageWidth: '192',
   ogImageHeight: '192',
@@ -450,12 +448,17 @@ useSeoMeta({
   twitterSite: '@hress',
   twitterTitle: 'Hress - Signup',
   twitterDescription: `Create account at Hress to learn about blockchain and cryptocurrency, while also earning with us`,
-  twitterImageSrc: 'https://hress.in/images/hress.png',
+  twitterImageSrc: 'https://hress.in/images/hress-og-img.png',
   keywords: 'Hress, Hress Signup, Credentials, Create account, new account, account'
 })
 
 definePageMeta({
-  layout: 'auth'
+  layout: 'auth',
+  // middleware: 'auth',
+  // auth: {
+  //   unauthenticatedOnly: true,
+  //   navigateAuthenticatedTo: '/account',
+  // }
 })
 
 
@@ -476,6 +479,9 @@ const prevStep = () => {
   }
 }
 
+
+const { popupMessage } = usePopup();
+
 const nextSignup = async (values) => {
   if(formStep.value < 3) return formStep.value++
 
@@ -489,10 +495,10 @@ const nextSignup = async (values) => {
 
     if(data?.value) {
       useRouter().push('/login');
-      setPopupMessage(data?.value?.message);
+      popupMessage.value = data?.value?.message
       formStep.value = 0;
     } else {
-      setPopupMessage(error?.value?.statusMessage);
+      popupMessage.value = error?.value?.statusMessage
     }
 
 
@@ -518,9 +524,9 @@ const sendOtp = async (email, fullname) => {
 
     sendOtpBtn.value.innerText = 'Send OTP';
     if(data?.value) {
-      setPopupMessage(data?.value?.message);
+      popupMessage.value = data?.value?.message
     } else {
-      setPopupMessage(error?.value?.statusMessage);
+      popupMessage.value = error?.value?.statusMessage
     }
 
 
