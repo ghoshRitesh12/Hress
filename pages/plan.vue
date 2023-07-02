@@ -90,6 +90,9 @@ definePageMeta({
   .plan-wrap {
     scroll-padding-top: 10rem;
   }
+  .plan-wrap * {
+    text-decoration: none;
+  }
   .plan-wrap :deep(p) {
     @apply mb-4 text-[.95rem] text-zinc-300;
   }

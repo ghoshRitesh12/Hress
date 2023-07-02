@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: info
 title: Hress Educational Plan
 description: Hress's educational plan on crypto training and trading, which states how to learn and earn crypto with us
 ---
@@ -20,30 +20,25 @@ description: Hress's educational plan on crypto training and trading, which stat
 
 ## 1. Direct Referral Incentives
 
-<div 
-  style="
-  position: relative; overflow-wrap: break-word;
-">
+<div class="relative break-words">
 
   <img 
-    src="https://img.freepik.com/free-vector/connected-world-concept-illustration_114360-3027.jpg"
-    style="
-    border-radius: 1.25rem; max-height: 20rem; 
-    max-width: 100%; width: 100%
-    "
+    src="https://img.freepik.com/free-vector/character-illustration-people-with-global-network-concept_53876-43079.jpg?w=996&t=st=1688281498~exp=1688282098~hmac=3ffeafacfa681403b164369f6476bf54a5be583aab4f8f08f4ae7960cd234887"
+    class="rounded-[1.25rem] max-h-[20rem] max-w-full w-full"
     decoding="async"
+    fetchpriority="high"
     width="1200"
     height="780"
   />
 
   <div
-    style="
-    position: absolute; bottom: 0;
-    font-size: 1.3rem line-height: 1;
-    padding: 1.5rem 1rem 1rem; color: white; width: 100%;
-    border-radius: 0 0 1.25rem 1.25rem;
-    background: linear-gradient(to bottom, transparent 1%, black 100%);
-  ">
+    class="
+    absolute bottom-0 text-[1.02rem] leading-[1]
+    text-white w-full rounded-br-[1.25rem]
+    rounded-bl-[1.25rem] 
+    "
+    style="padding: 1.5rem 1rem 1rem; background: linear-gradient(to bottom, transparent 1%, black 100%);"
+  >
     Users receive direct referal incentives of <strong>20%</strong>
   </div>
 
@@ -53,11 +48,7 @@ description: Hress's educational plan on crypto training and trading, which stat
 
 ## 2. Level Incentives
 
-<div style="
-  overflow-x: scroll;
-  margin-top: 1rem;
-  padding-bottom: .5rem;
-">
+<div class="overflow-x-scroll mt-4 pb-2">
 
   | Level | Members | Incentives |         Rank         |
   |:-----:|:-------:|:----------:|:--------------------:|
@@ -83,11 +74,7 @@ description: Hress's educational plan on crypto training and trading, which stat
 
 Development Incentives are always **monthly**.
 
-<div style="
-  overflow-x: scroll;
-  margin-top: 1rem;
-  padding-bottom: .5rem;
-">
+<div class="overflow-x-scroll mt-4 pb-2">
 
   | Sr.no |         Rank          | Incentives |  Company Turn Over   |
   |:-----:|       :-------:       |:----------:|:--------------------:|
@@ -107,30 +94,25 @@ Development Incentives are always **monthly**.
 
 ## 4. Trainer Incentives
 
-<div 
-  style="
-  position: relative; overflow-wrap: break-word;
-">
+<div class="relative break-words">
 
   <img 
-    src="https://www.almaviva.it/dam/jcr:6212e8ef-1ed6-40e2-a75f-b6fa7c814662/Blockchain_1280x720.jpg"
-    style="
-    border-radius: 1.25rem; max-height: 20rem; 
-    max-width: 100%; width: 100%
-    "
+    src="https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148865392.jpg?w=996&t=st=1688281721~exp=1688282321~hmac=fbc8c524326124885cdf373d9dda69ea5d83ea12d11ba46cf7c0d8dd5e75d41a"
+    class="rounded-[1.25rem] max-h-[20rem] max-w-full w-full"
     decoding="async"
+    fetchpriority="high"
     width="1200"
     height="780"
   />
 
   <div
-    style="
-    position: absolute; bottom: 0;
-    font-size: 1.4rem line-height: 1;
-    padding: 1.5rem 1rem .8rem; color: white; width: 100%;
-    border-radius: 0 0 1.25rem 1.25rem;
-    background: linear-gradient(to bottom, transparent 1%, black 100%);
-  ">
+    class="
+    absolute bottom-0 text-[1.02rem] leading-[1]
+    text-white w-full rounded-br-[1.25rem]
+    rounded-bl-[1.25rem] 
+    "
+    style="padding: 1.5rem 1rem 1rem; background: linear-gradient(to bottom, transparent 1%, black 100%);"
+  >
     Trainers will receive a monthly incentive of <strong>2% (C.T.O)</strong>
   </div>
 
@@ -141,7 +123,7 @@ All platinum traders and onwards will get **2% C.T.O** incentive for training hi
 
 ## 5. Achievers Rewards
 
-<div style="overflow-x: scroll; margin-top: 1rem; padding-bottom: .5rem;">
+<div class="overflow-x-scroll mt-4 pb-2">
 
   | Sr.no |         Rank          |  Rewards                            |
   |:-----:|       :-------:       |:--------------------:               |
