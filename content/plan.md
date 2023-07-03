@@ -76,17 +76,17 @@ Development Incentives are always **monthly**.
 
 <div class="overflow-x-scroll mt-4 pb-2">
 
-  | Sr.no |         Rank          | Incentives |  Company Turn Over   |
+  | Sr.no |         Rank          | Incentives |  Affiliate Turn Over |
   |:-----:|       :-------:       |:----------:|:--------------------:|
-  | A     | Gold Trader           | 1%         | C.T.O                |
-  | B     | Platinum Trader       | 1%         | C.T.O                |
-  | C     | Ruby Trader           | 1%         | C.T.O                |
-  | D     | Diamond Trader        | 1%         | C.T.O                |
-  | E     | Blue Diamond Trader   | 0.5%       | C.T.O                |
-  | F     | Gold Diamond Trader   | 0.5%       | C.T.O                |
-  | G     | Royal Diamond Trader  | 0.5%       | C.T.O                |
-  | H     | Crown Diamond Trader  | 0.5%       | C.T.O                |
-  | I     | Crown Ambassador      | 0.5%       | C.T.O                |
+  | A     | Gold Trader           | 1%         | A.T.O                |
+  | B     | Platinum Trader       | 1%         | A.T.O                |
+  | C     | Ruby Trader           | 1%         | A.T.O                |
+  | D     | Diamond Trader        | 1%         | A.T.O                |
+  | E     | Blue Diamond Trader   | 0.5%       | A.T.O                |
+  | F     | Gold Diamond Trader   | 0.5%       | A.T.O                |
+  | G     | Royal Diamond Trader  | 0.5%       | A.T.O                |
+  | H     | Crown Diamond Trader  | 0.5%       | A.T.O                |
+  | I     | Crown Ambassador      | 0.5%       | A.T.O                |
 
 </div>
 
@@ -113,12 +113,12 @@ Development Incentives are always **monthly**.
     "
     style="padding: 1.5rem 1rem 1rem; background: linear-gradient(to bottom, transparent 1%, black 100%);"
   >
-    Trainers will receive a monthly incentive of <strong>2% (C.T.O)</strong>
+    Trainers will receive a monthly incentive of <strong>2% (A.T.O)</strong>
   </div>
 
 </div>
 
-All platinum traders and onwards will get **2% C.T.O** incentive for training his/her own team and their company's team
+All platinum traders and onwards will get **2% A.T.O** incentive for training his/her own team and their company's team
 
 
 ## 5. Achievers Rewards
@@ -153,10 +153,10 @@ All platinum traders and onwards will get **2% C.T.O** incentive for training hi
 
   - Development bonus will be continued for up to 6 months of inactivity.
 
-  - Company will pay monthly incentives by INR or Crypto.
+  - Organization will pay monthly incentives by INR or Crypto.
 
   - Any member can only join as one Pan Card per ID.
 
-  - If company by any chance notices any fraudulent activity, 
+  - If organization by any chance notices any fraudulent activity, 
   then that ID will be terminated with immediate effect.
 
