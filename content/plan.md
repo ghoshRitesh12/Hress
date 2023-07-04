@@ -118,7 +118,7 @@ Development Incentives are always **monthly**.
 
 </div>
 
-All platinum traders and onwards will get **2% A.T.O** incentive for training his/her own team and their company's team
+All platinum traders and onwards will get **2% A.T.O** incentive for training his/her own team and others.
 
 
 ## 5. Achievers Rewards
