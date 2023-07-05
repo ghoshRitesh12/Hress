@@ -42,10 +42,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Hress',
-      htmlAttrs: {
-        lang: 'en',
-        dir: 'ltr',
-      },
+      htmlAttrs: { lang: 'en', dir: 'ltr', },
       meta: [
         {
           name: 'content-language',
@@ -55,7 +52,6 @@ export default defineNuxtConfig({
           name: 'viewport',
           content: 'width=device-width, initial-scale=1, user-scalable=no'
         }
-       
       ]
     },
   },
