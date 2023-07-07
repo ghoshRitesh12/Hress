@@ -24,14 +24,17 @@
 
         <div 
           class="leading-[1.4] font-semibold hero-heading"
-          style="font-size: clamp(1.35rem, var(--f-vmin, 3.5vmin), 3rem);"
+          style="font-size: clamp(1.36rem, var(--f-vmin, 3.5vmin), 3rem);"
         >
           Driving change through blockchain and
           community for a sustainable future
         </div>
 
         <div
-          class="mt-5 sm:mt-6 text-[.95rem] sm:text-base"
+          class="
+          mt-5 sm:mt-6 text-[.9rem] 
+          sm:text-base text-zinc-300
+          "
         >
           At Hress, we aim to make a positive impact on society 
           and the environment through social and environmental activities
@@ -45,7 +48,7 @@
           block mt-6 sm:mt-8 bg-accent-200 text-primary-900
           px-5 md:px-6 py-2 md:py-[.6rem] w-fit rounded-xl 
           hover:scale-95 select-none font-semibold
-          transition ease-in duration-100
+          transition ease-in duration-100 text-[.9rem]
           "
           aria-label="contact us"
         >
@@ -55,14 +58,13 @@
       </div>
 
       <div class="
-        overflow-hidden 
+        relative overflow-hidden 
         md:ml-8 xl:ml-16 w-full
         "
       >
         <nuxt-img
           src="/images/planting_tree.png"
-          format="png"
-          alt="planting a tree"
+          format="png" alt=""
           width="1200"
           height="780"
           decoding="async"
@@ -92,10 +94,10 @@
           src="/images/mission.jpg"
           format="jpg"
           alt="mission"
-          decoding="async"
           width="1200"
           height="780"
-        />
+          decoding="async"
+          />
       </div>
 
       <div 
