@@ -114,6 +114,7 @@ textarea {
 * {
   scrollbar-color: #aaa #0e0e0e;
   scrollbar-width: thin;
+  text-decoration: none;
   transition: 
     .1s ease padding,
     .1s ease margin,
