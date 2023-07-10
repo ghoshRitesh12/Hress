@@ -1,5 +1,4 @@
 /**
- * 
  * @param {number} level - level number
  * @returns number - incentive/commission %
  */
@@ -45,7 +44,6 @@ export const getIncentive = (level) => {
 
 
 /**
- * 
  * @param {number} level - level number
  * @param {number} members - members of that level
  * @returns boolean - level wise rank is valid or not
@@ -67,3 +65,28 @@ export const isRankValid = (level, members) => {
   return rankValid;
 }
 
+
+/**
+ * @param {number} rank - rank number
+ * @returns rank rewards
+ */
+export const getRankRewards = (rank = 1) => {
+  rank = !rank ? 1 : rank;
+  if(rank < 5 || rank > 15) return null;
+
+  const rewardsMap = [
+    "Tour & Training",
+    "Android Mobile (min Rs. 15, 000)",
+    "Two Wheeler (D.P - Rs. 30, 000)",
+    "Four Wheeler (D.P - Rs. 1, 00, 000)",
+    "National Tour",
+    "International Tour",
+    "0.25% CASH REWARDS",
+    "0.25% CASH REWARDS",
+    "0.25% CASH REWARDS",
+    "0.15% CASH REWARDS",
+    "0.10% CASH REWARDS"
+  ]
+
+  return rewardsMap[rank - 5]
+}
