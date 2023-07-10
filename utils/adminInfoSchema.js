@@ -42,3 +42,13 @@ export const serverAdminInfoSchema = object({
 
 
 export const clientAdminInfoSchema = toTypedSchema(serverAdminInfoSchema);
+
+
+export const serverCourseSchema = object({
+  course: string().trim().required('Course name required').matches(
+    /^[A-Za-z-]{4,}$/,
+    'Invalid course name'
+  )
+})
+
+export const clientCourseSchema = toTypedSchema(serverCourseSchema);
