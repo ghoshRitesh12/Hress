@@ -3,23 +3,26 @@ import { object, string, ref as yupRef } from 'yup';
 
 export const clientSignupSchema = [
   toTypedSchema(object().shape({
-      fullname: string().trim().required('Full name is required').min(3, 'invalid name'),
-      email: string().trim().required('Email address is required').email('invalid email id'),
+      fullname: string().trim().required('Full name is required').min(3, 'Invalid name'),
+      email: string().trim().required('Email address is required').email('Invalid email id'),
       course: string().required('Select a course').equals(['basic', 'advance']),
     }, 
   )),
 
   toTypedSchema(object().shape({
-      refererId: string().trim().when('refererId', (val, schema) => {
+      refererId: string().trim().when(['refererId'], (val, schema) => {
         if(val[0]?.trim()?.length > 0) {
-          return string().length(10, 'Referer id must be exactly 10 characters')
+          return string().matches(
+            /^(?:[a-z0-9]{10})?$/,
+            'Invalid referer id'
+          )
         } else {
           return string().notRequired()
         }
       }),
-      sponsorerId: string().trim().required().length(
-        10,
-        'Sponsorer id must be exactly 10 characters'
+      sponsorerId: string().trim().required('Sponsorer id required').matches(
+        /^[a-z0-9]{10}$/,
+        'Invalid sponsorer id'
       ).notOneOf([yupRef('refererId'), null], 'Sponsorer & referer id must be different'),
     }, 
     [['refererId', 'refererId']]
@@ -41,24 +44,23 @@ export const clientSignupSchema = [
 ]
 
 
-// export const serverSignupSchema = '';
 export const serverSignupSchema = object().shape({
-    fullname: string().trim().required('Full name is required').min(3, 'invalid name'),
-    email: string().trim().required('Email address is required').email('invalid email id'),
+    fullname: string().trim().required('Full name is required').min(3, 'Invalid name'),
+    email: string().trim().required('Email address is required').email('Invalid email id'),
     course: string().required('Select a course').equals(['basic', 'advance']),
     refererId: string().trim().when(['refererId'], (val, schema) => {
       if(val[0]?.trim()?.length > 0) {
-        return string().length(
-          10, 
-          'Referer id must be exactly 10 characters'
+        return string().matches(
+          /^(?:[a-z0-9]{10})?$/,
+          'Invalid referer id'
         )
       } else {
         return string().notRequired()
       }
     }),
-    sponsorerId: string().trim().required().length(
-      10,
-      'Sponsorer id must be exactly 10 characters'
+    sponsorerId: string().trim().required('Sponsorer id required').matches(
+      /^[a-z0-9]{10}$/,
+      'Invalid sponsorer id'
     ).notOneOf([yupRef('refererId'), null], 'Sponsorer & referer id must be different'),
     password: string().trim().required('Password required').matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*()])(?=.{8,16}$)/,
