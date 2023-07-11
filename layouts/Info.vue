@@ -15,6 +15,10 @@
 
     <ScrollToTop/>
 
+    <NuxtLoadingIndicator 
+      color="#9ffca5"
+    />
+
   </div>
 
 </template>

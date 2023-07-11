@@ -14,6 +14,10 @@
 
     <Popup/>
 
+    <NuxtLoadingIndicator 
+      color="#9ffca5"
+    />
+
   </div>
 
 
