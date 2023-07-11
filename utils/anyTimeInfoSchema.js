@@ -16,7 +16,7 @@ export const serverAnyTimeInfoSchema = object({
     'Invalid country name'
   ),
   cityState: string().trim().matches(
-    /^$|^[A-Za-z\s.'-]+,[A-Za-z\s.'-]+$/, 
+    /^$|^[A-Za-z0-9\s.'-]+,[A-Za-z0-9\s.'-]+$/,
     'Invalid city, state format'
   ),
   postalCode: string().trim().matches(
