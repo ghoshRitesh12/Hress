@@ -9,16 +9,19 @@ export default defineNuxtConfig({
   runtimeConfig: {
     DATABASE_URI_DEV: process.env.DATABASE_URI_DEV,
     DATABASE_URI_PROD: process.env.DATABASE_URI_PROD,
-    STATE_SECRET: process.env.STATE_SECRET,
     REFERRAL_ID_BYTES: process.env.REFERRAL_ID_BYTES,
+    PWD_SALT: process.env.PWD_SALT,
+
     SENDER_EMAIL_ID: process.env.SENDER_EMAIL_ID,
     SENDER_EMAIL_PWD: process.env.SENDER_EMAIL_PWD,
+
     AUTH_SECRET: process.env.NEXTAUTH_SECRET,
-    PWD_SALT: process.env.PWD_SALT,
+    STATE_SECRET: process.env.STATE_SECRET,
+    DB_STATE_SECRET: process.env.DB_STATE_SECRET,
+
     indexable: true,
     public: {
       siteUrl: process.env.HRESS_BASE_URL,
-      STATE_SECRET: process.env.STATE_SECRET,
     }
   },
   nitro: {
@@ -66,5 +69,4 @@ export default defineNuxtConfig({
   robots: {
     disallow: ['/api', '/account'],
   },
-
 })
