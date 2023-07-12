@@ -1,6 +1,6 @@
 <template>
 
-  <div 
+  <div v-if="props.referralId"
     class="
     flex items-center py-[.55rem] pl-4 
     pr-3 sm:pl-6 sm:pr-4 rounded-2xl 
@@ -20,7 +20,7 @@
 
     <button
       class="
-      py-3 px-4 ml-auto cursor-pointer
+      py-[.6rem] px-4 ml-auto cursor-pointer
       flex-shrink-0 bg-primary-900 rounded-2xl
       "
       type="button"
@@ -42,7 +42,6 @@
 const props = defineProps({
   referralId: {
     type: String,
-    required: true
   }
 })
 
