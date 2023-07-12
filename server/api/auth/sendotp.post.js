@@ -11,7 +11,7 @@ export default eventHandler(async (event) => {
       }))
     }
 
-    if(await Otp.exists({ email: emailId })) {
+    if(await Otp.exists({ email: emailId }).readConcern('majority')) {
       throw sendError(event, createError({
         statusCode: 409, 
         statusMessage: 'Email already exists',
