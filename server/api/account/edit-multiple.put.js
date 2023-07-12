@@ -33,8 +33,6 @@ export default eventHandler(async (event) => {
       }))
     }
 
-    console.log('foundUSer mf: ', foundUser);
-
     for(const [key, value] of Object.entries(foundUser.info)) {
       if(body[key] === value || body[key] === '') continue;
 
