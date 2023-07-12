@@ -105,6 +105,8 @@ const submitSearchQuery = async (value) => {
       body: markRaw(value)
     });
 
+    console.log(data.value, error.value)
+
     if(data.value) {
       useRoute().params.referralId = data.value.vieweeReferralId
       return navigateTo(data.value.redirectTo);
