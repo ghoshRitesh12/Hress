@@ -44,8 +44,8 @@
 
 <script setup>
 
-const { data } = useAuth()
-const user = computed(() => data?.value?.user)
+const { getSession } = useAuth()
+const user = (await getSession())?.user;
 
 </script>
 
