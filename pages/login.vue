@@ -110,12 +110,20 @@
           <button
             type="submit"
             class="
+            flex items-center justify-center gap-3
             w-full bg-accent-200 hover:bg-green-400
             px-4 py-3 rounded-2xl text-primary-900
             font-semibold transition ease-in duration-100
+            text-[.95rem]
             "
+            :class="isPending && 'pointer-events-none'"
           >
-            Login
+            {{ isPending ? 'Just a sec' : 'Login' }}
+            <Icon
+              v-show="isPending"
+              class="text-2xl"
+              name="line-md:loading-twotone-loop"
+            />
           </button>
 
         </div>
@@ -140,7 +148,6 @@
 
 <script setup>
 import { clientLoginSchema } from '~/utils/loginSchema';
-
 
 useHead({
   meta: [
@@ -202,18 +209,20 @@ const togglePwdField = () => {
 }
 
 
-
+const isPending = useState(() => false);
 const submitLoginForm = async (values) => {
   try {
     const { setPopupMessage } = usePopup();
     const { signIn } = useAuth();
 
+    isPending.value = true;
     const { error, url } = await signIn('credentials', {
       email: values.email,
       password: values.password,
       redirect: false,
       callbackUrl: '/account'
     })
+    isPending.value = false;
 
     if(url) {
       setPopupMessage('Welcome back 🤗')
