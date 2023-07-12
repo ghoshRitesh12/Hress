@@ -454,11 +454,11 @@ useSeoMeta({
 
 definePageMeta({
   layout: 'auth',
-  // middleware: 'auth',
-  // auth: {
-  //   unauthenticatedOnly: true,
-  //   navigateAuthenticatedTo: '/account',
-  // }
+  middleware: 'auth',
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/account',
+  }
 })
 
 
@@ -480,7 +480,7 @@ const prevStep = () => {
 }
 
 
-const { popupMessage } = usePopup();
+const { setPopupMessage } = usePopup();
 
 const nextSignup = async (values) => {
   if(formStep.value < 3) return formStep.value++
@@ -494,11 +494,11 @@ const nextSignup = async (values) => {
     })
 
     if(data?.value) {
-      useRouter().push('/login');
-      popupMessage.value = data?.value?.message
+      navigateTo('/login');
+      setPopupMessage(data?.value?.message)
       formStep.value = 0;
     } else {
-      popupMessage.value = error?.value?.statusMessage
+      setPopupMessage(error?.value?.statusMessage)
     }
 
 
@@ -524,9 +524,9 @@ const sendOtp = async (email, fullname) => {
 
     sendOtpBtn.value.innerText = 'Send OTP';
     if(data?.value) {
-      popupMessage.value = data?.value?.message
+      setPopupMessage(data?.value?.message)
     } else {
-      popupMessage.value = error?.value?.statusMessage
+      setPopupMessage(error?.value?.statusMessage)
     }
 
 
