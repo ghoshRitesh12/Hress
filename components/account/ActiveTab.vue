@@ -4,24 +4,33 @@
     class="
     flex items-center justify-center select-none
     border-[1px] w-fit py-3 px-6 rounded-2xl
+    transition ease-in duration-100
     "
-    :class="containerStyle"
+    :class="
+      props.isActive ? 
+    'border-accent-100 bg-accent-200/5':
+    'border-yellow-200 bg-yellow-600/5'
+    "
   >
     
-    <div class="mr-3">
+    <div class="mr-2">
       <Icon 
-        :name="props.isActive ? fullActiveIcon : partialActiveIcon"
-        class="text-xl" :class="iconStyle"
+        class="text-xl" 
+        :name="props.isActive ? 'mdi:circle-slice-8' : 'mdi:circle-slice-4'"
+        :class="props.isActive ? 'text-accent-100' : 'text-yellow-200'"
       />
     </div>
 
-    <div class="text-base md:text-[1.05rem]">
-      {{ 
-        props.isActive ? 
-        'Account is fully active' :
-        'Account is partially active'
-      }}
-    </div>  
+    <div 
+      class="
+      text-base md:text-[1.05rem]
+      transition ease-in duration-100
+      "
+    >
+      Account is
+      {{ props.isActive ? 'fully' : 'partially' }}
+      active
+    </div>
 
   </div>
 
@@ -37,16 +46,6 @@ const props = defineProps({
   }
 })
 
-const containerStyle = props.isActive ? 
-  'border-accent-100 bg-accent-200/5':
-  'border-yellow-200 bg-yellow-600/5' ;
-
-const iconStyle = props.isActive ? 'text-accent-100' : 'text-yellow-200';
-
-const partialActiveIcon = 'mdi:circle-slice-4'
-const fullActiveIcon = 'mdi:circle-slice-8'
-
-  
 </script>
 
 
