@@ -181,11 +181,11 @@ useSeoMeta({
 
 definePageMeta({
   layout: 'auth',
-  // middleware: 'auth',
-  // auth: {
-  //   unauthenticatedOnly: true,
-  //   navigateAuthenticatedTo: '/account',
-  // },
+  middleware: 'auth',
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/account',
+  },
 })
 
 
@@ -205,9 +205,7 @@ const togglePwdField = () => {
 
 const submitLoginForm = async (values) => {
   try {
-    console.log(values);
-    const { popupMessage } = usePopup();
-    
+    const { setPopupMessage } = usePopup();
     const { signIn } = useAuth();
 
     const { error, url } = await signIn('credentials', {
@@ -218,22 +216,11 @@ const submitLoginForm = async (values) => {
     })
 
     if(url) {
-      useRouter().push('/account')
-      // popupMessage.value = 'Welcome back 🤗'
-      return;
+      setPopupMessage('Welcome back 🤗')
+      return navigateTo('/account');
     }
 
-    if(error === 'CredentialsSignin') {
-      popupMessage.value = 'Invalid credentials, try again';
-      return;
-    }
-
-    if(error) {
-      popupMessage.value = 'Something went wrong, try again';
-      return;
-    }
-
-    console.log(error, url);
+    setPopupMessage(error);
 
   } catch (err) {
     console.log(err);
