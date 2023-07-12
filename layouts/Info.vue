@@ -19,9 +19,6 @@
       color="repeating-linear-gradient(to right,#00aeff 0%,#9ffca5 50%,#65fc6f 100%)"
     />
 
-    <div class="hidden">
-      {{ data }}
-    </div>
 
   </div>
 
@@ -30,8 +27,6 @@
 
 <script setup>
 
-// const { getSession } = useAuth();
-// await getSession()
 
 </script>
 
