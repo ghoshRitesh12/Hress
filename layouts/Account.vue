@@ -33,7 +33,7 @@
         <aside
           class="
           flex-[15%]
-          flex md:flex-col sm:gap-4 md:px-4 py-2 
+          flex md:flex-col sm:gap-4 md:pr-4 py-2 
           border-[0px] md:flex-[20%] md:mr-8
           "
         >
@@ -45,13 +45,14 @@
             relative flex items-center py-2 md:flex-grow-0
             rounded-xl hover:bg-zinc-800/80 flex-col
             md:flex-row md:pr-12 md:pl-6 flex-grow
+            justify-center md:justify-normal
             transition ease-in duration-100
             "
             :active-class="`
             before:content-[' '] before:absolute 
             before:bottom-[-.4rem] before:h-[.2rem] before:w-[80%]
             md:before:left-0 md:before:top-[50%] md:before:translate-y-[-50%]
-            md:before:h-[65%] md:before:w-[.25rem] 
+            md:before:h-[65%] md:before:w-[.25rem] hover:bg-zinc-800
             before:bg-accent-200 bg-zinc-800 before:rounded-3xl
             `"
             :to="accountNav.href"
@@ -97,8 +98,11 @@
 
     </div>
 
-
     <Footer/>
+
+    <NuxtLoadingIndicator 
+      color="#9ffca5"
+    />
 
   </div>
 
@@ -107,28 +111,44 @@
 
 <script setup>
 
-const accountNavs = ref([
+
+const { data } = useAuth();
+
+const usualNavs = [
   { 
     name: 'Profile', href: '/account', 
     icon: 'material-symbols:person-outline-rounded' 
   },
   { 
     name: 'My Team', href: '/account/team',
-    icon: 'fluent:people-team-16-regular'
+    icon: 'fluent:people-team-24-regular'
   },
   { 
     name: 'Income', href: '/account/income',
-    icon: 'material-symbols:attach-money-rounded'
+    icon: 'bx:dollar'
   },
   { 
     name: 'Rewards', href: '/account/rewards',
-    icon: 'ph:trophy'
+    icon: 'ph:trophy-bold'
   },
   { 
     name: 'Security', href: '/account/security',
     icon: 'solar:shield-warning-linear'
   },
-])
+]
+
+const accountNavs = useState(() => {
+  if(data.value?.user?.role === 'admin') {
+    usualNavs.push({ 
+      name: 'Search', href: '/account/search',
+      icon: 'material-symbols:person-search'
+    })
+
+    return usualNavs
+  }
+
+  return usualNavs;
+})
 
 
 </script>
