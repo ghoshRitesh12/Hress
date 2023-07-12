@@ -1,14 +1,13 @@
 <template>
 
-  <div data-level
-    class=""
-  >
+  <div data-level>
 
     <div
       class="
-      flex items-center py-3 px-4 sm:py-6
+      flex items-center py-3 px-4
       bg-zinc-800 border-[1px] border-zinc-700
-      rounded-2xl cursor-pointer
+      rounded-2xl cursor-pointer sm:px-5
+      shadow-md shadow-black/50
       "
       @click="openLevel"
     >
@@ -21,21 +20,24 @@
       >
         <div class="align-middle">
           Level
-          <span class="ml-2">
+          <span class="ml-1">
             {{ props.levelNo }}
           </span>
         </div>
 
         <div 
           class="
-          ml-auto mr-6 sm:mr-10 
-          text-zinc-400 text-[.85rem]
+          flex items-center ml-auto mr-6 sm:mr-10
+          text-zinc-300 text-[.9rem]
           "
         >
-          Members:
-          <span class="ml-1">
+          <Icon
+            class="text-lg"
+            name="fluent:people-queue-24-regular"
+          />
+          <div class="ml-[.4rem] select-none">
             {{ referrals.length }}
-          </span>
+          </div>
         </div>
 
       </div>
@@ -57,7 +59,7 @@
       v-show="props.levelOpen"
       class="
       flex flex-col gap-1 overflow-hidden
-      mx-4 pt-0 border-[1px] border-t-0 
+      mx-2 pt-0 border-[1px] border-t-0 
       border-zinc-700 rounded-bl-xl rounded-br-xl
       "
     >
