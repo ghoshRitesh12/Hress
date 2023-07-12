@@ -3,6 +3,7 @@
   <div data-member-spillover
     class="
     text-[.65rem] md:text-[.75rem]
+    select-none pointer-events-none
     "
   >
 
