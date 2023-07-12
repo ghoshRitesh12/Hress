@@ -22,7 +22,13 @@ const otpSchema = new Schema({
       expires: 300
     },
   },
-  { collection: collectionName }
+  { 
+    collection: collectionName,
+    writeConcern: {
+      w: 'majority',
+      j: true
+    }
+  }
 )
 
 export default model(collectionName, otpSchema);
