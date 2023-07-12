@@ -2,7 +2,7 @@
 
   <div data-profile>
 
-    <NuxtLink v-if="isAuth"
+    <NuxtLink v-if="data?.user?.image"
       to="/account"
       aria-label="profile button"
       class="
@@ -26,7 +26,8 @@
     </NuxtLink>
 
     
-    <NuxtLink v-else
+    <NuxtLink 
+      v-if="!data?.user"
       to="/login"
       class="
       px-4 py-[.55rem] text-black text-[.9rem] 
@@ -44,18 +45,16 @@
 
 <script setup>
 
-const { data } = useAuth()
-const isAuth = useState(() => false);
+const { data, getSession } = useAuth()
+// const isAuth = useState(() => false);
 console.log(data.value);
 
 watch(
   () => data.value,
-  () => {
+  async () => {
     if(!data.value) {
-      isAuth.value = false;
-      return;
+      await getSession();
     }
-    isAuth.value = true
   },
   {
     immediate: true,
