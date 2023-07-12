@@ -1,41 +1,58 @@
 import { NuxtAuthHandler } from "#auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-// import { setPopupMessage } from "~/store/popup";
 
 export default NuxtAuthHandler({
   secret: useRuntimeConfig().AUTH_SECRET,
-  // pages: {
-  //   signIn: '/api/auth/login',
-  //   error: null  
-  // },
-
+  pages: {
+    signIn: '/login',
+  },
   providers: [
     CredentialsProvider.default({
-      id: 'credentials',
       name: 'Credentials',
-      type: 'credentials',
+
       async authorize(credentials) {
+        try {          
+          const data = await $fetch('/api/auth/login', {
+            method: 'POST', 
+            body: JSON.stringify(credentials)
+          })
 
-        console.log('Credentials', credentials);
+          if(data.user) {
+            const userData = {
+              name: data.user.name,
+              email: data.user.email,
+              image: data.user.image,
+              role: data.user.role
+            }
 
-        const { data, error } = await $fetch('/api/auth/login', {
-          method: 'POST', 
-          body: JSON.stringify(credentials)
-        })
+            return userData;
+          }
 
-        if(data?.value) {
-          useRouter().push('/login');
-          setPopupMessage(data?.value?.message);
-          formStep.value = 0;
+        } catch ({ message }) {
 
-          return data.value.user; 
-
-        } else {
-          setPopupMessage(error?.value?.statusMessage);
-          return null; 
+          console.log(message);
+          message = message.trim()
+          throw new Error(
+            message.substring(
+              message.indexOf(" "), message.lastIndexOf(" ")
+            ).trim()
+          );
         }
+      },
 
-      }
     }),
-  ],  
+  ],
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      const isSignIn = user ? true : false;
+      if (isSignIn) {
+        token.role = user ? user.role || '' : '';
+      }
+      return Promise.resolve(token);
+    },
+    session: async ({ session, token }) => {
+      session.user.role = token.role;
+      return Promise.resolve(session);
+    },
+  },
 })
