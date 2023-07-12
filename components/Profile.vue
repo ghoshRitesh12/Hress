@@ -44,8 +44,18 @@
 
 <script setup>
 
-const { getSession } = useAuth()
-const user = (await getSession())?.user;
+const { data, getSession } = useAuth()
+const user = useState(() => null)
+user.value = data?.value?.user
+
+watch(
+  () => user.value,
+  async () => {
+    if(!user.value) {
+      user.value = (await getSession())?.user
+    }
+  }
+)
 
 </script>
 
