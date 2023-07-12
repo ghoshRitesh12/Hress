@@ -2,24 +2,26 @@
 
   <div data-profile>
 
-    <NuxtLink v-if="isAuth"
-      to="/profile"
+    <NuxtLink v-if="data?.user"
+      to="/account"
       aria-label="profile button"
       class="
       grid place-items-center rounded-[50%] md:mx-2
-      overflow-hidden outline-none max-w-[2rem] max-h-[2rem]
-      hover:outline-[.12rem] hover:outline-accent-100
+      overflow-hidden outline-none max-w-[2.2rem] max-h-[2.2rem]
+      hover:outline-[.12rem] hover:outline-accent-100 
+      hover:outline-offset-0
       "
-      style="transition: .15s ease outline"
-      height="32" width="32"
+      style="transition: .1s ease outline"
+      height="35.2" width="35.2"
     >
       <nuxt-img
-        :src="imgSrc"
+        :src="data?.user?.image"
+        format="png"
         decoding="async"
         fetchpriority="high"
         class="pointer-events-none"
-        height="32"
-        width="32"
+        height="35.2"
+        width="35.2"
       />
     </NuxtLink>
 
@@ -42,9 +44,7 @@
 
 <script setup>
 
-const imgSrc = 'https://yt3.ggpht.com/pKWFpweWfKOduyYR1zUosjzpMiudCx_rb8AKJdBLVOtYkQi4xSrtkDoQ6v7aQtkscj7mEV6S=s88-c-k-c0x00ffffff-no-rj-mo';
-
-const isAuth = ref(false);
+const { data } = useAuth()
 
 </script>
 
