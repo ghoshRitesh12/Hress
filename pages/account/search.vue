@@ -94,9 +94,10 @@ definePageMeta({
   middleware: ['native', 'admin']
 })
 
-const { setPopupMessage } = usePopup();
 
 const submitSearchQuery = async (value) => {
+  const { setPopupMessage } = usePopup();
+  
   try {
     const headers = useRequestHeaders(['cookie'])
     const { data, error } = await useFetch('/api/account/search', {
