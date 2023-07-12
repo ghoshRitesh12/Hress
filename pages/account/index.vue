@@ -1,6 +1,6 @@
 <template>
 
-  <div class="" data-profile>
+  <div data-profile>
 
     <div
       class="
@@ -58,7 +58,7 @@
     <button
       type="button"
       class="
-      flex items-center gap-2
+      flex items-center gap-2 text-[.95rem]
       bg-red-400 text-primary-900 mt-8 ml-auto
       py-[.65rem] px-6 rounded-2xl hover:bg-red-500
       transition ease-in duration-100 w-fit
@@ -94,8 +94,6 @@ definePageMeta({
 
 
 await fetchProfile('/api/account')
-
-
 
 
 
