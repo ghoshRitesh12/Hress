@@ -63,9 +63,6 @@
 
 <script setup>
 
-// const { getSession } = useAuth();
-// await getSession()
-
 const policyTabsWrap = ref(null);
 const tabScroll = (item) => {
   if(item === 0) {
