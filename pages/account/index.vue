@@ -10,10 +10,9 @@
       justify-center lg:justify-normal
       "
     >
-
       <AccountProfileHeader
-        :username="'Mamata Rani Karmakar Karmakar Karmakar Ghosh Ghosh'"
-        :pfp="'https://api.dicebear.com/6.x/bottts/png?seed=1687525904415&eyes=shade01&mouth=smile01&texture=circuits&face=round02&sides=square'"
+        :username="profile?.info?.name"
+        :pfp="profile?.pfp"
       />
 
       <div
@@ -22,38 +21,38 @@
         w-full items-center
         "
       >
-
         <AccountCourse
-          course-type="basic"
+          :course-type="profile?.courseType"
         />
-
         <AccountVerifiedTab
           class="w-full"
+          :verified="profile?.verified"
         />
         <AccountActiveTab
           class="w-full"
-          :is-active="false"
+          :is-active="profile?.active"
         />
-  
       </div>
       
     </div>
 
-    <div data-profile-status
+    <div
       class="
       flex gap-x-10 gap-y-4 flex-wrap 
       lg:flex-nowrap my-8
       "
     >
-      <AccountRank :rank="14"/>
-
+      <AccountRank 
+        :rank="profile?.rank"
+      />
       <AccountReferralId
-        :referral-id="'7cf2063d38'"
+        :referral-id="profile?.referralId"
       />
     </div>
     
+
     <AccountPersonalInfoSection
-      :info="personalInfo"
+      :info="profile?.info"
     />
 
     <button
@@ -64,17 +63,15 @@
       py-[.65rem] px-6 rounded-2xl hover:bg-red-500
       transition ease-in duration-100 w-fit
       "
+      @click="() => signOut({ callbackUrl: '/' })"
     >
-
-      <Icon
-        class="text-lg"
-        name="tabler:logout"
-      />
-
-      <div>
-        Logout
-      </div>
+      <Icon class="text-lg" name="tabler:logout" />
+      <div> Logout </div>
     </button>
+
+    <AccountInfoEditModal/>
+
+    <Popup/>
 
   </div>
 
@@ -83,31 +80,21 @@
 
 <script setup>
 
+const { signOut } = useAuth();
+const { profile, fetchProfile } = useProfile();
 
 useHead({
   title: 'Account - Profile'
 })
 
 definePageMeta({
-  layout: 'account'
+  layout: 'account',
+  middleware: 'native',
 })
 
 
+await fetchProfile('/api/account')
 
-
-
-const personalInfo = {
-  name: 'Susanta Ghosh',
-  email: 'ghoshrites32@gmail.com',
-  phoneNumber: '6381924231',
-  pancardNo: 'GDT0P8284L2',
-  country: 'India',
-  postalCode: '700150',
-  cityState: 'Kolkata, West Bengal',
-  streetAddress: 'H.C.Sarani, Deshbandhupark, Idol Heights S-1, H.C.Sarani, Deshbandhupark, Idol Heights S-1, H.C.Sarani, Deshbandhupark, Idol Heights S-1',
-  bankAccountNo: '5432135824731904',
-  ifsc: 'UBNI9665266'
-}
 
 
 
