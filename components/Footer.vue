@@ -2,10 +2,10 @@
 
   <footer
     class="
-    flex items-center flex-wrap-reverse w-full mt-auto
-    gap-2 pt-4 pb-3 sm:pb-4 sm:pt-5 px-2 sm:px-6 2xl:px-8 
+    flex items-center flex-col-reverse sm:flex-row 
+    pt-4 pb-3 sm:pb-4 sm:pt-5 px-2 sm:px-6 2xl:px-8 
     text-[.82rem] justify-center sm:justify-between 
-    bg-zinc-900
+    bg-zinc-900 gap-y-1 gap-x-2 mt-auto w-full
     "
   >
 
