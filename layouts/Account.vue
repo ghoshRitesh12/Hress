@@ -101,7 +101,7 @@
     <Footer/>
 
     <NuxtLoadingIndicator 
-      color="#9ffca5"
+      color="repeating-linear-gradient(to right,#00aeff 0%,#9ffca5 50%,#65fc6f 100%)"
     />
 
   </div>
