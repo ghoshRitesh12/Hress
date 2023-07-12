@@ -3,7 +3,7 @@
   <header 
     class="
     flex items-center px-4 2xl:px-8
-    relative max-w-full w-full py-4
+    relative max-w-full w-full pb-4 pt-2
     md:justify-between
     "
   >
