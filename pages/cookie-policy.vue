@@ -88,6 +88,9 @@ definePageMeta({
   .cookie-policy-wrap {
     scroll-padding-top: 6rem;
   }
+  .cookie-policy-wrap * {
+    text-decoration: none;
+  }
   .cookie-policy-wrap :deep(p) {
     @apply mb-4 text-[.95rem] text-zinc-300;
   }

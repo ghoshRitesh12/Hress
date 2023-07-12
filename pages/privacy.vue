@@ -84,6 +84,9 @@ definePageMeta({
   .privacy-wrap {
     scroll-padding-top: 6rem;
   }
+  .privacy-wrap * {
+    text-decoration: none;
+  }
   .privacy-wrap :deep(p) {
     @apply mb-4 text-[.95rem] text-zinc-300;
   }

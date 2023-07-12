@@ -76,34 +76,6 @@ definePageMeta({
 })
 
 
-const tableOfContents = ref([
-  { name: 'our services' },
-  { name: 'intellectual property rights' },
-  { name: 'user representations' },
-  { name: 'user registration' },
-  { name: 'purchase and payment' },
-  { name: 'policy' },
-  { name: 'prohibited activities' },
-  { name: 'user generated contributions' },
-  { name: 'contribution license' },
-  { name: 'services management' },
-  { name: 'privacy policy' },
-  { name: 'term and termination' },
-  { name: 'modifications and interruptions' },
-  { name: 'governing law' },
-  { name: 'dispute resolution' },
-  { name: 'corrections' },
-  { name: 'disclaimer' },
-  { name: 'limitations of liability' },
-  { name: 'indemnification' },
-  { name: 'user data' },
-  { name: 'miscellaneous' },
-  { name: 'contact us' },
-])
-
-
-
-
 </script>
 
 
@@ -115,6 +87,9 @@ const tableOfContents = ref([
   
   .terms-wrap {
     scroll-padding-top: 6rem;
+  }
+  .terms-wrap * {
+    text-decoration: none;
   }
   .terms-wrap :deep(p) {
     @apply mb-4 text-[.95rem] text-zinc-300;
