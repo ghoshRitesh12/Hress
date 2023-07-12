@@ -104,16 +104,11 @@ const submitSearchQuery = async (value) => {
       method: 'POST', headers, 
       body: markRaw(value)
     });
-
-    console.log(data.value, error.value)
-
+    
+    setPopupMessage(error.value?.statusMessage);
     if(data.value) {
       useRoute().params.referralId = data.value.vieweeReferralId
       return navigateTo(data.value.redirectTo);
-    }
-
-    if(error.value) {
-      setPopupMessage(error.value?.statusMessage);
     }
 
   } catch (err) {
