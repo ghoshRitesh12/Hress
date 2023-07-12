@@ -384,13 +384,29 @@
             type="submit"
             class="
             w-full bg-accent-200 hover:bg-green-400
-            px-4 py-3 rounded-2xl text-primary-900
-            disabled:bg-accent-200/60
+            px-4 py-3 rounded-2xl text-primary-900 text-[.95rem]
+            disabled:bg-accent-200/60 disabled:pointer-events-none
             font-semibold transition ease-in duration-100
             "
             :disabled="formStep > 2 && !agreeTerms"
+            :class="isPending && 'pointer-events-none'"
           >
-            {{ formStep < 3 ? 'Continue' : 'Sign up'}}
+
+            <div
+              v-if="isPending"
+              class="flex items-center justify-center gap-3"
+            >
+              Signing you up
+              <Icon
+                class="text-2xl"
+                name="line-md:loading-twotone-loop"
+              />
+            </div>
+
+            <div v-else>
+              {{ formStep < 3 ? 'Continue' : 'Sign up'}}
+            </div>
+
           </button>
         </div>
         
@@ -482,16 +498,19 @@ const prevStep = () => {
 
 const { setPopupMessage } = usePopup();
 
+const isPending = useState(() => false);
 const nextSignup = async (values) => {
   if(formStep.value < 3) return formStep.value++
 
   try {
     if(!agreeTerms.value) return;
+    isPending.value = true;
 
-    const { data, error } = await useFetch('/api/auth/signup', {
+    const { data, error, pending } = await useFetch('/api/auth/signup', {
       method: 'POST', 
-      body: values
+      body: markRaw(values)
     })
+    isPending.value = pending.value;
 
     if(data?.value) {
       navigateTo('/login');
