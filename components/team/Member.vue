@@ -4,14 +4,24 @@
     class="
     flex items-center justify-between gap-10
     odd:bg-zinc-900 px-6 py-[.6rem]
-    overflow-x-auto
+    overflow-x-auto text-[.9rem]
     "
   >
     
     <div data-member-name
       class="flex-shrink-0"
     >
-      {{ props.user.name }}
+      {{ props.user.info.name }}
+    </div>
+
+    <TeamMemberRank
+      :rank="props.user.rank"
+    />
+    
+    <div data-member-commission
+      class="flex-shrink-0"
+    >
+      {{ parsedCommission }}
     </div>
 
     <TeamMemberSpillover
@@ -19,11 +29,6 @@
       class="flex-shrink-0"
     />
 
-    <div data-member-commission
-      class="flex-shrink-0"
-    >
-      {{ parsedCommission }}
-    </div>
 
   </div>
 
