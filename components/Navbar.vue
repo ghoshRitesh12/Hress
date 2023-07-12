@@ -44,7 +44,7 @@
         w-full max-w-[45%] py-6 rounded-2xl bg-zinc-800
         md:bg-transparent md:flex-grow-0 md:max-w-fit
         text-zinc-200 md:text-neutral-300
-        md:text-[.95rem]
+        md:text-[.9rem]
         "
         @click="closeHeaderNav"
         style="transition: .2s ease"
