@@ -46,14 +46,14 @@
 
 
 <script setup>
-const { popupMessage } = usePopup();
+const { popupMessage, closePopup } = usePopup();
 
 watch(
   () => popupMessage.value,
   () => {
     if(popupMessage.value) {
       const t = setTimeout(() => {
-        popupMessage.value = null
+        closePopup()
         clearTimeout(t);
 
       }, 2500)
