@@ -1,13 +1,15 @@
 <template>
 
-  <div :data-personal-info="kebabContext">
+  <div data-personal-info
+    style="overflow-wrap: anywhere;"
+  >
 
     <div class="text-sm text-zinc-400">
       {{ props.context }}
     </div>
 
-    <div class="mt-1 max-w-[40ch] w-full">
-      {{ props.contextValue }}
+    <div class="mt-1">
+      {{ props.contextValue || 'N/A' }}
     </div>
 
   </div>
@@ -24,12 +26,8 @@ const props = defineProps({
   },
   contextValue: {
     type: String,
-    required: true
   },
 })
-
-
-const kebabContext = props.context.replace(/\s/g, '-').toLowerCase();
 
 
 </script>
