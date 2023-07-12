@@ -2,37 +2,39 @@
 
   <div 
     class="
-    flex items-center md:px-6
-    bg-zinc-800/70 py-[.6rem] px-5
-    rounded-2xl md:text-[1.05rem] w-fit
+    flex items-center py-[.6rem]
+    text-[1rem] gap-x-6 gap-y-4 flex-wrap
     "
   >
-
-    <div class="text-zinc-400">
-      Sponsored By:
+    <div 
+      class="
+      flex items-center md:px-5
+      bg-zinc-800/70 py-[.6rem] px-4
+      rounded-2xl md:text-[1rem] w-fit
+      "
+    >
+      <div class="text-zinc-400">
+        Sponsored By:
+      </div>
+  
+      <div class="ml-3">
+        {{ props.sponsorerName }}
+      </div>
     </div>
 
     <div 
       class="
-      flex items-center gap-4 ml-3
+      flex items-center md:px-5
+      bg-zinc-800/70 py-[.6rem] px-4
+      rounded-2xl md:text-[1rem] w-fit
       "
     >
-      <div
-        class="max-w-[2.5rem] hidden"
-      >
-        <nuxt-img
-          :src="sponsorerPfp"
-          :alt="`${props.sponsorerName.split(' ')[0]}'s profile picture'`"
-          format="png"
-          width="256" 
-          height="256"
-          decoding="async"
-          fetchpriority="high"
-        />
+      <div class="text-zinc-400">
+        Sponsorer's Ref Id:
       </div>
   
-      <div>
-        {{ props.sponsorerName }}
+      <div class="ml-3">
+        {{ props.sponsorerReferralId }}
       </div>
     </div>
 
@@ -48,7 +50,7 @@ const props = defineProps({
     type: String,
     required: true
   },
-  sponsorerPfp: {
+  sponsorerReferralId: {
     type: String,
     required: true
   }
