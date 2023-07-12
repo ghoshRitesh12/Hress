@@ -63,8 +63,10 @@
 
 <script setup>
 
-const policyTabsWrap = ref(null);
+const { getSession } = useAuth();
+await getSession()
 
+const policyTabsWrap = ref(null);
 const tabScroll = (item) => {
   if(item === 0) {
     policyTabsWrap.value.scrollLeft = 0
@@ -79,8 +81,6 @@ onMounted(() => {
     policyTabsWrap.value.scrollLeft = policyTabsWrap.value.scrollWidth
   }
 })
-
-
 
 const tabLinks = ref([
   { name: 'Terms & Conditions', href: '/terms' },
