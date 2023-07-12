@@ -20,7 +20,7 @@ const getATO = async () => {
           courseType: 1
         },
       },
-    ]);
+    ]).readConcern('majority');
 
 
     let ato = 0;
