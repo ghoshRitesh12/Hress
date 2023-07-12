@@ -70,7 +70,11 @@ const userSchema = new mongoose.Schema({
   },
   {
     timestamps: true,
-    collection: collectionName
+    collection: collectionName,
+    writeConcern: {
+      w: 'majority',
+      j: true
+    }
   }
 )
 
