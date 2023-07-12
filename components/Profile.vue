@@ -46,8 +46,6 @@
 <script setup>
 
 const { data, getSession } = useAuth()
-// const isAuth = useState(() => false);
-console.log(data.value);
 
 watch(
   () => data.value,
