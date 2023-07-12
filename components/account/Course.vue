@@ -1,27 +1,30 @@
 <template>
 
-  <div
+  <div v-if="props.courseType"
     class="
     w-full text-center border-[1px] select-none
     text-base md:text-[1.05rem] px-6 py-3 rounded-2xl
     "
-    :class="isBasicCourse ? 'border-cyan-300' : 'border-red-400'"
+    :class="props?.courseType?.includes('advance') ? 'border-red-400' : 'border-cyan-300' "
   >
 
-    <div 
-      v-if="isBasicCourse"
+    <div
       class="flex items-center justify-center"
     >
-      Course type: 
-      <div class="ml-3">Basic</div>
-    </div>
+      <div class="mr-3">
+        Course type:
+      </div>
 
-    <div 
-      v-else
-      class="flex items-center justify-center"
-    >
-      Course type: 
-      <div class="ml-3">Advanced</div>
+      <div v-if="props?.courseType === 'basic'">
+        Basic
+      </div>
+      <div v-else-if="props?.courseType === 'advance'">
+        Advance
+      </div>
+      <div v-else class="capitalize">
+        {{ props.courseType?.toLowerCase() }}
+      </div>
+
     </div>
 
   </div>
@@ -34,11 +37,8 @@
 const props = defineProps({
   courseType: {
     type: String,
-    required: true
   }
 })
-
-const isBasicCourse = props.courseType.includes('basic')
 
 
 </script>
