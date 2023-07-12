@@ -2,7 +2,7 @@
 
   <div data-profile>
 
-    <NuxtLink v-if="data?.user?.image"
+    <NuxtLink v-if="data.user.image"
       to="/account"
       aria-label="profile button"
       class="
@@ -15,7 +15,7 @@
       height="35.2" width="35.2"
     >
       <nuxt-img
-        :src="data?.user?.image"
+        :src="data.user.image"
         format="png"
         decoding="async"
         fetchpriority="high"
@@ -44,7 +44,16 @@
 
 <script setup>
 
-const { data,  } = useAuth()
+const { data } = useAuth()
+// const isAuth = useState(() => false);
+
+// watch(
+//   () => data.value,
+//   () => {
+//     if(data.value !== null)
+//   }
+// )
+
 
 </script>
 
