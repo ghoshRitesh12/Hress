@@ -2,7 +2,7 @@
 
   <div data-profile>
 
-    <NuxtLink v-if="data?.user"
+    <NuxtLink v-if="data?.user?.image"
       to="/account"
       aria-label="profile button"
       class="
@@ -44,7 +44,7 @@
 
 <script setup>
 
-const { data } = useAuth()
+const { data,  } = useAuth()
 
 </script>
 
