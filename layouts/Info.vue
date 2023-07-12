@@ -30,8 +30,8 @@
 
 <script setup>
 
-const { getSession } = useAuth();
-await getSession()
+// const { getSession } = useAuth();
+// await getSession()
 
 </script>
 
