@@ -8,7 +8,7 @@
     "
   >
 
-    <div class="max-w-[5rem]">
+    <div v-if="props.pfp" class="max-w-[5rem]">
       <nuxt-img
         :src="props.pfp"
         :alt="`${props.username.split(' ')[0]}'s profile picture`"
@@ -19,7 +19,7 @@
       />
     </div>
 
-    <div 
+    <div v-if="props.username"
       class="
       text-lg text-center max-w-[20ch]
       md:text-xl leading-[1.4]
@@ -38,11 +38,9 @@
 const props = defineProps({
   username: {
     type: String,
-    required: true
-  },
+  }, 
   pfp: {
     type: String,
-    required: true
   }
 })
 
