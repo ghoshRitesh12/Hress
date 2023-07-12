@@ -1,20 +1,26 @@
-import { startSession } from "mongoose";
-import { hash } from "bcrypt";
-import { serverSignupSchema } from "~/utils/signupSchema";
 import User from "../../models/User.model";
 import Otp from "../../models/Otp.model";
+import { hash } from "bcrypt";
+import { startSession } from "mongoose";
+import { serverSignupSchema } from "~/utils/signupSchema";
 import { getIncentive, isRankValid } from "../../helpers/utils.js";
-
+import { performance } from "perf_hooks";
 
 export default eventHandler(async (event) => {
+  const start = performance.now();
   const signupSession = await startSession();
-  signupSession.startTransaction()
+  signupSession.startTransaction({
+    readConcern: 'snapshot',
+    writeConcern: {
+      w: 'majority', j: true
+    }
+  })
 
   try {
     const body = await readBody(event);
     await serverSignupSchema.validate(body);    
 
-    const tempUser = await Otp.findOne({ email: body.email });
+    const tempUser = await Otp.findOne({ email: body.email }).session(signupSession);
     if(!tempUser) {
       return sendError(event, createError({
         statusCode: 401, 
@@ -31,7 +37,7 @@ export default eventHandler(async (event) => {
 
     
 
-    if(await User.exists({ email: body.email }).session(signupSession)) {
+    if(await User.exists({ 'info.email': body.email }).session(signupSession)) {
       return sendError(event, createError({
         statusCode: 409, 
         statusMessage: 'User already exists',
@@ -49,8 +55,10 @@ export default eventHandler(async (event) => {
 
     
     const newUserInfo = [{
-      name: body.fullname,
-      email: body.email,
+      info: {
+        name: body.fullname,
+        email: body.email,
+      },
       courseType: body.course,
       verified: true,
       password: await hash(
@@ -66,17 +74,17 @@ export default eventHandler(async (event) => {
 
     const updateOperations = ancestors.map((ancestor, index) => {
       const indexedLevel = ancestors.length - index;
-     
+      if(ancestor.role !== 'admin' && indexedLevel > 15) return;
+      
       let incentive = (ancestors.length <= 15) ? getIncentive(indexedLevel) : 0
-
+      // indirect spillover
       if(`${ancestor._id}` === `${newUser.ancestors.at(-1)}` && sponsorAncestorReferralIds.includes(body.refererId)) {
         incentive = -1;
       }
-
+      // direct spillover
       if(ancestor.referralId === body.refererId && body.refererId !== sponsorer.referralId) {
         incentive = spillOverIncentive + getIncentive(indexedLevel)
       }
-
       incentive = (ancestors.length <= 15) ? incentive : 0
 
       
@@ -123,6 +131,9 @@ export default eventHandler(async (event) => {
     await User.bulkWrite(updateOperations, { session: signupSession })
 
     await signupSession.commitTransaction()
+
+    const end = performance.now()
+    console.log('\n', end-start, '\n')
 
     setResponseStatus(event, 201);
     return {
