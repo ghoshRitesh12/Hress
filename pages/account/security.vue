@@ -83,7 +83,7 @@
               type="submit"
               class="
               w-full bg-accent-200 hover:bg-green-400 text-[.95rem]
-              px-8 py-[.65rem] rounded-2xl text-primary-900
+              px-6 py-[.65rem] rounded-2xl text-primary-900
               font-semibold transition ease-in duration-100
               "
             >
@@ -92,20 +92,6 @@
           </div>
   
         </form>
-
-        <NuxtLink
-          to="/forgot_password"
-          class="
-          block mt-10 text-accent-100 text-base
-          border-[0px] w-fit px-2 py-1
-          hover:underline underline-offset-2
-          transition ease-in duration-100
-          "
-        >
-          I forgot my password
-        </NuxtLink>
-
-        <!-- <div></div> -->
 
       </div>
 
@@ -143,7 +129,8 @@ useHead({
 
 
 definePageMeta({
-  layout: 'account'
+  layout: 'account',
+  middleware: 'native'
 })
 
 </script>
