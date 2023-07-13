@@ -38,7 +38,8 @@ export const clientSignupSchema = [
   )),
 
   toTypedSchema(object().shape({
-      otp: string().required('OTP is required').length(6)
+      // otp: string().required('OTP is required').length(6)
+      otp: string()
     }, 
   )),
 ]
@@ -67,7 +68,8 @@ export const serverSignupSchema = object().shape({
       'Use 8 to 16 characters with a mix of letters(lower & upper case), numbers & symbols among !@#$%^&*()'
     ),
     confirmPassword: string().trim().required('Re enter password').oneOf([yupRef('password')], 'Passwords must match'),
-    otp: string().required('OTP is required').length(6)
+    // otp: string().required('OTP is required').length(6)
+    otp: string()
   },
   [['refererId', 'refererId']]
 )
