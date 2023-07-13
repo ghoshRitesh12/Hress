@@ -29,10 +29,11 @@ export const clientSignupSchema = [
   )),
 
   toTypedSchema(object().shape({
-      password: string().trim().required('Password required').matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*()])(?=.{8,16}$)/,
-        'Use 8 to 16 characters with a mix of letters(lower & upper case), numbers & symbols among !@#$%^&*()'
-      ),
+      // password: string().trim().required('Password required').matches(
+      //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*()])(?=.{8,16}$)/,
+      //   'Use 8 to 16 characters with a mix of letters(lower & upper case), numbers & symbols among !@#$%^&*()'
+      // ),
+      password: string().trim().required(),
       confirmPassword: string().trim().required('Re enter password').oneOf([yupRef('password')], 'Passwords must match')
     }, 
   )),
@@ -63,10 +64,11 @@ export const serverSignupSchema = object().shape({
       /^[a-z0-9]{10}$/,
       'Invalid sponsorer id'
     ).notOneOf([yupRef('refererId'), null], 'Sponsorer & referer id must be different'),
-    password: string().trim().required('Password required').matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*()])(?=.{8,16}$)/,
-      'Use 8 to 16 characters with a mix of letters(lower & upper case), numbers & symbols among !@#$%^&*()'
-    ),
+    // password: string().trim().required('Password required').matches(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*()])(?=.{8,16}$)/,
+    //   'Use 8 to 16 characters with a mix of letters(lower & upper case), numbers & symbols among !@#$%^&*()'
+    // ),
+    password: string().trim().required(),
     confirmPassword: string().trim().required('Re enter password').oneOf([yupRef('password')], 'Passwords must match'),
     // otp: string().required('OTP is required').length(6)
     otp: string()
