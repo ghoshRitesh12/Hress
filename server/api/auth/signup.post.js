@@ -20,20 +20,20 @@ export default eventHandler(async (event) => {
     const body = await readBody(event);
     await serverSignupSchema.validate(body);    
 
-    // const tempUser = await Otp.findOne({ email: body.email }).session(signupSession);
-    // if(!tempUser) {
-    //   return sendError(event, createError({
-    //     statusCode: 401, 
-    //     statusMessage: 'Otp has expired, try 10 mins later',
-    //   }))
-    // }
-    // if(tempUser.otp !== parseInt(body.otp)) {
-    //   return sendError(event, createError({
-    //     statusCode: 403, 
-    //     statusMessage: 'Invalid OTP, try 10 mins later',
-    //   }))
-    // }
-    // await Otp.deleteOne({ email: body.email });
+    const tempUser = await Otp.findOne({ email: body.email }).session(signupSession);
+    if(!tempUser) {
+      return sendError(event, createError({
+        statusCode: 401, 
+        statusMessage: 'Otp has expired, try 10 mins later',
+      }))
+    }
+    if(tempUser.otp !== parseInt(body.otp)) {
+      return sendError(event, createError({
+        statusCode: 403, 
+        statusMessage: 'Invalid OTP, try 10 mins later',
+      }))
+    }
+    await Otp.deleteOne({ email: body.email });
 
     
 
@@ -45,11 +45,35 @@ export default eventHandler(async (event) => {
     }
 
     const spillOverIncentive = 20;
-    const sponsorer = await User.findOne({ referralId: body.sponsorerId }).session(signupSession);
+    if(body.refererId) {
+      const referer = await User.findOne({ referralId: body.refererId }, 'active').session(signupSession);
+      if(!referer) {
+        return sendError(event, createError({
+          statusCode: 400, 
+          statusMessage: 'Referer not found',
+        }))
+      }
+      if(!referer.active) {
+        return createError({
+          statusCode: 401,
+          statusMessage: 'Referer account inactive'
+        })
+      }
+    }
+
+    const sponsorerQueryFields = ['active', 'ancestors', 'referralId']
+    const sponsorer = await User.findOne({ referralId: body.sponsorerId }, sponsorerQueryFields)
+      .session(signupSession);
     if(!sponsorer) {
       return createError({
         statusCode: 404,
         statusMessage: 'Sponsorer not found'
+      })
+    }
+    if(!sponsorer.active) {
+      return createError({
+        statusCode: 401,
+        statusMessage: 'Sponsorer account inactive'
       })
     }
 
@@ -68,9 +92,13 @@ export default eventHandler(async (event) => {
     }]
     const newUser = (await User.create(newUserInfo, { session: signupSession }))[0];
 
+
     // for each ancestor
-    const ancestors = await User.find({ _id: { $in: newUser.ancestors } }).session(signupSession);
+    const ancestorsQueryFields = ['referralId', 'role', 'levels', 'rank'];
+    const ancestors = await User.find({ _id: { $in: newUser.ancestors } }, ancestorsQueryFields).session(signupSession);
+    console.log(ancestors);
     const sponsorAncestorReferralIds = ancestors.slice(0, -1).map(a => a.referralId);
+
 
     const updateOperations = ancestors.map((ancestor, index) => {
       const indexedLevel = ancestors.length - index;
@@ -129,8 +157,8 @@ export default eventHandler(async (event) => {
       };
     }).filter(i => i !== null);
 
-    await User.bulkWrite(updateOperations, { session: signupSession })
 
+    await User.bulkWrite(updateOperations, { session: signupSession })
     await signupSession.commitTransaction()
 
     const end = performance.now()
