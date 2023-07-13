@@ -17,13 +17,24 @@ export default eventHandler(async (event) => {
       })
     })
 
-    const queryFields = [
-      'ancestors', 'levels', 'active'
-    ];
+    const queryFields = ['ancestors', 'levels', 'active'];
     const res = { sponsorer: null, levels: [] }
 
+    const teamPopulateFields = [
+      'info.name', 'rank', 'active',
+      'referralId',
+    ]
     const foundUser = await User.findOne({ referralId: paramReferralId }, queryFields)
       .readConcern('majority')
+      .populate({
+        path: 'levels.referrals.userRef',
+        select: teamPopulateFields
+      }).slice('ancestors', -1)
+      .populate({ 
+        path: 'ancestors',
+        select: ['info.name', 'referralId'] 
+      })
+
     if(!foundUser) {
       return sendError(event, createError({
         statusCode: 404,
@@ -31,15 +42,8 @@ export default eventHandler(async (event) => {
       }))
     }
 
-    res.levels = (await foundUser.populate({ 
-      path: 'levels.referrals.userRef',
-      select: ['info.name', 'rank']
-    })).levels
-
-    res.sponsorer = (await foundUser.populate({ 
-      path: 'ancestors',
-      select: ['info.name', 'referralId'] 
-    })).ancestors.at(-1) || null
+    res.levels = foundUser.levels
+    res.sponsorer = foundUser.ancestors[0];
 
     setResponseStatus(event, 200)
     return res;
