@@ -74,7 +74,7 @@ export default eventHandler(async (event) => {
 
     const updateOperations = ancestors.map((ancestor, index) => {
       const indexedLevel = ancestors.length - index;
-      if(ancestor.role !== 'admin' && indexedLevel > 15) return;
+      if(ancestor.role !== 'admin' && indexedLevel > 15) return null;
       
       let incentive = (ancestors.length <= 15) ? getIncentive(indexedLevel) : 0
       // indirect spillover
@@ -108,9 +108,10 @@ export default eventHandler(async (event) => {
       // setting rank
       let tempRank = 1;
       for(const level of ancestor.levels) {
-        if(isRankValid(level.levelNo, level.referrals.length)) {
-          tempRank = level.levelNo === 0 ? 1 : level.levelNo
+        if(!isRankValid(level.levelNo, level.referrals.length)) {
+          break;
         }
+        tempRank = level.levelNo === 0 ? 1 : level.levelNo
       }
       ancestor.rank = tempRank;
 
@@ -126,7 +127,7 @@ export default eventHandler(async (event) => {
           }
         }
       };
-    })
+    }).filter(i => i !== null);
 
     await User.bulkWrite(updateOperations, { session: signupSession })
 
