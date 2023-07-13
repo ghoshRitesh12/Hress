@@ -10,8 +10,17 @@
     
     <div data-member-name
       class="flex-shrink-0"
+      :class="
+        props.user?.active ? 'text-accent-100' : 'text-yellow-200'
+      "
     >
       {{ props.user.info.name }}
+    </div>
+
+    <div v-if="props.user.referralId"
+      class="flex-shrink-0"
+    >
+      {{ props.user.referralId }}
     </div>
 
     <TeamMemberRank
@@ -28,7 +37,6 @@
       :spillover-type="spillOverType"
       class="flex-shrink-0"
     />
-
 
   </div>
 
@@ -48,12 +56,11 @@ const props = defineProps({
   },
 })
 
-const actualIncentives = [20, 6, 3, 2, 1, 0.5];
 const parsedCommission = ref(`${props.commission}%`);
 const spillOverType = ref('normal');
 
 
-if(props.commission < 1) {
+if(props.commission < 0) {
   spillOverType.value = 'indirect';
 
   parsedCommission.value = props.commission
