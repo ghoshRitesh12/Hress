@@ -91,6 +91,10 @@ definePageMeta({
 const { profile, fetchProfile } = useProfile();
 await fetchProfile(`/api/admin/profile/${params.referralId}/about`)
 
+onBeforeUnmount(() => {
+  profile.value = null
+})
+
 </script>
 
 

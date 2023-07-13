@@ -95,6 +95,9 @@ definePageMeta({
 
 await fetchProfile('/api/account')
 
+onBeforeUnmount(() => {
+  profile.value = null
+})
 
 
 </script>
