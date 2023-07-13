@@ -5,10 +5,10 @@
  * @returns {number} trainerIncentive in Rs.
  */
 const getTrainerIncentive = (rank, ato) => {
-  ato = parseInt(ato);
+  ato = parseInt(ato) ? ato : 0;
   rank = parseInt(rank);
-  if(!ato || !rank) 
-    throw new Error('affliate turnover or rank not found')
+  if(!rank) 
+    throw new Error('rank not found')
 
   if(rank < 8 || rank > 15) return 0;
   
