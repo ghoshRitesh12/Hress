@@ -95,6 +95,10 @@ definePageMeta({
   }
   .plan-wrap :deep(p) {
     @apply mb-4 text-[.95rem] text-zinc-300;
+    text-decoration: none;
+  }
+  .plan-wrap :deep(p *) {
+    text-decoration: none;
   }
   .plan-wrap :deep(p a) {
     @apply text-accent-100;
@@ -102,15 +106,17 @@ definePageMeta({
 
   .plan-wrap :deep(h2) {
     @apply mt-10 pb-4 text-xl font-semibold;
-    word-spacing: .2rem
+    word-spacing: .2rem;
+    text-decoration: none;
   }
   .plan-wrap :deep(h3) {
     @apply mt-7 mb-2 text-[1.1rem] font-semibold;
-    word-spacing: .2rem
+    word-spacing: .2rem;
+    text-decoration: none;
   }
 
   .plan-wrap :deep(ul) {
-    @apply py-3 pl-10; 
+    @apply py-3 pl-10;
   }
   .plan-wrap :deep(ul li) {
     @apply pb-2 text-[.95rem] text-zinc-300;
