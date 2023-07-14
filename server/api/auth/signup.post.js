@@ -22,12 +22,14 @@ export default eventHandler(async (event) => {
 
     const tempUser = await Otp.findOne({ email: body.email }).session(signupSession);
     if(!tempUser) {
+      await signupSession.abortTransaction();
       return sendError(event, createError({
         statusCode: 401, 
         statusMessage: 'Otp has expired, try 10 mins later',
       }))
     }
     if(tempUser.otp !== parseInt(body.otp)) {
+      await signupSession.abortTransaction();
       return sendError(event, createError({
         statusCode: 403, 
         statusMessage: 'Invalid OTP, try 10 mins later',
@@ -38,6 +40,7 @@ export default eventHandler(async (event) => {
     
 
     if(await User.exists({ 'info.email': body.email }).session(signupSession)) {
+      await signupSession.abortTransaction();
       return sendError(event, createError({
         statusCode: 409, 
         statusMessage: 'User already exists',
@@ -45,36 +48,61 @@ export default eventHandler(async (event) => {
     }
 
     const spillOverIncentive = 20;
-    if(body.refererId) {
-      const referer = await User.findOne({ referralId: body.refererId }, 'active').session(signupSession);
-      if(!referer) {
-        return sendError(event, createError({
-          statusCode: 400, 
-          statusMessage: 'Referer not found',
-        }))
-      }
-      if(!referer.active) {
-        return createError({
-          statusCode: 401,
-          statusMessage: 'Referer account inactive'
-        })
-      }
-    }
-
     const sponsorerQueryFields = ['active', 'ancestors', 'referralId']
     const sponsorer = await User.findOne({ referralId: body.sponsorerId }, sponsorerQueryFields)
       .session(signupSession);
     if(!sponsorer) {
+      await signupSession.abortTransaction();
       return createError({
         statusCode: 404,
         statusMessage: 'Sponsorer not found'
       })
     }
     if(!sponsorer.active) {
+      await signupSession.abortTransaction();
       return createError({
-        statusCode: 401,
+        statusCode: 403,
         statusMessage: 'Sponsorer account inactive'
       })
+    }
+
+
+    if(body.refererId) {
+      const refererQueryFields = ['active', 'levels']
+      const referer = await User.findOne({ referralId: body.refererId }, refererQueryFields).session(signupSession);
+      if(!referer) {
+        await signupSession.abortTransaction();
+        return sendError(event, createError({
+          statusCode: 400, 
+          statusMessage: 'Referer not found',
+        }))
+      }
+      if(!referer.active) {
+        await signupSession.abortTransaction();
+        return createError({
+          statusCode: 403,
+          statusMessage: 'Referer account inactive'
+        })
+      }
+
+      const sponsorerAncestors = sponsorer.ancestors.map(i => `${i._id}`);
+      const sponsorersRefererIndex = sponsorerAncestors.indexOf(`${referer._id}`)
+      if(sponsorersRefererIndex === -1) {
+        await signupSession.abortTransaction();
+        return createError({
+          statusCode: 400,
+          statusMessage: 'Referer not related to sponsorer'
+        })
+      }
+
+      const refererIndexedLevel = sponsorerAncestors.length - sponsorersRefererIndex;
+      if(refererIndexedLevel >= 15) {
+        await signupSession.abortTransaction();
+        return createError({
+          statusCode: 400,
+          statusMessage: 'Referer reached max spillover level'
+        })
+      }
     }
 
     
