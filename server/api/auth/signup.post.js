@@ -124,7 +124,6 @@ export default eventHandler(async (event) => {
     // for each ancestor
     const ancestorsQueryFields = ['referralId', 'role', 'levels', 'rank'];
     const ancestors = await User.find({ _id: { $in: newUser.ancestors } }, ancestorsQueryFields).session(signupSession);
-    console.log(ancestors);
     const sponsorAncestorReferralIds = ancestors.slice(0, -1).map(a => a.referralId);
 
 
@@ -132,7 +131,8 @@ export default eventHandler(async (event) => {
       const indexedLevel = ancestors.length - index;
       if(ancestor.role !== 'admin' && indexedLevel > 15) return null;
       
-      let incentive = (ancestors.length <= 15) ? getIncentive(indexedLevel) : 0
+
+      let incentive = getIncentive(indexedLevel)
       // indirect spillover
       if(`${ancestor._id}` === `${newUser.ancestors.at(-1)}` && sponsorAncestorReferralIds.includes(body.refererId)) {
         incentive = -1;
@@ -141,7 +141,6 @@ export default eventHandler(async (event) => {
       if(ancestor.referralId === body.refererId && body.refererId !== sponsorer.referralId) {
         incentive = spillOverIncentive + getIncentive(indexedLevel)
       }
-      incentive = (ancestors.length <= 15) ? incentive : 0
 
       
       // inserting new member
