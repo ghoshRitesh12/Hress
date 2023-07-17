@@ -4,7 +4,7 @@
  * @returns {number} developmentIncentive
  */
 const getDevelopmentIncentive = (rank) => {
-  rank = parseInt(rank);
+  rank = rank ? parseInt(rank) : 1;
   if(!rank) throw new Error('rank not found')
 
   switch(rank) {

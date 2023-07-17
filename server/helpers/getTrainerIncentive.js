@@ -5,13 +5,12 @@
  * @returns {number} trainerIncentive in Rs.
  */
 const getTrainerIncentive = (rank, ato) => {
-  ato = parseInt(ato) ? ato : 0;
-  rank = parseInt(rank);
-  if(!rank) 
-    throw new Error('rank not found')
-
-  if(rank < 8 || rank > 15) return 0;
+  ato = ato ? parseInt(ato) : 0;
+  rank = rank ? parseInt(rank)  : 1;
   
+  if(!rank) throw new Error('rank not found')
+  if(rank < 8 || rank > 15) return 0;
+
   return (ato * (2 / 100))
 }
 
