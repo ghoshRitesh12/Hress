@@ -1,6 +1,7 @@
 <template>
 
   <NuxtLink 
+    v-once
     to="/" 
     class="md:px-2 select-none"
     title="Hress Home"

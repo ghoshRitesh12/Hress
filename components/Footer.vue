@@ -1,6 +1,7 @@
 <template>
 
   <footer
+    v-once
     class="
     flex items-center flex-col-reverse sm:flex-row 
     pt-4 pb-3 sm:pb-4 sm:pt-5 px-2 sm:px-6 2xl:px-8 
