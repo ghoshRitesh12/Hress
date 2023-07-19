@@ -9,28 +9,26 @@ export default eventHandler(async (event) => {
   ];
   try {
     const body = await readBody(event);
-    console.log(body)
     await serverLoginSchema.validate(body);
 
-    console.log('login endpoint hit');
 
     const foundUser = await User.findOne({ 'info.email': body.email }, queryFields)
       .readConcern('majority')
-    if(!foundUser) {
+    if (!foundUser) {
       return sendError(event, createError({
         statusCode: 404,
         statusMessage: 'Invalid credentials.'
       }))
     }
 
-    if(!foundUser.verified) {
+    if (!foundUser.verified) {
       return sendError(event, createError({
         statusCode: 403,
         statusMessage: 'Account not verified, try signing up again'
       }))
     }
 
-    if(!await compare(body.password, foundUser.password)) {
+    if (!await compare(body.password, foundUser.password)) {
       return sendError(event, createError({
         statusCode: 401,
         statusMessage: 'Invalid credentials'
@@ -48,7 +46,7 @@ export default eventHandler(async (event) => {
       }
     }
 
-    
+
   } catch (err) {
     console.log(err);
     return sendError(event, createError({
