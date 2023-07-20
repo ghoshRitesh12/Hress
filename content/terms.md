@@ -4,19 +4,19 @@ title: Hress Terms & Conditions
 description: Hress's Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity "you", and Chargaeri Eco, Socio & Human Resource Development Society, concerning your access to and use of the Services
 ---
 
-Last updated May 17, 2023
+Last updated July 20, 2023
 
 ## AGREEMENT TO OUR LEGAL TERMS
 
-We are Chargaeri Eco, Socio & Human Resource Development Society, doing business as Hress ("Company," "we," "us," "our"), a company registered in India at Aghore Sarani , Sonarpur, Baikunthapur, Opposite of BCT Housing Complex. P/O - Rajpur. , Kolkata, West Bengal 700149.
+We are Chargaeri Eco, Socio & Human Resource Development Society, doing business as Hress, a company registered in India at Aghore Sarani , Sonarpur, Baikunthapur, Opposite of BCT Housing Complex. P/O - Rajpur. , Kolkata, West Bengal 700149.
 
-We operate the website [hress.in](https://hress.in) (the "Site"), as well as any other related products and services that refer or link to these legal terms (the "Legal Terms") (collectively, the "Services").
+We operate the website [hress.in](https://hress.in), as well as any other related products and services that refer or link to these legal terms.
 
-We provide educational services about Crypto trading, training as well as consultancy services.
+We provide educational services about Crypto trading, training as well as consultancy services. **We do not condone making any financial portfolios for any of our users.**
 
 You can contact us by email at __________ or by mail to Aghore Sarani , Sonarpur, Baikunthapur, Opposite of BCT Housing Complex. P/O - Rajpur. , Kolkata, West Bengal 700149, India.
 
-These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you"), and Chargaeri Eco, Socio & Human Resource Development Society, concerning your access to and use of the Services.
+These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity, and Chargaeri Eco, Socio & Human Resource Development Society, concerning your access to and use of the Services.
 
 You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
 
@@ -66,7 +66,7 @@ The information provided when using the Services is not intended for distributio
 
 ### Our intellectual property
 
-We are the owner or the licensee of all intellectual property rights in our Services, including all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics in the Services (collectively, the "Content"), as well as the trademarks, service marks, and logos contained therein (the "Marks").
+We are the owner or the licensee of all intellectual property rights in our Services, including all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics in the Services, as well as the trademarks, service marks, and logos contained therein.
 
 Our Content and Marks are protected by copyright and trademark laws (and various other intellectual property rights and unfair competition laws) and treaties in the United States and around the world.
 
@@ -93,7 +93,7 @@ Any breach of these Intellectual Property Rights will constitute a material brea
 
 Please review this section and the ["PROHIBITED ACTIVITIES"](#_7-prohibited-activities) section carefully prior to using our Services to understand the (a) rights you give us and (b) obligations you have when you post or upload any content through the Services.
 
-**Submissions:** By directly sending us any question, comment, suggestion, idea, feedback, or other information about the Services ("Submissions"), you agree to assign to us all intellectual property rights in such Submission. You agree that we shall own this Submission and be entitled to its unrestricted use and dissemination for any lawful purpose, commercial or otherwise, without acknowledgment or compensation to you.
+**Submissions:** By directly sending us any question, comment, suggestion, idea, feedback, or other information about the Services, you agree to assign to us all intellectual property rights in such Submission. You agree that we shall own this Submission and be entitled to its unrestricted use and dissemination for any lawful purpose, commercial or otherwise, without acknowledgment or compensation to you.
 
 **You are responsible for what you post or upload:** By sending us Submissions through any part of the Services you:
 
