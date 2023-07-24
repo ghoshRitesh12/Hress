@@ -54,7 +54,7 @@
             md:before:left-0 md:before:top-[50%] md:before:translate-y-[-50%]
             md:before:h-[65%] md:before:w-[.25rem] hover:bg-zinc-800
             before:bg-accent-200 bg-zinc-800 before:rounded-3xl
-            `"
+            `.replace(/[\s]+/g, ' ')"
             :to="accountNav.href"
           >
   
