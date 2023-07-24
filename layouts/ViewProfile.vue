@@ -32,8 +32,7 @@
   
         <aside
           class="
-          flex-[15%]
-          flex md:flex-col sm:gap-4 md:pr-4 py-2 
+          flex-[15%] flex md:flex-col sm:gap-4 md:pr-4 py-2 
           border-[0px] md:flex-[20%] md:mr-8
           "
         >
@@ -54,7 +53,7 @@
             md:before:left-0 md:before:top-[50%] md:before:translate-y-[-50%]
             md:before:h-[65%] md:before:w-[.25rem] hover:bg-zinc-800
             before:bg-accent-200 bg-zinc-800 before:rounded-3xl
-            `"
+            `.replace(/[\s]+/g, ' ')"
             :to="profileNav.href"
           >
   
@@ -65,9 +64,7 @@
               "
             >
               <Icon 
-                class="
-                text-xl text-zinc-100 md:text-zinc-400
-                " 
+                class="text-xl text-zinc-100 md:text-zinc-400" 
                 :name="profileNav.icon"
               />
             </div>
@@ -86,11 +83,7 @@
   
         </aside>
   
-        <div 
-          class="
-          flex-[90%] border-[0px] py-2
-          "
-        >
+        <div class="flex-[90%] border-[0px] py-2">
           <slot/>
         </div>
   
@@ -111,37 +104,34 @@
 
 <script setup>
 
-const { params } = useRoute();
+const { params } = useRouter().currentRoute.value;
+const profileNavs = useState(() => [])
 
-const profileNavs = useState(() => [
-  { 
-    name: 'About', 
-    href: `/admin/profile/${params.referralId}/about`, 
-    icon: 'material-symbols:person-outline-rounded' 
-  },
-  {  
-    name: 'Team', 
-    href: `/admin/profile/${params.referralId}/team`,
-    icon: 'fluent:people-team-24-regular'
-  },
-  { 
-    name: 'Income', 
-    href: `/admin/profile/${params.referralId}/income`,
-    icon: 'bx:dollar'
-  },
-  { 
-    name: 'Rewards', 
-    href: `/admin/profile/${params.referralId}/rewards`,
-    icon: 'ph:trophy-bold'
-  },
-])
-
-
+onMounted(() => {
+  profileNavs.value = [
+    { 
+      name: 'About', 
+      href: `/admin/profile/${params.referralId}/about`, 
+      icon: 'material-symbols:person-outline-rounded' 
+    },
+    {  
+      name: 'Team', 
+      href: `/admin/profile/${params.referralId}/team`,
+      icon: 'fluent:people-team-24-regular'
+    },
+    { 
+      name: 'Income', 
+      href: `/admin/profile/${params.referralId}/income`,
+      icon: 'bx:dollar'
+    },
+    { 
+      name: 'Rewards', 
+      href: `/admin/profile/${params.referralId}/rewards`,
+      icon: 'ph:trophy-bold'
+    },
+  ]
+})
 
 
 </script>
 
-
-<style>
-
-</style>
