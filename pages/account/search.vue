@@ -107,8 +107,7 @@ const submitSearchQuery = async (value) => {
     
     setPopupMessage(error.value?.statusMessage);
     if(data.value) {
-      useRoute().params.referralId = data.value.vieweeReferralId
-      return navigateTo(data.value.redirectTo);
+      return useRouter().push(data.value.redirectTo)
     }
 
   } catch (err) {
