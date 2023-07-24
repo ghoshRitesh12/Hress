@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "hress",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -24,7 +24,7 @@
     "@vee-validate/nuxt": "^4.9.6",
     "@vee-validate/yup": "^4.9.6",
     "bcrypt": "^5.1.0",
-    "mongoose": "^7.1.1",
+    "mongoose": "^7.4.0",
     "nodemailer": "^6.9.3",
     "yup": "^1.2.0"
   }
