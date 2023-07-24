@@ -34,7 +34,6 @@ export default eventHandler(async (event) => {
     
     return {
       redirectTo: `/admin/profile/${foundUser.referralId}/about`,
-      vieweeReferralId: foundUser.referralId
     }
 
   } catch (err) {
