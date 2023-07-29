@@ -91,6 +91,9 @@ definePageMeta({
   .terms-wrap * {
     text-decoration: none;
   }
+  .terms-wrap :deep(p *) {
+    text-decoration: none;
+  }
   .terms-wrap :deep(p) {
     @apply mb-4 text-[.95rem] text-zinc-300;
   }

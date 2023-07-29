@@ -91,6 +91,9 @@ definePageMeta({
   .cookie-policy-wrap * {
     text-decoration: none;
   }
+  .cookie-policy-wrap :deep(p *) {
+    text-decoration: none;
+  }
   .cookie-policy-wrap :deep(p) {
     @apply mb-4 text-[.95rem] text-zinc-300;
   }
