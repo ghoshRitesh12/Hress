@@ -128,18 +128,20 @@ All eligible trainers will get **2% A.T.O** incentive. Management will choose tr
 
   <div
     class="
-    absolute bottom-0 text-[1.02rem] leading-[1]
+    absolute bottom-0 text-[1.02rem] leading-[1.4]
     text-white w-full rounded-br-[1.25rem]
     rounded-bl-[1.25rem] 
     "
     style="padding: 1.5rem 1rem 1rem; background: linear-gradient(to bottom, transparent 1%, black 100%);"
   >
     Professors will receive a monthly incentive of <strong>1% (A.T.O)</strong>
+    <br/>
   </div>
 </div>
 <br/>
 
-Any **affiliated** or **non affiliated member** will be chosen as a professor after passing the eligibility test conducted by the **management**.
+Senior professors will receive a monthly incentive of **2% (A.T.O)**<br/>
+[Terms and Conditions](https://hress.in/terms) apply.
 
 ## 6. Achiever's Rewards
 
