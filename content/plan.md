@@ -107,12 +107,12 @@ Development Incentives are always **monthly**.
     "
     style="padding: 1.5rem 1rem 1rem; background: linear-gradient(to bottom, transparent 1%, black 100%);"
   >
-    Trainers will receive a monthly incentive of <strong>2% (A.T.O)</strong>
+    Trainers will receive a monthly incentive of <strong>1% (A.T.O)</strong>
   </div>
 </div>
 <br/>
 
-All eligible trainers will get **2% A.T.O** incentive. Management will choose trainers based on their performance.
+All eligible trainers will get **1% A.T.O** incentive. Management will choose trainers based on their performance.
 
 ## 5. Professor Incentives
 
