@@ -7,12 +7,9 @@ export default eventHandler(async (event) => {
     await nativeAuthenticate(event);
     nativeAuthorize(event);
 
-    const queryFields = [
-      'role', 'referralId', 
-    ];
+    const queryFields = ['role', 'referralId'];
     
     const body = await readBody(event);
-    console.log(body);
     await serverSearchProfileSchema.validate(body);
 
     const foundUser = await User.findOne({ referralId: body.referralId }, queryFields)
