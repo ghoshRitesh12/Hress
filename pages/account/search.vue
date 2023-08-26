@@ -27,10 +27,7 @@
       <VForm
         @submit="submitSearchQuery"
         :validation-schema="clientSearchProfileSchema"
-        class="
-        flex items-start gap-6 my-4
-        flex-col
-        "
+        class="flex items-start gap-6 my-4 flex-col"
       >
 
         <div 
@@ -39,12 +36,12 @@
           "
         >
           <VField
-            type="email" 
+            type="text" 
             placeholder="Referral id goes here"
             name="referralId" maxlength="10"
             required autocorrect="false"
             class="
-            px-4 py-3 rounded-xl bg-zinc-800 
+            px-4 py-3 rounded-xl bg-zinc-800 placeholder:text-[.95rem]
             focus:outline-none focus:outline-green-300
             focus:outline-1 focus:outline-offset-0 w-full
             "
@@ -64,9 +61,9 @@
             type="submit"
             class="
             w-full bg-accent-200 hover:bg-green-400
-            px-5 py-2 sm:py-[.6rem] rounded-2xl
+            px-5 py-2 sm:py-[.6rem] rounded-xl
             text-[.95rem] font-semibold text-primary-900
-            transition ease-in duration-100 
+            transition ease-in duration-100 active:scale-95
             "
           >
             Go to profile

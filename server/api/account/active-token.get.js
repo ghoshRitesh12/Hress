@@ -1,5 +1,5 @@
-import User from "~/server/models/User.model"
-import { serverSearchProfileSchema } from "~/utils/searchProfileSchema";
+import User from "~/server/models/User.model";
+import ActiveToken from "~/server/models/ActiveToken.model";
 import { nativeAuthenticate, nativeAuthorize } from "~/server/helpers/middleware/native.auth";
 
 export default eventHandler(async (event) => {
@@ -7,12 +7,7 @@ export default eventHandler(async (event) => {
     await nativeAuthenticate(event);
     nativeAuthorize(event);
 
-    const queryFields = ['role', 'referralId'];
-    
-    const body = await readBody(event);
-    await serverSearchProfileSchema.validate(body);
-
-    const foundUser = await User.findOne({ referralId: body.referralId }, queryFields)
+    const foundUser = await User.findOne({ 'info.email': event?.user?.email }, '_id')
       .readConcern('majority')
     if(!foundUser) {
       return sendError(event, createError({
@@ -21,16 +16,14 @@ export default eventHandler(async (event) => {
       }))
     }
     
-    if(foundUser.role === 'admin') {
-      return sendError(event, createError({
-        statusCode: 400,
-        statusMessage: "Already an admin"
-      }))
-    }
-    
-    
+    const tokenQueryFields = ["usedBy", "token", "issuedAt"];
+    const adminActiveTokens = await ActiveToken.find(
+      { issuedBy: `${foundUser._id}` }, 
+      tokenQueryFields
+    ).readConcern('majority');
+
     return {
-      redirectTo: `/admin/profile/${foundUser.referralId}/about`,
+      tokens: adminActiveTokens
     }
 
   } catch (err) {
