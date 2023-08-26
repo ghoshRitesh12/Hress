@@ -1,13 +1,12 @@
-import User from "../../models/User.model";
 import Otp from "../../models/Otp.model";
+import User from "../../models/User.model";
+import ActiveToken from "~/server/models/ActiveToken.model";
 import { hash } from "bcrypt";
 import { startSession } from "mongoose";
 import { serverSignupSchema } from "~/utils/signupSchema";
 import { getIncentive, isRankValid } from "../../helpers/utils.js";
-import { performance } from "perf_hooks";
 
 export default eventHandler(async (event) => {
-  const start = performance.now();
   const signupSession = await startSession();
   signupSession.startTransaction({
     readConcern: 'snapshot',
@@ -28,7 +27,7 @@ export default eventHandler(async (event) => {
         statusMessage: 'Otp has expired, try 10 mins later',
       }))
     }
-    if(tempUser.otp !== parseInt(body.otp)) {
+    if(tempUser.otp !== Number(body.otp)) {
       await signupSession.abortTransaction();
       return sendError(event, createError({
         statusCode: 403, 
@@ -105,7 +104,27 @@ export default eventHandler(async (event) => {
       }
     }
 
-    
+    let isAccountActive = false;
+    let foundActiveToken = null;
+    if(body.activeToken) {
+      foundActiveToken = await ActiveToken.findOne(
+        { token: body.activeToken }, 
+        ['usedBy']
+      ).session(signupSession) || null;
+
+      // used active token
+      if(foundActiveToken?.usedBy) {
+        await signupSession.abortTransaction();
+        return createError({
+          statusCode: 403,
+          statusMessage: "Your active token has expired"
+        })
+      }
+  
+      isAccountActive = foundActiveToken ? true : false;
+    }
+
+
     const newUserInfo = [{
       info: {
         name: body.fullname,
@@ -113,6 +132,7 @@ export default eventHandler(async (event) => {
       },
       courseType: body.course,
       verified: true,
+      active: isAccountActive,
       password: await hash(
         body.password, parseInt(useRuntimeConfig().PWD_SALT)
       ),
@@ -120,6 +140,12 @@ export default eventHandler(async (event) => {
     }]
     const newUser = (await User.create(newUserInfo, { session: signupSession }))[0];
 
+    
+    // setting active token usedBy
+    if(foundActiveToken) {
+      foundActiveToken.usedBy = newUser.referralId
+      await foundActiveToken.save({ session: signupSession })
+    }
 
     // for each ancestor
     const ancestorsQueryFields = ['referralId', 'role', 'levels', 'rank'];
@@ -188,8 +214,6 @@ export default eventHandler(async (event) => {
     await User.bulkWrite(updateOperations, { session: signupSession })
     await signupSession.commitTransaction()
 
-    const end = performance.now()
-    console.log('\n', end-start, '\n')
 
     setResponseStatus(event, 201);
     return {
