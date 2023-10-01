@@ -10,7 +10,7 @@ description: Hress's educational plan on Crypto & Asset Training and Trading, wh
 
 2. [Level Incentives](#_2-level-incentives)
 
-3. [Development Incentives](#_3-development-incentives)
+3. [Car Fund](#_3-car-fund)
 
 4. [Trainer Incentives](#_4-trainer-incentives)
 
@@ -18,7 +18,9 @@ description: Hress's educational plan on Crypto & Asset Training and Trading, wh
 
 6. [Achiever's Rewards](#_6-achievers-rewards)
 
-7. [Rules, Regulations & Package](#_7-rules-regulations-package)
+7. [Flush-out Level Rewards](#_7-flush-out-level-rewards)
+
+8. [Rules, Regulations & Package](#_8-rules-regulations-package)
 
 ## 1. Direct Referral Incentives
 
@@ -53,45 +55,31 @@ description: Hress's educational plan on Crypto & Asset Training and Trading, wh
 |  2nd  |    4    |     6%     |        Runner        |
 |  3rd  |    8    |     3%     |    Bronze Trader     |
 |  4th  |   16    |     2%     |    Silver Trader     |
-|  5th  |   32    |     1%     |     Gold Trader      |
-|  6th  |   64    |     1%     |   Platinum Trader    |
-|  7th  |   128   |     1%     |    Emerald Trader    |
-|  8th  |   256   |     1%     |    Saphire Trader    |
+|  5th  |   32    |     2%     |     Gold Trader      |
+|  6th  |   64    |     2%     |   Platinum Trader    |
+|  7th  |   128   |     2%     |    Emerald Trader    |
+|  8th  |   256   |    1.5%    |    Saphire Trader    |
 |  9th  |   512   |     1%     |     Ruby Trader      |
-| 10th  |  1024   |    0.5%    |    Diamond Trader    |
-| 11th  |  2048   |    0.5%    | Black Diamond Trader |
-| 12th  |  4096   |    0.5%    | Blue Diamond Trader  |
-| 13th  |  8192   |    0.5%    |  Red Diamond Trader  |
-| 14th  |  16384  |    0.5%    |     Crown Trader     |
-| 15th  |  32768  |    0.5%    |   Crown Ambassador   |
+| 10th  |  1024   |     1%     |    Diamond Trader    |
+| 11th  |  2048   |     1%     | Black Diamond Trader |
+| 12th  |  4096   |     1%     | Blue Diamond Trader  |
+| 13th  |  8192   |     0%     |  Red Diamond Trader  |
+| 14th  |  16384  |     0%     |     Crown Trader     |
+| 15th  |  32768  |     0%     |   Crown Ambassador   |
 
 </div>
 
-## 3. Development Incentives
+## 3. Car Fund
 
-Development Incentives are always **monthly**.
+Car Funds are always **monthly**.
 
-<div class="overflow-x-scroll mt-4 pb-2">
-
-| Sr.no |         Rank         | Incentives | Affiliate Turn Over |
-| :---: | :------------------: | :--------: | :-----------------: |
-|   A   |    Emerald Trader    |     1%     |        A.T.O        |
-|   B   |    Saphire Trader    |     1%     |        A.T.O        |
-|   C   |     Ruby Trader      |     1%     |        A.T.O        |
-|   D   |    Diamond Trader    |     1%     |        A.T.O        |
-|   E   | Black Diamond Trader |    0.5%    |        A.T.O        |
-|   F   | Blue Diamond Trader  |    0.5%    |        A.T.O        |
-|   G   |  Red Diamond Trader  |    0.5%    |        A.T.O        |
-|   H   |     Crown Trader     |    0.5%    |        A.T.O        |
-|   I   |   Crown Ambassador   |    0.5%    |        A.T.O        |
-
-</div>
+Car Fund = (Company Monthly Turnover x 3%) / All Eligible Achievers
 
 ## 4. Trainer Incentives
 
 <div class="relative break-words">
   <img 
-    src="https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148865393.jpg?w=996&t=st=1691774026~exp=1691774626~hmac=7ac240510632e2287cbba511d260134d95f5671bf57a783bcc436345fed6668f"
+    src="https://st4.depositphotos.com/15034638/23299/v/450/depositphotos_232996732-stock-illustration-blockchain-technology-background-blockchain-vector.jpg"
     class="rounded-[1.25rem] max-h-[20rem] max-w-full w-full"
     decoding="async"
     fetchpriority="high"
@@ -101,24 +89,25 @@ Development Incentives are always **monthly**.
 
   <div
     class="
-    absolute bottom-0 text-[1.02rem] leading-[1]
+    absolute top-0 lg:text-[1.2rem] lg:leading-[1.4]
     text-white w-full rounded-br-[1.25rem]
-    rounded-bl-[1.25rem] 
+    rounded-bl-[1.25rem] leading-[1.2]
     "
-    style="padding: 1.5rem 1rem 1rem; background: linear-gradient(to bottom, transparent 1%, black 100%);"
+    style="padding: 1.5rem 1rem 1rem;"
   >
-    Trainers will receive a monthly incentive of <strong>1% (A.T.O)</strong>
+    Trainers will receive a monthly incentive of <strong>1% (C.T.O)</strong>
+    <br/><br/>
+    All eligible trainers will get <strong>1% C.T.O</strong> incentive. 
+    <br/>
+    Management will choose trainers based on their performance.
   </div>
 </div>
-<br/>
-
-All eligible trainers will get **1% A.T.O** incentive. Management will choose trainers based on their performance.
 
 ## 5. Professor Incentives
 
 <div class="relative break-words">
   <img 
-    src="https://img.freepik.com/free-vector/digital-technology-with-hexagonal-shapes_1017-29805.jpg?w=1480&t=st=1691774328~exp=1691774928~hmac=67fbe04872e43f354f588ac6af113bb93b8b1c0bb8f9171db082c8469146b48d"
+    src="https://st4.depositphotos.com/15034638/22663/v/450/depositphotos_226631174-stock-illustration-blockchain-technology-background-bussines-concept.jpg"
     class="rounded-[1.25rem] max-h-[20rem] max-w-full w-full"
     decoding="async"
     fetchpriority="high"
@@ -127,60 +116,71 @@ All eligible trainers will get **1% A.T.O** incentive. Management will choose tr
   />
 
   <div
-    class="
-    absolute bottom-0 text-[1.02rem] leading-[1.4]
+    class=" 
+    absolute top-0 lg:text-[1.2rem] lg:leading-[1.4]
     text-white w-full rounded-br-[1.25rem]
-    rounded-bl-[1.25rem] 
+    rounded-bl-[1.25rem] leading-[1.2]
     "
-    style="padding: 1.5rem 1rem 1rem; background: linear-gradient(to bottom, transparent 1%, black 100%);"
+    style="padding: 1.5rem 1rem 1rem;"
   >
-    Professors will receive a monthly incentive of <strong>1% (A.T.O)</strong>
-    <br/>
+    Professors will receive a monthly incentive of <strong>1% (C.T.O)</strong>
+    <br/> <br/>
+    Senior professors will receive a monthly incentive of <strong>2% (C.T.O)</strong>
+    <br/><br/>
+    <a class="text-accent-100" href="https://hress.in/terms">Terms and Conditions</a> apply.
   </div>
 </div>
-<br/>
-
-Senior professors will receive a monthly incentive of **2% (A.T.O)**<br/>
-[Terms and Conditions](https://hress.in/terms) apply.
 
 ## 6. Achiever's Rewards
 
 <div class="overflow-x-scroll mt-4 pb-2">
 
-| Sr.no |         Rank         | Members |              Rewards              |
-| :---: | :------------------: | :-----: | :-------------------------------: |
-|   A   |    Bronze Trader     |    8    |            Digha Tour             |
-|   B   |    Silver Trader     |   16    |     Gangtok / Darjeeling Tour     |
-|   C   |     Gold Trader      |   32    |          Android Mobile           |
-|   D   |   Platinum Trader    |   64    |           Thailand Tour           |
-|   E   |    Emerald Trader    |   128   |      Car (D.P - Rs. 75, 000)      |
-|   F   |    Saphire Trader    |   256   |            Dubai Tour             |
-|   G   |     Ruby Trader      |   512   |            Europe Tour            |
-|   H   |    Diamond Trader    |  1024   |     Car worth Rs. 5, 00, 000      |
-|   I   | Black Diamond Trader |  2048   |            World Tour             |
-|   J   | Blue Diamond Trader  |  4096   | Luxury Car (D.P - Rs. 6, 00, 000) |
-|   K   |  Red Diamond Trader  |  8192   | Luxury Car worth Rs. 30, 00, 000  |
-|   L   |     Crown Trader     |  16384  |    Flat worth Rs. 40, 00, 000     |
-|   M   |   Crown Ambassador   |  32768  |    Bungalow worth Rs. 1 Crore     |
+| Rank no |      Rank name       | Members |           Rank Rewards            |
+| :-----: | :------------------: | :-----: | :-------------------------------: |
+|    3    |    Bronze Trader     |    8    |            Digha Tour             |
+|    4    |    Silver Trader     |   16    |     Gangtok / Darjeeling Tour     |
+|    5    |     Gold Trader      |   32    |          Android Mobile           |
+|    6    |   Platinum Trader    |   64    |           Thailand Tour           |
+|    7    |    Emerald Trader    |   128   |      Car (D.P - Rs. 70, 000)      |
+|    8    |    Saphire Trader    |   256   |            Dubai Tour             |
+|    9    |     Ruby Trader      |   512   |            Europe Tour            |
+|   10    |    Diamond Trader    |  1024   |            World Tour             |
+|   11    | Black Diamond Trader |  2048   | Luxury Car (D.P - Rs. 6, 00, 000) |
+|   12    | Blue Diamond Trader  |  4096   |    Flat worth Rs. 30, 00, 000     |
 
 </div>
 
-## 7. Rules, Regulations & Package
+## 7. Flush-out Level Rewards
 
-**BASIC TRAINING: ₹ 12, 000** <br/>
+<div class="text-zinc-300">
+  Members present in Level 12 and below will not be taken into consideration for Flush-out rewards.
+</div>
+
+<div class="overflow-x-scroll mt-4 pb-2">
+
+| Sr.no |       Rank       |                         Eligibility                          |              Rewards              |
+| :---: | :--------------: | :----------------------------------------------------------: | :-------------------------------: |
+|   A   | Flush-out Rank 1 | Members present in Level (13 + 14) should be 15, 000 or more | Luxury Car worth Rs. 30, 00, 000  |
+|   B   | Flush-out Rank 2 |  Members present in only Level 15 should be 30, 000 or more  | Bungalow worth Rs. 1, 00, 00, 000 |
+
+</div>
+
+## 8. Rules, Regulations & Package
+
+**BASIC TRAINING: ₹ 12, 000** \
 **ADVANCE TRAINING: ₹ 20, 000**
 
 **RULES :**
 
 - All members may spill over directly to any level.
 
-- Development bonus will be continued for up to 6 months of inactivity.
+- Car fund will be continued for up to 6 months of inactivity.
 
-- Organization will pay monthly incentives by INR or Crypto.
+- Company will pay monthly incentives by INR or Crypto.
 
 - Any member can join with only one Pan Card per ID.
 
 - This plan maybe subject to changes in the future, for which the organization will not be liable by any means.
 
-- If organization by any chance notices any fraudulent activity,
+- If company by any chance notices any fraudulent activity,
   then that ID will be terminated with immediate effect.
