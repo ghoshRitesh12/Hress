@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose';
-import { randomUUID } from 'crypto';
+import { Schema, model } from "mongoose";
+import { randomUUID } from "crypto";
 
-const collectionName = 'ActiveToken';
+const collectionName = "ActiveTokens";
 
 const activeTokenSchema = new Schema({
   issuedBy: {
@@ -14,7 +14,7 @@ const activeTokenSchema = new Schema({
   },
   token: {
     type: String,
-    default: function() {
+    default: function () {
       const tokenLength = 18;
       return randomUUID().slice(0, tokenLength)
     }
@@ -22,13 +22,13 @@ const activeTokenSchema = new Schema({
   issuedAt: {
     type: Number,
     default: () => Date.now()
-  }  
+  }
 },
   {
     collection: collectionName,
     writeConcern: {
-      w: 'majority',
-      j: true
+      w: "majority",
+      journal: true,
     }
   }
 )
