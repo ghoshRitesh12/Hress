@@ -1,77 +1,46 @@
 <template>
-
-  <div 
-    class="
-    py-4 px-4 sm:px-6 rounded-2xl 
-    bg-zinc-800/80 text-center text-[1.02rem]
-    border-[0px] group
-    "
+  <div
+    class="py-4 px-4 sm:px-6 rounded-2xl bg-zinc-800/80 text-center text-[1.02rem] border-[0px] group"
   >
-
-    <div 
-      v-if="props.rank < 5" 
-      class="flex items-center gap-4"
-    >
-      <div 
-        class="
-        text-2xl flex-shrink-0 group-hover:scale-[1.15]
-        transition ease-in duration-100 select-none
-
-        "
+    <div class="flex items-center gap-4">
+      <div
+        class="text-2xl flex-shrink-0 group-hover:scale-[1.15] transition ease-in duration-100 select-none"
       >
-        😶
+        {{ props.rank < 3 ? "😶" : "🎉" }}
       </div>
       <div>
-        No rewards acquired yet
+        {{ rewardsMap[props.rank] }}
       </div>
     </div>
-
-    <div v-else class="flex items-center gap-4">
-      <div 
-        class="
-        text-2xl flex-shrink-0 group-hover:scale-[1.15]
-        transition ease-in duration-100 select-none
-        "
-      >
-        🎉
-      </div>
-      <div>
-        {{ rewardsMap[props.rank - 5] }}
-      </div>
-    </div>
-
   </div>
-
 </template>
 
-
 <script setup>
-
 const props = defineProps({
   rank: {
     type: Number,
-    default: 1
-  }
-})
+    default: 1,
+  },
+});
 
 const rewardsMap = [
-  "Tour & Training",
-  "Android Mobile (min Rs. 15, 000)",
-  "Two Wheeler (D.P - Rs. 30, 000)",
-  "Four Wheeler (D.P - Rs. 1, 00, 000)",
-  "National Tour",
-  "International Tour",
-  "0.25% CASH REWARDS",
-  "0.25% CASH REWARDS",
-  "0.25% CASH REWARDS",
-  "0.15% CASH REWARDS",
-  "0.10% CASH REWARDS"
-]
+  "No rewards acquired yet", // 0
+  "No rewards acquired yet", // 1
+  "No rewards acquired yet", // 2
 
+  "Digha Tour", // 3
+  "Gangtok / Darjeeling Tour", // 4
+  "Android Mobile", // 5
+  "Thailand Tour", // 6
+  "Car (D.P - Rs. 70, 000)", // 7
+  "Dubai Tour", // 8
+  "Europe Tour", // 9
+  "World Tour", // 10
+  "Luxury Car (D.P - Rs. 6, 00, 000)", // 11
+  "Flat worth Rs. 30, 00, 000", // 12
 
+  "To be decided by admins", // 13
+  "To be decided by admins", // 14
+  "To be decided by admins", // 15
+];
 </script>
-
-
-<style>
-
-</style>
