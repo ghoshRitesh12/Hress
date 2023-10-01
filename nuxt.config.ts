@@ -1,14 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    "@nuxtjs/tailwindcss",
-    "@nuxt/image-edge",
     "nuxt-icon",
     "@nuxt/content",
-    "nuxt-simple-sitemap",
-    "nuxt-simple-robots",
+    "@nuxt/image-edge",
     "@vee-validate/nuxt",
+    "nuxt-simple-robots",
     "@sidebase/nuxt-auth",
+    "@nuxtjs/tailwindcss",
+    "nuxt-simple-sitemap",
   ],
   runtimeConfig: {
     DATABASE_URI_DEV: process.env.DATABASE_URI_DEV,
@@ -22,6 +22,9 @@ export default defineNuxtConfig({
     AUTH_SECRET: process.env.NEXTAUTH_SECRET,
     STATE_SECRET: process.env.STATE_SECRET,
     DB_STATE_SECRET: process.env.DB_STATE_SECRET,
+
+    HRESS_SERVICE_SECRET: process.env.HRESS_SERVICE_SECRET,
+    HRESS_SERVICE_DOMAIN: process.env.HRESS_SERVICE_DOMAIN,
 
     indexable: true,
     public: {
@@ -70,8 +73,8 @@ export default defineNuxtConfig({
     "/terms": { prerender: true },
     "/privacy": { prerender: true },
     "/cookie-policy": { prerender: true },
-    "/account/**": { ssr: false },
-    "/admin/**": { ssr: false },
+    // "/account/**": { ssr: true },
+    // "/admin/**": { ssr: true },
   },
   robots: {
     disallow: ["/api", "/account", "/admin"],
