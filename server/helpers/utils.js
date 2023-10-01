@@ -1,12 +1,12 @@
 /**
  * @param {number} level - level number
  * @returns number - incentive/commission %
- */
+*/
 export const getIncentive = (level) => {
   level = parseInt(level);
   let incentive;
-  
-  switch(level) {
+
+  switch (level) {
     case 1:
       incentive = 20;
       break;
@@ -17,29 +17,25 @@ export const getIncentive = (level) => {
       incentive = 3;
       break;
     case 4:
-      incentive = 2;
-      break;
-    case 5: 
+    case 5:
     case 6:
     case 7:
-    case 8:
-    case 9:
-      incentive = 1;
+      incentive = 2;
       break;
+    case 8:
+      incentive = 1.5;
+      break;
+    case 9:
     case 10:
     case 11:
     case 12:
-    case 13:
-    case 14:
-    case 15:
-      incentive = 0.5;
+      incentive = 1;
       break;
     default:
       incentive = 0;
   }
 
   return incentive;
-
 }
 
 
@@ -47,22 +43,12 @@ export const getIncentive = (level) => {
  * @param {number} level - level number
  * @param {number} members - members of that level
  * @returns boolean - level wise rank is valid or not
- */
-export const isRankValid = (level, members) => {
+*/
+export function isRankValid(level, members) {
   level = parseInt(level) || 0;
-  let requiredMembers, rankValid = false;
+  const requiredMembers = 2 ** level;
 
-  if(level < 11) 
-    requiredMembers = 2 ** level;
-  else if(level > 11 && level < 15) 
-    requiredMembers = Math.floor(2 ** level / 1000) * 1000;
-  else 
-    requiredMembers = (Math.floor(2 ** level / 1000) * 1000) - 2000;
-
-  if(members >= requiredMembers )
-    rankValid = true;
-
-  return rankValid;
+  return members >= requiredMembers;
 }
 
 
@@ -72,7 +58,7 @@ export const isRankValid = (level, members) => {
  */
 export const getRankRewards = (rank = 1) => {
   rank = !rank ? 1 : rank;
-  if(rank < 5 || rank > 15) return null;
+  if (rank < 5 || rank > 15) return null;
 
   const rewardsMap = [
     "Tour & Training",
