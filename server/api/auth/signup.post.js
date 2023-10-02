@@ -36,7 +36,7 @@ export default eventHandler(async (event) => {
         statusMessage: "Invalid OTP, try again",
       }))
     }
-    await Otp.deleteOne({ email: body.email }).session(signupSession);
+    await Otp.deleteOne({ email: body.email });
 
 
 
