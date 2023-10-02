@@ -21,22 +21,22 @@ export default eventHandler(async (event) => {
     const body = await readBody(event);
     await serverSignupSchema.validate(body);
 
-    const tempUser = await Otp.findOne({ email: body.email }).session(signupSession);
-    if (!tempUser) {
-      await signupSession.abortTransaction();
-      return sendError(event, createError({
-        statusCode: 401,
-        statusMessage: "Otp has expired, try 10 mins later",
-      }))
-    }
-    if (tempUser.otp !== Number(body.otp)) {
-      await signupSession.abortTransaction();
-      return sendError(event, createError({
-        statusCode: 403,
-        statusMessage: "Invalid OTP, try again",
-      }))
-    }
-    await Otp.deleteOne({ email: body.email });
+    // const tempUser = await Otp.findOne({ email: body.email }).session(signupSession);
+    // if (!tempUser) {
+    //   await signupSession.abortTransaction();
+    //   return sendError(event, createError({
+    //     statusCode: 401,
+    //     statusMessage: "Otp has expired, try 10 mins later",
+    //   }))
+    // }
+    // if (tempUser.otp !== Number(body.otp)) {
+    //   await signupSession.abortTransaction();
+    //   return sendError(event, createError({
+    //     statusCode: 403,
+    //     statusMessage: "Invalid OTP, try again",
+    //   }))
+    // }
+    // await Otp.deleteOne({ email: body.email });
 
 
 
