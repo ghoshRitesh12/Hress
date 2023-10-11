@@ -5,40 +5,45 @@ export default eventHandler(async (event) => {
   try {
     await nativeAuthenticate(event);
 
-    const queryFields = ['ancestors', 'levels', 'active'];
-    const res = { 
-      sponsorer: null, 
+    const userQueryFields = {
+      _id: 0,
+      levels: 1,
+      active: 1,
+      ancestors: 1,
+    }
+
+    const res = {
       levels: [],
+      sponsorer: null,
       userActive: false
     }
+    // return res;
+    const teamPopulateFields = ['info.name', 'rank', 'active', 'referralId']
 
-    const teamPopulateFields = ['info.name', 'rank', 'active']
-    if(event?.user?.role === 'admin') {
-      teamPopulateFields.push('referralId');
-    }
-
-    const foundUser = await User.findOne({ 'info.email': event?.user?.email }, queryFields)
+    const foundUser = await User.findOne({ 'info.email': event?.user?.email })
       .readConcern('majority')
+      .select(userQueryFields)
       .populate({
         path: 'levels.referrals.userRef',
         select: teamPopulateFields
       }).slice('ancestors', -1)
-      .populate({ 
+      .populate({
         path: 'ancestors',
-        select: ['info.name', 'referralId'] 
+        select: ['info.name', 'referralId']
       })
+      .lean();
 
-    if(!foundUser) {
+    if (!foundUser) {
       return sendError(event, createError({
         statusCode: 404,
         statusMessage: 'User not found'
       }))
     }
-    
-    res.userActive = foundUser.active
-    if(!res.userActive) return res;
 
-    res.levels = foundUser.levels
+    res.userActive = foundUser.active
+    if (!res.userActive) return res;
+
+    res.levels = foundUser.levels;
     res.sponsorer = foundUser.ancestors[0];
 
     setResponseStatus(event, 200)
@@ -49,7 +54,7 @@ export default eventHandler(async (event) => {
     console.log(err);
     return sendError(event, createError({
       statusCode: 500,
-      statusMessage: 'Internal Server Error'
+      statusMessage: 'Something went wrong'
     }))
   }
 })
