@@ -8,9 +8,9 @@ export default eventHandler(async (event) => {
     nativeAuthorize(event);
 
     const queryFields = ['info.name', 'referralId'];
-    
+
     const body = await readBody(event);
-    if(typeof body?.quantity !== 'number') {
+    if (typeof body?.quantity !== 'number') {
       return sendError(event, createError({
         statusCode: 400,
         statusMessage: "Invalid payload"
@@ -19,14 +19,15 @@ export default eventHandler(async (event) => {
 
     const foundUser = await User.findOne({ 'info.email': event?.user?.email }, queryFields)
       .readConcern('majority')
-    if(!foundUser) {
+      .lean();
+    if (!foundUser) {
       return sendError(event, createError({
         statusCode: 404,
         statusMessage: "User not found"
       }))
     }
 
-    if(body.quantity <= 0) {
+    if (body.quantity <= 0) {
       return {
         message: "Quantity must be 1 or more"
       };
@@ -34,14 +35,14 @@ export default eventHandler(async (event) => {
 
     const quantity = body.quantity > 30 ? 30 : body.quantity;
     const newActiveTokens = [];
-    for (let i=0; i<quantity; i++) {
+    for (let i = 0; i < quantity; i++) {
       newActiveTokens.push({
         issuedBy: `${foundUser._id}`
       })
     }
 
     await ActiveToken.insertMany(
-      newActiveTokens, 
+      newActiveTokens,
       { ordered: true }
     ).catch(() => {
       return sendError(event, createError({
@@ -51,7 +52,7 @@ export default eventHandler(async (event) => {
     });
 
     return {
-      message: `Generated ${body.quantity} active tokens`,
+      message: `Generated ${body.quantity} active token(s)`,
     }
 
   } catch (err) {

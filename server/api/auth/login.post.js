@@ -14,6 +14,7 @@ export default eventHandler(async (event) => {
 
     const foundUser = await User.findOne({ 'info.email': body.email }, queryFields)
       .readConcern('majority')
+      .lean();
     if (!foundUser) {
       return sendError(event, createError({
         statusCode: 404,
@@ -35,7 +36,6 @@ export default eventHandler(async (event) => {
       }))
     }
 
-    console.log('success response');
     setResponseStatus(event, 200)
     return {
       user: {

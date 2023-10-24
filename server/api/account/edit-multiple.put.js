@@ -8,41 +8,40 @@ export default eventHandler(async (event) => {
 
     const queryFields = [
       'info.phoneNumber', 'info.xlmWalletAddress',
-      'info.country', 'info.cityState', 
+      'info.country', 'info.cityState',
       'info.postalCode', 'info.streetAddress',
       'active', 'verified'
     ];
-    
+
     const body = await readBody(event);
-    console.log(body);
     await serverAnyTimeInfoSchema.validate(body);
 
     const foundUser = await User.findOne({ 'info.email': event?.user?.email }, queryFields)
       .readConcern('majority')
-    if(!foundUser) {
+    if (!foundUser) {
       return sendError(event, createError({
         statusCode: 404,
         statusMessage: 'User not found'
       }))
     }
 
-    if(!foundUser.active || !foundUser.verified) {
+    if (!foundUser.active || !foundUser.verified) {
       return sendError(event, createError({
         statusCode: 403,
         statusMessage: "Account isn't activated"
       }))
     }
 
-    for(const [key, value] of Object.entries(foundUser.info)) {
-      if(body[key] === value || body[key] === '') continue;
+    for (const [key, value] of Object.entries(foundUser.info)) {
+      if (body[key] === value || body[key] === '') continue;
 
-      if(foundUser.info[key]) {
+      if (foundUser.info[key]) {
         foundUser.info[key] = body[key];
       }
     }
 
     await foundUser.save();
-    
+
     return {
       message: 'Profile updated successfully'
     };

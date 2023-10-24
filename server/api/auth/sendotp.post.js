@@ -4,16 +4,16 @@ import { sendEmail } from "~/server/config/email";
 export default eventHandler(async (event) => {
   try {
     const { emailId, fullname } = await readBody(event);
-    if(!emailId || !fullname) {
+    if (!emailId || !fullname) {
       return sendError(event, createError({
         statusCode: 400,
         statusMessage: 'Required credentials not found',
       }))
     }
 
-    if(await Otp.exists({ email: emailId }).readConcern('majority')) {
+    if (await Otp.exists({ email: emailId }).readConcern('majority')) {
       throw sendError(event, createError({
-        statusCode: 409, 
+        statusCode: 409,
         statusMessage: 'Email already exists',
       }))
     }
@@ -45,10 +45,10 @@ export default eventHandler(async (event) => {
     }
 
   } catch (err) {
-    console.log(err);    
+    console.log(err);
     sendError(event, createError({
       statusCode: 500,
-      statusMessage: 'Internal Server Error'
+      statusMessage: 'Something went wrong'
     }))
   }
 })

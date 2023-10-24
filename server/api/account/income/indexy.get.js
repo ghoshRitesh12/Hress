@@ -1,33 +1,32 @@
 import User from "~/server/models/User.model";
-import { serverSearchProfileSchema } from "~/utils/searchProfileSchema";
-import { nativeAuthenticate, nativeAuthorize } from "~/server/helpers/middleware/native.auth";
+import { nativeAuthenticate } from "~/server/helpers/middleware/native.auth";
 
 export default eventHandler(async (event) => {
   try {
     await nativeAuthenticate(event);
-    nativeAuthorize(event);
 
-    const paramReferralId = event?.context?.params?.referralId;
-    await serverSearchProfileSchema.validate({
-      referralId: paramReferralId
-    }).catch(() => {
-      throw createError({
-        statusCode: 400,
-        statusMessage: 'Referral id required',
-      })
-    })
-
-    const queryFields = [
-      'levels', 'rank', 'active',
-    ];
+    const queryFields = {
+      _id: 0,
+      levels: 1,
+      rank: 1,
+      active: 1
+    };
     const res = {
       levels: [],
       totalLevelIncome: 0,
+      userActive: false
     }
+    const maxIncomeLevel = 15;
 
-    const foundUser = await User.findOne({ referralId: paramReferralId }, queryFields)
+    // const currentMonth = 7 || new Date().getMonth() + 1;
+    // const currentYear = new Date().getFullYear();
+
+    const foundUser = await User.findOne({ 'info.email': event?.user?.email })
+      .select(queryFields)
       .readConcern('majority')
       .populate({ path: 'levels.referrals.userRef', select: ['courseType', 'active'] })
+      .slice('levels', maxIncomeLevel)
+      .lean();
 
     if (!foundUser) {
       return sendError(event, createError({
@@ -36,11 +35,14 @@ export default eventHandler(async (event) => {
       }))
     }
 
-    res.levels = foundUser.levels.slice(0, 15).map(level => {
+    res.userActive = foundUser.active
+    if (!res.userActive) return res;
+
+    for (const level of foundUser.levels) {
       let levelIncome = 0;
 
-      level.referrals.map(referral => {
-        if (!referral?.userRef?.active || referral.commission <= 0) return;
+      for (const referral of level.referrals) {
+        if (!referral?.userRef?.active || referral.commission <= 0) continue;
 
         const joiningFees = (
           referral.userRef.courseType === 'advance' ?
@@ -54,30 +56,28 @@ export default eventHandler(async (event) => {
           const totalCommission = (joiningFees * (spilloverCommission / 100)) + (joiningFees * (levelCommission / 100))
 
           levelIncome += totalCommission
-          return;
+          continue;
         }
 
         levelIncome += (joiningFees * (referral.commission / 100))
-      })
+      }
 
       res.totalLevelIncome += levelIncome
-
-      return {
+      res.levels.push({
         levelNo: level.levelNo,
         levelMembers: level.referrals.length,
         levelIncome
-      }
-    })
+      })
+    }
 
     setResponseStatus(event, 200)
-    return res
-
+    return res;
 
   } catch (err) {
     console.log(err);
     return sendError(event, createError({
       statusCode: err?.statusCode || 500,
-      statusMessage: err?.statusMessage || 'Something Went Wrong',
+      statusMessage: err?.statusMessage || 'Something Went Wrong'
     }))
   }
 })

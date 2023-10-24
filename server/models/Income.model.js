@@ -22,7 +22,8 @@ const incomeSchema = new Schema({
   },
   incomes: {
     type: Map,
-    of: [Number] // 0th levelIncome, 1st carFund
+    of: [Number], // 0th levelIncome, 1st carFund
+    index: true,
   }
 },
   {

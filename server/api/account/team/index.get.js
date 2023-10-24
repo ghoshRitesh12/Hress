@@ -5,6 +5,12 @@ export default eventHandler(async (event) => {
   try {
     await nativeAuthenticate(event);
 
+    const res = {
+      sponsorer: null,
+      userActive: false,
+      selectLevels: []
+    }
+
     const foundUser = await User.aggregate([
       {
         $match: {
@@ -14,8 +20,15 @@ export default eventHandler(async (event) => {
       {
         $project: {
           _id: 0,
-          userActive: "$active",
-          selectIncomeLevels: {
+          active: 1,
+          ancestor: {
+            $cond: {
+              if: { $eq: ["$active", true] },
+              then: { $arrayElemAt: ["$ancestors", -1] },
+              else: null
+            }
+          },
+          selectLevels: {
             $cond: {
               if: { $eq: ["$active", true] },
               then: {
@@ -38,12 +51,42 @@ export default eventHandler(async (event) => {
           }
         }
       },
+      {
+        $lookup: {
+          from: "Users",
+          foreignField: "_id",
+          localField: "ancestor",
+          as: "ancestors",
+          pipeline: [
+            {
+              $project: {
+                _id: 0,
+                'info.name': 1,
+                'referralId': 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        $project: {
+          sponsorer: {
+            $cond: {
+              if: { $isArray: "$ancestors" },
+              then: { $arrayElemAt: ["$ancestors", 0] },
+              else: null
+            }
+          },
+          userActive: "$active",
+          selectLevels: 1,
+        }
+      }
     ]).readConcern("majority");
 
     if (!foundUser || foundUser?.length === 0) {
       return sendError(event, createError({
         statusCode: 404,
-        statusMessage: "User not found"
+        statusMessage: 'User not found'
       }))
     }
 
@@ -53,8 +96,8 @@ export default eventHandler(async (event) => {
   } catch (err) {
     console.log(err);
     return sendError(event, createError({
-      statusCode: err?.statusCode || 500,
-      statusMessage: err?.statusMessage || "Something Went Wrong"
+      statusCode: 500,
+      statusMessage: "Something Went Wrong"
     }))
   }
 })

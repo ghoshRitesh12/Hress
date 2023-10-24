@@ -80,6 +80,11 @@ if (props.context === "accountView") {
         icon: "material-symbols:key-outline-rounded",
       },
       {
+        name: "Expenditure",
+        href: "/account/expenditure",
+        icon: "ph:wallet-bold",
+      },
+      {
         name: "Search",
         href: "/account/search",
         icon: "material-symbols:person-search",

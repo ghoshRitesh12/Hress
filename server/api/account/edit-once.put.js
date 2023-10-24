@@ -18,14 +18,14 @@ export default eventHandler(async (event) => {
 
     const foundUser = await User.findOne({ 'info.email': event?.user?.email }, queryFields)
       .readConcern('majority')
-    if(!foundUser) {
+    if (!foundUser) {
       return sendError(event, createError({
         statusCode: 404,
         statusMessage: 'User not found'
       }))
     }
 
-    if(!foundUser.active || !foundUser.verified) {
+    if (!foundUser.active || !foundUser.verified) {
       return sendError(event, createError({
         statusCode: 403,
         statusMessage: "Account isn't activated"
@@ -37,27 +37,25 @@ export default eventHandler(async (event) => {
       bankAccountNo: body.bankAccountNo,
       ifsc: body.ifsc
     }).catch((err) => {
-      console.log('eee: ', err);
-
       throw sendError(event, createError({
         statusCode: 400,
-        statusMessage: err.message || 'Something went wrong'
+        statusMessage: err?.message || 'Something went wrong'
       }))
     })
 
-    for(const [key, value] of Object.entries(foundUser.info)) {
-      if(value) return sendError(event, createError({
+    for (const [key, value] of Object.entries(foundUser.info)) {
+      if (value) return sendError(event, createError({
         statusCode: 409,
         statusMessage: 'One time data already present'
       }))
 
-      if(key in body) {
+      if (key in body) {
         foundUser.info[key] = body[key]
       }
     }
 
     await foundUser.save();
-    
+
     return {
       message: 'Profile updated successfully'
     };

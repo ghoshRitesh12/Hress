@@ -18,7 +18,7 @@
         <AccountNavbar context="profileView" />
 
         <div class="flex-[70%] lg:flex-[90%] py-2">
-          <slot />
+          <slot :key="$route.params.referralId" />
         </div>
       </div>
     </div>

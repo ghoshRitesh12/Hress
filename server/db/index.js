@@ -11,12 +11,12 @@ export default async (_nitroApp) => {
     );
 
     console.log('💾 connected to DB');
-    
+
   } catch (err) {
     console.log('Could not connect to the db');
-    
+
     throw createError({
-      message:  'Could not connect to the db',
+      message: 'Could not connect to the db',
       statusCode: 500
     })
   }

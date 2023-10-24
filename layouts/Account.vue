@@ -17,7 +17,7 @@
       >
         <AccountNavbar context="accountView" />
 
-        <div class="flex-[70%] lg:flex-[90%] py-2">
+        <div class="md:flex-[60%] lg:flex-[75%] xl:flex-[90%] py-2">
           <slot />
         </div>
       </div>
