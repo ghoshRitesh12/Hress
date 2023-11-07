@@ -8,10 +8,11 @@
     </div>
 
     <div class="rounded-2xl w-full">
-      <nuxt-img
+      <NuxtImg
         src="/images/plan.jpg"
         alt="privacy policy illustration image"
         format="jpg"
+        placeholder
         width="1200"
         height="700"
         decoding="async"
