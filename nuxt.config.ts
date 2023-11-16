@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   modules: [
     "nuxt-icon",
     "@nuxt/content",
-    "@nuxt/image-edge",
+    "@nuxt/image",
     "@vee-validate/nuxt",
     "nuxt-simple-robots",
     "@sidebase/nuxt-auth",
@@ -25,11 +25,19 @@ export default defineNuxtConfig({
 
     HRESS_SERVICE_SECRET: process.env.HRESS_SERVICE_SECRET,
     HRESS_SERVICE_DOMAIN: process.env.HRESS_SERVICE_DOMAIN,
+    PWD_RESET_JWT_SECRET: process.env.PWD_RESET_JWT_SECRET,
+    PWD_RESET_CRYPTO_SECRET: process.env.PWD_RESET_CRYPTO_SECRET,
 
     indexable: true,
     public: {
       siteUrl: process.env.HRESS_BASE_URL,
     },
+  },
+  image: {
+    domains: ["api.dicebear.com", "img.freepik.com", "st4.depositphotos.com"],
+  },
+  telemetry: {
+    enabled: false,
   },
   nitro: {
     plugins: ["./db/index.js"],
