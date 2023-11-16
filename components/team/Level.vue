@@ -1,7 +1,13 @@
 <template>
   <div data-level>
     <div
-      class="flex items-center py-3 px-4 bg-zinc-800 border-[1px] border-zinc-700 rounded-2xl cursor-pointer sm:px-5 shadow-md shadow-black/50"
+      :class="
+        fc(`
+          flex items-center py-3 px-4 bg-zinc-800 border-[1px] 
+          border-zinc-700 rounded-2xl cursor-pointer sm:px-5 
+          shadow-md shadow-black/50
+        `)
+      "
     >
       <div
         class="flex items-center w-full text-[1.08rem] pointer-events-none border-[0px]"
@@ -41,7 +47,13 @@
     <!-- v-show="props.levelOpen" -->
     <div
       data-level-members
-      class="flex flex-col gap-1 overflow-hidden mx-2 pt-0 border-[1px] border-t-0 border-zinc-700 rounded-bl-xl rounded-br-xl"
+      :class="
+        fc(`
+          flex flex-col gap-1 overflow-hidden mx-2 pt-0
+          border-[1px] border-t-0 border-zinc-700 
+          rounded-bl-xl rounded-br-xl
+        `)
+      "
     >
       <TeamMember
         v-for="member in props.referrals"
@@ -89,6 +101,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  fetchUrl: {
+    type: String,
+    required: true,
+  },
 });
 
 const { setPopupMessage } = usePopup();
@@ -105,10 +121,14 @@ onMounted(() => {
 
 async function fetchMoreReferrals() {
   try {
-    if (!next_crsr) return;
+    if (!next_crsr.value) return;
+    if (!props.fetchUrl) {
+      setPopupMessage("Something went wrong!");
+      throw new Error("fetch url not found");
+    }
 
     const { data, error } = await useFetch(
-      `/api/account/team/${props.levelNo}?next_crsr=${next_crsr.value}`,
+      `${props?.fetchUrl}?next_crsr=${next_crsr.value}`,
       {
         headers: useRequestHeaders(["cookie"]),
       }
