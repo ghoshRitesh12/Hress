@@ -17,7 +17,7 @@ export default eventHandler(async (event) => {
       }))
     }
 
-    const pageSize = 4;
+    const pageSize = 20;
     const dateRegex = /^\d{1,2}-\d{1,2}-\d{4}$/;
     const dateParam = decodeURIComponent(event?.context?.params?.date);
 
