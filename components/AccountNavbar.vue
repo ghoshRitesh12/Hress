@@ -65,11 +65,6 @@ if (props.context === "accountView") {
       href: "/account/rewards",
       icon: "ph:trophy-bold",
     },
-    {
-      name: "Security",
-      href: "/account/security",
-      icon: "solar:shield-warning-linear",
-    },
   ];
 
   if (data.value?.user?.role === "admin") {
@@ -94,8 +89,7 @@ if (props.context === "accountView") {
 
   navlinks.value = usualNavs;
 }
-
-onMounted(() => {
+function setProfileViewNavLinks() {
   if (props.context === "profileView") {
     const { params } = useRouter().currentRoute.value;
     navlinks.value = [
@@ -121,7 +115,17 @@ onMounted(() => {
       },
     ];
   }
+}
+
+watch(() => useRouter().currentRoute.value.params, setProfileViewNavLinks);
+
+onMounted(() => {
+  setProfileViewNavLinks();
   scrollToLink();
+});
+
+onUnmounted(() => {
+  console.log("bruh");
 });
 </script>
 
@@ -130,6 +134,7 @@ onMounted(() => {
     class="flex-[15%] flex md:flex-col sm:gap-4 md:pr-4 py-2 md:flex-[20%] md:mr-8 overflow-auto"
     id="account-navbar"
     ref="navlinkContainer"
+    :key="$route.params.referralId"
   >
     <NuxtLink
       v-for="navlink in navlinks"
