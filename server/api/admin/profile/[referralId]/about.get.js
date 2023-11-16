@@ -7,10 +7,17 @@ export default eventHandler(async (event) => {
     await nativeAuthenticate(event);
     nativeAuthorize(event);
 
-    const queryFields = [
-      'info', 'pfp', 'verified', 'active',
-      'rank', 'referralId', 'courseType',
-    ];
+    const userQueryFields = {
+      _id: 0,
+      pfp: 1,
+      info: 1,
+      rank: 1,
+      active: 1,
+      verified: 1,
+      courseType: 1,
+      referralId: 1,
+      createdAt: 1,
+    };
 
     const paramReferralId = event?.context?.params?.referralId;
     await serverSearchProfileSchema.validate({
@@ -22,17 +29,20 @@ export default eventHandler(async (event) => {
       })
     })
 
-    const foundUser = await User.findOne({ referralId: paramReferralId }, queryFields)
+    const foundUser = await User.findOne({ referralId: paramReferralId })
       .readConcern('majority')
-    if(!foundUser) {
+      .select(userQueryFields)
+      .lean();
+
+    if (!foundUser) {
       return sendError(event, createError({
         statusCode: 404,
         statusMessage: 'User not found',
       }))
     }
 
-    setResponseStatus(event, 200)
-    return foundUser
+    setResponseStatus(event, 200);
+    return foundUser;
 
   } catch (err) {
     console.log(err);
