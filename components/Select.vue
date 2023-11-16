@@ -13,9 +13,9 @@ const props = defineProps({
 });
 const emits = defineEmits(["input-change"]);
 
-const isOpen = useState(() => false);
-const selectedLabel = useState(() => null);
-const selectedValue = useState(() => null);
+const isOpen = useState(`${props.placeholder} iO`, () => false);
+const selectedLabel = useState(`${props.placeholder} sL`, () => null);
+const selectedValue = useState(`${props.placeholder} sV`, () => null);
 
 function onInputChange(option) {
   if (selectedLabel.value === option.label) {
@@ -36,16 +36,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative text-left isolate z-[60] bg-primary-900">
+  <div class="relative text-left bg-primary-900">
     <button
       type="button"
       role="select"
       :class="
         fc(`
-        flex items-center justify-between rounded-xl
-        border-[1px] border-zinc-700 py-[.6rem] px-4 
-        w-full align-middle leading-[1.2] text-[.9rem]
-      `)
+          flex items-center justify-between rounded-xl
+          border-[1px] border-zinc-700 py-[.6rem] px-4 
+          w-full align-middle leading-[1.2] text-[.9rem]
+        `)
       "
       @click="isOpen = !isOpen"
     >
@@ -57,9 +57,10 @@ onUnmounted(() => {
     </button>
 
     <div
+      data-select-dropdown
       :class="
         fc(`
-          absolute w-full isolate z-50 mt-1 rounded-xl 
+          absolute w-full isolate z-[80] mt-1 rounded-xl 
           overflow-x-hidden border-zinc-700 border-[1px] 
           overflow-y-auto options bg-primary-900
           shadow-lg shadow-black/40
@@ -75,9 +76,9 @@ onUnmounted(() => {
       <div
         :class="
           fc(`
-          py-2 px-4 w-full align-middle text-[.9rem] leading-[1.2]
-          text-zinc-500 pointer-events-none font-semibold
-        `)
+            py-2 px-4 w-full align-middle text-[.9rem] leading-[1.2]
+            text-zinc-500 pointer-events-none font-semibold
+          `)
         "
       >
         {{ props.placeholder }}
@@ -109,7 +110,7 @@ onUnmounted(() => {
           <Icon
             v-show="selectedLabel === option.label"
             name="charm:tick"
-            class="flex-shrink-0"
+            class="flex-shrink-0 ml-[.35rem]"
           />
         </div>
       </div>
