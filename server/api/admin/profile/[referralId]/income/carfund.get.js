@@ -43,25 +43,32 @@ export default eventHandler(async (event) => {
 
     if (foundUser.rank < carFundMinEligibilityRank) return res;
 
-    const monthlyCTO = 1_20_000 || await getBiMonthlyCTO();
-
-    const totalEligibleUsers = (await User.aggregate([
-      {
-        $match: {
-          rank: {
-            $gte: carFundMinEligibilityRank,
-            $lte: carFundMaxEligibilityRank
-          },
-          active: { $eq: true }
+    const [biMonthlyCTO, totalEligibleUsers] = await Promise.all([
+      getBiMonthlyCTO(),
+      User.aggregate([
+        {
+          $match: {
+            rank: {
+              $gte: carFundMinEligibilityRank,
+              $lte: carFundMaxEligibilityRank
+            },
+            active: { $eq: true }
+          }
+        },
+        {
+          $project: {
+            _id: 1
+          }
+        },
+        {
+          $count: "frequency"
         }
-      },
-      {
-        $count: "frequency"
-      }
-    ]).readConcern('majority'))[0].frequency;
+      ]).readConcern("majority")
+    ])
 
+    const frequency = totalEligibleUsers?.[0]?.frequency || 1;
     res.eligible = true;
-    res.carFund = (((carFundIncentive / 100)) * monthlyCTO) / totalEligibleUsers;
+    res.carFund = (((carFundIncentive / 100)) * biMonthlyCTO) / frequency;
 
     setResponseStatus(event, 200)
     return res
