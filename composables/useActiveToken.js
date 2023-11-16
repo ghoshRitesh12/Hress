@@ -1,4 +1,3 @@
-
 export function useActiveToken() {
   const tokenBuffer = useState(() => []);
 
@@ -6,8 +5,13 @@ export function useActiveToken() {
 
   async function getGeneratedTokens() {
     try {
-      const { setPopupMessage } = usePopup();    
-      const { data, error } = await useFetch("/api/account/active-token")
+      const { setPopupMessage } = usePopup();
+      const { data, error } = await useFetch(
+        "/api/account/active-token",
+        {
+          headers: useRequestHeaders(["cookie"]),
+        }
+      )
 
       if (data?.value) {
         allActiveTokens.value = data.value.tokens;
@@ -22,19 +26,20 @@ export function useActiveToken() {
   async function generateActiveTokens(value) {
     try {
       value.quantity = Number(value.quantity)
-      if(isNaN(value.quantity) || value.quantity <= 0) return;
+      if (isNaN(value.quantity) || value.quantity <= 0) return;
 
       const { setPopupMessage } = usePopup();
-    
+
       setPopupMessage("Generating active tokens...")
       const { data, error } = await useFetch(
-        "/api/account/active-token", 
+        "/api/account/active-token",
         {
           method: "POST",
           body: markRaw(value),
+          headers: useRequestHeaders(["cookie"]),
         }
       );
-  
+
       if (data?.value) {
         await getGeneratedTokens()
         setPopupMessage(data?.value?.message);
