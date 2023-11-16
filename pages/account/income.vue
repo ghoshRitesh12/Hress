@@ -1,48 +1,19 @@
 <template>
   <div data-account-income>
-    <div v-if="data?.userActive">
-      <div class="text-2xl border-b-[1px] border-zinc-700/80 pb-3 mt-0">
-        My Income
-      </div>
-
-      <div class="text-[.85rem] text-zinc-400 mt-2">
-        {{ d.toLocaleString("default", { month: "long" }) }} month's
-        <span>{{ d.getDate() < 15 ? 1 : 2 }}</span>
-        <sup>{{ d.getDate() < 15 ? "st" : "nd" }}</sup>
-        level income.
-      </div>
-
-      <Select
-        v-if="data?.selectIncomeLevels?.length"
-        class="w-[15rem] ml-auto mt-4"
-        placeholder="Select level income"
-        :options="data?.selectIncomeLevels"
-        @input-change="fetchLevelIncome"
+    <div
+      v-if="data?.userActive"
+      class="min-h-[42vh] md:min-h-[57vh]"
+    >
+      <IncomeLevelIncomeSection
+        :select-income-levels="data?.selectIncomeLevels"
+        fetch-url="/api/account/income/level"
+        :admin-view="false"
       />
-      <Inconvenience
-        v-else
-        img-src="/images/join_team.svg"
-        :img-width="512"
-        :img-height="532"
-        img-style="
-          max-w-[9rem] sm:max-w-[12rem] md:max-w-[15rem]
-        "
-        class="mt-6"
-      >
-        <!-- <div v-if="props?.adminView">
-          Oops this user hasn't sponsored any member yet.
-        </div> -->
-        <!-- <div v-else> -->
-        <div>
-          Oops, it seems like you haven't sponsored any member yet.
-          <br />
-          Members sponsored by you show up here in their respective levels.
-        </div>
-      </Inconvenience>
 
-      <IncomeLevelWiseTab
-        :level="incomeLevelInfo"
-        class="my-6"
+      <IncomePrevIncomeSection
+        :past-income-statements="data?.pastIncomeStatements"
+        fetch-url="/api/account/income/statement"
+        :admin-view="false"
       />
 
       <IncomeCarFundTab
@@ -76,29 +47,12 @@ definePageMeta({
   middleware: "native",
 });
 
-const d = new Date();
 const { setPopupMessage } = usePopup();
 
-const { data, error } = await useFetch("/api/account/income");
+const { data, error } = await useFetch("/api/account/income", {
+  headers: useRequestHeaders(["cookie"]),
+});
 if (error.value) setPopupMessage(error.value?.statusMessage);
 
-const incomeLevelInfo = useState(() => null);
-async function fetchLevelIncome(incomeLevel) {
-  try {
-    const { data, error } = await useFetch(
-      `/api/account/income/level/${incomeLevel}`
-    );
-    if (error.value) {
-      setPopupMessage(error.value?.statusMessage);
-      return;
-    }
-    incomeLevelInfo.value = data.value;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-onUnmounted(() => {
-  incomeLevelInfo.value = null;
-});
+//
 </script>
