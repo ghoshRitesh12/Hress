@@ -11,13 +11,13 @@ export default NuxtAuthHandler({
       name: 'Credentials',
 
       async authorize(credentials) {
-        try {          
+        try {
           const data = await $fetch('/api/auth/login', {
-            method: 'POST', 
+            method: 'POST',
             body: JSON.stringify(credentials)
           })
 
-          if(data.user) {
+          if (data.user) {
             const userData = {
               name: data.user.name,
               email: data.user.email,
@@ -29,13 +29,9 @@ export default NuxtAuthHandler({
           }
 
         } catch ({ message }) {
-
           console.log(message);
-          message = message.trim()
           throw new Error(
-            message.substring(
-              message.indexOf(" "), message.lastIndexOf(" ")
-            ).trim()
+            message?.trim()?.split(" ")?.slice(3)?.join(" ")
           );
         }
       },
