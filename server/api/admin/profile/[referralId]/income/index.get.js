@@ -1,4 +1,5 @@
 import User from "~/server/models/User.model";
+import Income from "~/server/models/Income.model";
 import { serverSearchProfileSchema } from "~/utils/searchProfileSchema";
 import { nativeAuthenticate, nativeAuthorize } from "~/server/helpers/middleware/native.auth";
 
@@ -17,61 +18,123 @@ export default eventHandler(async (event) => {
       })
     })
 
-    const queryFields = [
-      'levels', 'rank', 'active',
-    ];
-    const res = {
-      levels: [],
-      totalLevelIncome: 0,
-    }
+    const [incomeLevelOptions, pastIncomeStatements] = await Promise.all([
+      User.aggregate([
+        {
+          $match: {
+            referralId: paramReferralId
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            userActive: "$active",
+            selectIncomeLevels: {
+              $cond: {
+                if: { $eq: ["$active", true] },
+                then: {
+                  $map: {
+                    input: "$levels",
+                    as: "level",
+                    in: {
+                      label: {
+                        $concat: [
+                          "Level ",
+                          { $toString: "$$level.levelNo" }
+                        ]
+                      },
+                      value: "$$level.levelNo"
+                    }
+                  }
+                },
+                else: []
+              }
+            }
+          }
+        },
+      ]).readConcern("majority"),
 
-    const foundUser = await User.findOne({ referralId: paramReferralId }, queryFields)
-      .readConcern('majority')
-      .populate({ path: 'levels.referrals.userRef', select: ['courseType', 'active'] })
+      Income.aggregate([
+        {
+          $match: {
+            referralId: paramReferralId
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            pastIncomeStatements: {
+              $map: {
+                input: { $objectToArray: "$incomes" },
+                as: "item",
+                in: {
+                  $let: {
+                    vars: {
+                      ogValue: "$$item.k",   //originalValue
+                      ogDate: {              //originalDate
+                        $dateToParts: {
+                          date: { $toDate: "$$item.k" }
+                        }
+                      },
+                      monthsInString: [
+                        "January", "February", "March", "April",
+                        "May", "June", "July", "August",
+                        "September", "October", "November", "December"
+                      ]
+                    },
+                    in: {
+                      label: {
+                        $concat: [
+                          {
+                            $cond: {
+                              if: { $lte: ["$$ogDate.day", 15] },
+                              then: "1st half of",
+                              else: "2nd half of"
+                            }
+                          },
+                          " ",
+                          {
+                            $arrayElemAt: [
+                              "$$monthsInString",
+                              { $subtract: ["$$ogDate.month", 1] }
+                            ]
+                          },
+                          " ",
+                          {
+                            $toString: "$$ogDate.year"
+                          }
+                        ]
+                      },
+                      value: "$$ogValue",
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+      ]).readConcern("majority"),
+    ])
 
-    if (!foundUser) {
+    if (!incomeLevelOptions || incomeLevelOptions?.length === 0) {
       return sendError(event, createError({
         statusCode: 404,
-        statusMessage: 'User not found'
+        statusMessage: "Income level options not found"
       }))
     }
 
-    res.levels = foundUser.levels.slice(0, 15).map(level => {
-      let levelIncome = 0;
+    if (!pastIncomeStatements || pastIncomeStatements?.length === 0) {
+      return sendError(event, createError({
+        statusCode: 404,
+        statusMessage: "Past income statements not found"
+      }))
+    }
 
-      level.referrals.map(referral => {
-        if (!referral?.userRef?.active || referral.commission <= 0) return;
-
-        const joiningFees = (
-          referral.userRef.courseType === 'advance' ?
-            20000 :
-            (referral.userRef.courseType === 'basic' ? 12000 : 0)
-        );
-
-        if (referral.commission > 20) {
-          const levelCommission = referral.commission - 20;
-          const spilloverCommission = referral.commission - levelCommission;
-          const totalCommission = (joiningFees * (spilloverCommission / 100)) + (joiningFees * (levelCommission / 100))
-
-          levelIncome += totalCommission
-          return;
-        }
-
-        levelIncome += (joiningFees * (referral.commission / 100))
-      })
-
-      res.totalLevelIncome += levelIncome
-
-      return {
-        levelNo: level.levelNo,
-        levelMembers: level.referrals.length,
-        levelIncome
-      }
-    })
-
-    setResponseStatus(event, 200)
-    return res
-
+    setResponseStatus(event, 200);
+    return {
+      ...incomeLevelOptions?.[0],
+      ...pastIncomeStatements?.[0]
+    };
 
   } catch (err) {
     console.log(err);
