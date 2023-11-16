@@ -14,6 +14,7 @@ export default eventHandler(async (event) => {
       verified: 1,
       courseType: 1,
       referralId: 1,
+      createdAt: 1,
     };
 
     const foundUser = await User.findOne({ 'info.email': event?.user?.email })
@@ -28,7 +29,7 @@ export default eventHandler(async (event) => {
       }))
     }
 
-    setResponseStatus(event, 200)
+    setResponseStatus(event, 200);
     return foundUser;
 
   } catch (err) {
