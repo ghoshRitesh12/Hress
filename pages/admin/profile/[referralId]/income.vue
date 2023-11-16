@@ -1,14 +1,18 @@
 <template>
-  <div data-account-income>
-    <div class="text-2xl border-b-[1px] border-zinc-700/80 pb-3 mt-0">
-      Income
-    </div>
-
-    <IncomeLevelWiseTab
-      :levels="data?.levels"
-      :total-level-income="data?.totalLevelIncome"
+  <div
+    data-account-income
+    class="min-h-[42vh] md:min-h-[57vh]"
+  >
+    <IncomeLevelIncomeSection
+      :select-income-levels="data?.selectIncomeLevels"
+      :fetch-url="`/api/admin/profile/${params.referralId}/income/level`"
       :admin-view="true"
-      class="my-6"
+    />
+
+    <IncomePrevIncomeSection
+      :past-income-statements="data?.pastIncomeStatements"
+      :fetch-url="`/api/admin/profile/${params.referralId}/income/statement`"
+      :admin-view="true"
     />
 
     <IncomeCarFundTab
@@ -20,11 +24,9 @@
 
 <script setup>
 const { params } = useRoute();
-
 useHead({
   title: `${params.referralId} - Income`,
 });
-
 definePageMeta({
   layout: "view-profile",
   middleware: ["native", "admin"],
@@ -32,12 +34,11 @@ definePageMeta({
 
 const { setPopupMessage } = usePopup();
 
-const headers = useRequestHeaders(["cookie"]);
 const { data, error } = await useFetch(
   `/api/admin/profile/${params.referralId}/income`,
-  { headers }
+  { headers: useRequestHeaders(["cookie"]) }
 );
+if (error.value) setPopupMessage(error.value?.statusMessage);
 
-setPopupMessage(error.value?.statusMessage);
-if (error.value) throw error;
+//
 </script>
