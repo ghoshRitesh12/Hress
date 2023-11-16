@@ -15,7 +15,6 @@
         decoding="async"
         fetchpriority="high"
         class="pointer-events-none"
-        :placeholder="[36, 36]"
         height="35.2"
         width="35.2"
       />
