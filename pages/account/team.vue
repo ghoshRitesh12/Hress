@@ -3,7 +3,10 @@
     data-account-team
     class="pb-12"
   >
-    <div v-if="data?.userActive">
+    <div
+      v-if="data?.userActive"
+      class="min-h-[42vh] md:min-h-[57vh]"
+    >
       <TeamParentMember
         class="mb-6"
         v-if="data.sponsorer"
@@ -12,6 +15,10 @@
       />
       <div class="text-2xl border-b-[1px] border-zinc-700/80 pb-3 mt-0">
         My Team
+      </div>
+
+      <div class="text-zinc-400 text-[.85rem] mt-4">
+        Select a level to view the members present in that level.
       </div>
 
       <Select
@@ -33,6 +40,7 @@
           :referrals="selectedLevelInfo.referrals"
           :has-more-referrals="selectedLevelInfo.hasMore"
           :total-no-of-referrals="selectedLevelInfo.totalReferrals"
+          :fetch-url="`/api/account/team/${selectedLevelInfo.levelNo}`"
         />
       </div>
 
