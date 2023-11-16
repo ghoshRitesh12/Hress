@@ -6,7 +6,12 @@
     />
 
     <div
-      class="pt-4 sm:pt-8 pb-8 max-w-[92%] md:max-w-[95%] xl:max-w-[85%] 2xl:max-w-[70%] w-full mx-auto"
+      :class="
+        fc(`
+          pt-4 sm:pt-8 pb-8 mx-auto w-full max-w-[92%]
+          md:max-w-[95%] xl:max-w-[85%] 2xl:max-w-[70%] 
+        `)
+      "
     >
       <h1 class="text-2xl sm:text-3xl font-semibold mb-8 md:mb-12">
         Account Settings
@@ -17,7 +22,14 @@
       >
         <AccountNavbar context="accountView" />
 
-        <div class="md:flex-[60%] lg:flex-[75%] xl:flex-[90%] py-2">
+        <div
+          :class="
+            fc(`
+              md:flex-[60%] lg:flex-[75%] xl:flex-[90%] py-2 
+              md:overflow-x-hidden
+            `)
+          "
+        >
           <slot />
         </div>
       </div>
@@ -31,4 +43,6 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import fc from "~/utils/classes";
+</script>
