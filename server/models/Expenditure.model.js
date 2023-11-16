@@ -23,7 +23,7 @@ const expenditureSchema = new Schema({
     userRef: {
       type: Schema.Types.ObjectId,
       ref: "Users",
-      required: true
+      // required: true
     },
     income: [Number] // 0th levelIncome, 1st carFund
   }],
