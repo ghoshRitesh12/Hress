@@ -1,13 +1,12 @@
-export const usePopup = () => {
-  
+export function usePopup() {
   const popupMessage = useState('popupMessage', () => null);
 
-  const setPopupMessage = (message) => {
-    if(!message) return;
+  function setPopupMessage(message) {
+    if (!message) return;
     popupMessage.value = message;
   }
 
-  const closePopup = () => {
+  function closePopup() {
     popupMessage.value = null;
   }
 
