@@ -18,9 +18,7 @@ export default eventHandler(async (event) => {
         }
       },
       {
-        $project: {
-          _id: 0,
-          active: 1,
+        $addFields: {
           ancestor: {
             $cond: {
               if: { $eq: ["$active", true] },
@@ -70,6 +68,7 @@ export default eventHandler(async (event) => {
       },
       {
         $project: {
+          _id: 0,
           sponsorer: {
             $cond: {
               if: { $isArray: "$ancestors" },
