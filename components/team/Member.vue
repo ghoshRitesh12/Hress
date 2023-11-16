@@ -1,33 +1,34 @@
 <template>
-
-  <div data-member
-    class="
-    flex items-center justify-between gap-10
-    odd:bg-zinc-900 px-6 py-[.6rem]
-    overflow-x-auto text-[.9rem]
+  <div
+    data-member
+    :class="
+      fc(`
+        flex items-center justify-between gap-10 
+        odd:bg-zinc-900 px-6 py-[.6rem] 
+        overflow-x-auto text-[.9rem]
+      `)
     "
   >
-    
-    <div data-member-name
+    <NuxtLink
+      data-member-name
       class="flex-shrink-0"
-      :class="
-        props.user?.active ? 'text-accent-100' : 'text-yellow-200'
-      "
+      :class="props.user?.active ? 'text-accent-100' : 'text-yellow-200'"
+      :href="`/admin/profile/${props.user.referralId}/about`"
     >
       {{ props.user.info.name }}
-    </div>
+    </NuxtLink>
 
-    <div v-if="props.user.referralId"
+    <div
+      v-if="props.user.referralId"
       class="flex-shrink-0"
     >
       {{ props.user.referralId }}
     </div>
 
-    <TeamMemberRank
-      :rank="props.user.rank"
-    />
-    
-    <div data-member-commission
+    <TeamMemberRank :rank="props.user.rank" />
+
+    <div
+      data-member-commission
       class="flex-shrink-0"
     >
       {{ parsedCommission }}
@@ -37,55 +38,45 @@
       :spillover-type="spillOverType"
       class="flex-shrink-0"
     />
-
   </div>
-
 </template>
 
-
 <script setup>
+import fc from "~/utils/classes";
 
 const props = defineProps({
   commission: {
     type: Number,
-    required: true
+    required: true,
   },
   user: {
     type: Object,
-    required: true
+    required: true,
   },
-})
+});
 
 const parsedCommission = ref(`${props.commission}%`);
-const spillOverType = ref('normal');
+const spillOverType = ref("normal");
 
+if (props.commission < 0) {
+  spillOverType.value = "indirect";
 
-if(props.commission < 0) {
-  spillOverType.value = 'indirect';
-
-  parsedCommission.value = props.commission
-
-} else if(props.commission > 20) {
-  spillOverType.value = 'direct';
+  parsedCommission.value = props.commission;
+} else if (props.commission > 20) {
+  spillOverType.value = "direct";
 
   const levelIncentive = props.commission - 20,
-  spilloverIncentive = props.commission - levelIncentive;
+    spilloverIncentive = props.commission - levelIncentive;
 
-  parsedCommission.value = `${spilloverIncentive}% + ${levelIncentive}%`
+  parsedCommission.value = `${spilloverIncentive}% + ${levelIncentive}%`;
 }
-
-
-
 </script>
 
-
 <style scoped>
-
-  [data-level] [data-member] {
-    scrollbar-width: none;
-  }
-  [data-level] [data-member]::-webkit-scrollbar {
-    display: none;
-  }
-
+[data-level] [data-member] {
+  scrollbar-width: none;
+}
+[data-level] [data-member]::-webkit-scrollbar {
+  display: none;
+}
 </style>
