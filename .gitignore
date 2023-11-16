@@ -8,3 +8,6 @@ node_modules
 dist
 .DS_Store
 server/api/index.get.js
+
+server/api/account/income/indexy.get.js
+server/api/account/income/i.get.js
