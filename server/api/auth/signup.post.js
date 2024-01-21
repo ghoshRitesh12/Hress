@@ -115,23 +115,35 @@ export default eventHandler(async (event) => {
     }
 
     let isAccountActive = false;
-    let foundActiveToken = null;
-    if (body?.activeToken) {
-      foundActiveToken = await ActiveToken.findOne({ token: body.activeToken })
-        .session(signupSession)
-        .select({ usedBy: 1 }) || null;
-
-      // used active token
-      if (foundActiveToken?.usedBy) {
-        await signupSession.abortTransaction();
-        return createError({
-          statusCode: 403,
-          statusMessage: "Your active token has expired"
-        })
-      }
-
-      isAccountActive = foundActiveToken ? true : false;
+    if (!body?.activeToken) {
+      await signupSession.abortTransaction();
+      return createError({
+        statusCode: 400,
+        statusMessage: "Active token required"
+      })
     }
+
+    const foundActiveToken = await ActiveToken.findOne({ token: body.activeToken })
+      .session(signupSession)
+      .select({ usedBy: 1 }) || null;
+
+    if (!foundActiveToken) {
+      await signupSession.abortTransaction();
+      return createError({
+        statusCode: 401,
+        statusMessage: "Active token not found"
+      })
+    }
+    // used active token
+    if (foundActiveToken?.usedBy) {
+      await signupSession.abortTransaction();
+      return createError({
+        statusCode: 403,
+        statusMessage: "Your active token has expired"
+      })
+    }
+
+    isAccountActive = foundActiveToken ? true : false;
 
 
     const newUserInfo = [{
@@ -151,10 +163,8 @@ export default eventHandler(async (event) => {
 
 
     // setting active token usedBy
-    if (foundActiveToken) {
-      foundActiveToken.usedBy = newUser.referralId
-      await foundActiveToken.save({ session: signupSession })
-    }
+    foundActiveToken.usedBy = newUser.referralId
+    await foundActiveToken.save({ session: signupSession })
 
     await Income.create(
       [{
