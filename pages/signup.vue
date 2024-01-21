@@ -266,10 +266,7 @@
           v-else
         >
           <div class="mt-4">
-            <label class="block">
-              Active token
-              <span class="text-[.8rem] text-zinc-400 ml-1"> (optional) </span>
-            </label>
+            <label class="block"> Active token </label>
 
             <VField
               type="text"

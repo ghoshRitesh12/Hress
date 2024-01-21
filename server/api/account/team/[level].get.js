@@ -17,7 +17,7 @@ export default eventHandler(async (event) => {
       }))
     }
 
-    const pageSize = 10;
+    const pageSize = 20;
     const levelNumberParam = Number(event?.context?.params?.level);
     const levelNumber = (isNaN(levelNumberParam) || levelNumberParam <= 0) ? 0 : levelNumberParam - 1;
 

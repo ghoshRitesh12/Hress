@@ -38,16 +38,10 @@ export const clientSignupSchema = [
   )),
 
   toTypedSchema(object().shape({
-    activeToken: string().trim().when(['activeToken'], (val, schema) => {
-      if (val[0]?.trim()?.length > 0) {
-        return string().required('Active token required').matches(
-          /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}$/,
-          'Invalid active token'
-        )
-      } else {
-        return string().notRequired()
-      }
-    }),
+    activeToken: string().trim().required('Active token required').matches(
+      /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}$/,
+      'Invalid active token'
+    ),
     otp: string().trim().required('OTP is required').matches(
       /^[0-9]{6}$/,
       'OTP must be a 6 digit number'
@@ -81,16 +75,10 @@ export const serverSignupSchema = object().shape({
     'Use 8 to 16 characters with a mix of letters(lower & upper case), numbers & symbols among !@#$%^&*()'
   ),
   confirmPassword: string().trim().required('Re enter password').oneOf([yupRef('password')], 'Passwords must match'),
-  activeToken: string().trim().when(['activeToken'], (val, schema) => {
-    if (val[0]?.trim()?.length > 0) {
-      return string().required('Active token required').matches(
-        /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}$/,
-        'Invalid active token'
-      )
-    } else {
-      return string().notRequired()
-    }
-  }),
+  activeToken: string().trim().required('Active token required').matches(
+    /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}$/,
+    'Invalid active token'
+  ),
   otp: string().trim().required('OTP is required').matches(
     /^[0-9]{6}$/,
     'OTP must be a 6 digit number'
