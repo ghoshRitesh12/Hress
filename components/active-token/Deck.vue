@@ -1,5 +1,7 @@
 <template>
-  <div class="flex items-center justify-center flex-wrap gap-5">
+  <div
+    class="flex items-center justify-center flex-wrap gap-5 max-h-[30rem] overflow-y-scroll"
+  >
     <template v-if="allActiveTokens?.length">
       <ActiveTokenCard
         v-for="activeToken in allActiveTokens"
